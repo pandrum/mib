@@ -33,96 +33,151 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textFieldUsername = new javax.swing.JTextField();
-        labelUsername = new javax.swing.JLabel();
+        textFieldAgentUsername = new javax.swing.JTextField();
+        labelAgentUsername = new javax.swing.JLabel();
         textFieldPassword = new javax.swing.JTextField();
         labelPassword = new javax.swing.JLabel();
-        labelAgent = new javax.swing.JLabel();
-        buttonLogin = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        buttonAgentLogin = new javax.swing.JButton();
+        imageBanner = new javax.swing.JLabel();
+        textFieldUsername1 = new javax.swing.JTextField();
+        labelAlienUsername = new javax.swing.JLabel();
+        textFieldAlienPassword = new javax.swing.JTextField();
+        labelAlienPassword = new javax.swing.JLabel();
+        buttonAlienLogin = new javax.swing.JButton();
+        separatorLoginScreen = new javax.swing.JSeparator();
+        imageAlienLogo = new javax.swing.JLabel();
+        imageAgentLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Men In Black Database");
 
-        textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
+        textFieldAgentUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldUsernameActionPerformed(evt);
+                textFieldAgentUsernameActionPerformed(evt);
             }
         });
 
-        labelUsername.setText("Username");
+        labelAgentUsername.setText("Username");
 
         labelPassword.setText("Password");
 
-        labelAgent.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        labelAgent.setText("Agent");
-
-        buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+        buttonAgentLogin.setText("Login");
+        buttonAgentLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLoginActionPerformed(evt);
+                buttonAgentLoginActionPerformed(evt);
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/mib.png"))); // NOI18N
+        imageBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/mib.png"))); // NOI18N
+
+        textFieldUsername1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldUsername1ActionPerformed(evt);
+            }
+        });
+
+        labelAlienUsername.setText("Username");
+
+        labelAlienPassword.setText("Password");
+
+        buttonAlienLogin.setText("Login");
+        buttonAlienLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAlienLoginActionPerformed(evt);
+            }
+        });
+
+        separatorLoginScreen.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        imageAlienLogo.setIcon(new javax.swing.ImageIcon("/Users/Shared/MIB/MIB/img/alien.png")); // NOI18N
+
+        imageAgentLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(168, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAgentUsername)
                             .addComponent(labelPassword)
-                            .addComponent(labelUsername)
-                            .addComponent(labelAgent)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(buttonLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonAgentLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(textFieldPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textFieldUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                                .addComponent(textFieldAgentUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(imageAgentLogo))
+                        .addGap(28, 28, 28)
+                        .addComponent(separatorLoginScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(textFieldUsername1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textFieldAlienPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(buttonAlienLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelAlienUsername)
+                            .addComponent(labelAlienPassword)
+                            .addComponent(imageAlienLogo))
+                        .addGap(23, 23, 23))
+                    .addComponent(imageBanner))
+                .addGap(150, 150, 150))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelAgent)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(imageBanner)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonLogin)
-                .addGap(31, 31, 31))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(imageAlienLogo)
+                            .addGap(13, 13, 13)
+                            .addComponent(labelAlienUsername)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textFieldUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelAlienPassword)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textFieldAlienPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(buttonAlienLogin))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(imageAgentLogo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(labelAgentUsername)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textFieldAgentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelPassword)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(buttonAgentLogin)))
+                    .addComponent(separatorLoginScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsernameActionPerformed
+    private void textFieldAgentUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAgentUsernameActionPerformed
         //TODO
-    }//GEN-LAST:event_textFieldUsernameActionPerformed
+    }//GEN-LAST:event_textFieldAgentUsernameActionPerformed
 
-    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        String userNameInput = textFieldUsername.getText();
+    private void buttonAgentLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgentLoginActionPerformed
+        String userNameInput = textFieldAgentUsername.getText();
         String passWordInput = textFieldPassword.getText();
 
-        if (Validation.isNotEmpty(textFieldUsername) && Validation.isNotEmpty(textFieldPassword)) {
+        if (Validation.isNotEmpty(textFieldAgentUsername) && Validation.isNotEmpty(textFieldPassword)) {
 
             try {
                 String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
                 String password = idb.fetchSingle("SELECT LOSENORD from AGENT where AGENT_ID = " + userNameInput);
 
+                // Om användare skriver in rätt användarnamn och rätt lösenord.
                 if (userNameInput.equals(username) && passWordInput.equals(password)) {
                     setVisible(false);
                 }
@@ -130,7 +185,15 @@ public class MainWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "An Error occurred!" + e);
             }
         }
-    }//GEN-LAST:event_buttonLoginActionPerformed
+    }//GEN-LAST:event_buttonAgentLoginActionPerformed
+
+    private void textFieldUsername1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsername1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldUsername1ActionPerformed
+
+    private void buttonAlienLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlienLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAlienLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,12 +226,19 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonLogin;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel labelAgent;
+    private javax.swing.JButton buttonAgentLogin;
+    private javax.swing.JButton buttonAlienLogin;
+    private javax.swing.JLabel imageAgentLogo;
+    private javax.swing.JLabel imageAlienLogo;
+    private javax.swing.JLabel imageBanner;
+    private javax.swing.JLabel labelAgentUsername;
+    private javax.swing.JLabel labelAlienPassword;
+    private javax.swing.JLabel labelAlienUsername;
     private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelUsername;
+    private javax.swing.JSeparator separatorLoginScreen;
+    private javax.swing.JTextField textFieldAgentUsername;
+    private javax.swing.JTextField textFieldAlienPassword;
     private javax.swing.JTextField textFieldPassword;
-    private javax.swing.JTextField textFieldUsername;
+    private javax.swing.JTextField textFieldUsername1;
     // End of variables declaration//GEN-END:variables
 }

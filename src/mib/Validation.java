@@ -19,7 +19,7 @@ public class Validation {
         boolean result = true;
 
         if (text.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Text field is empty!");
+            JOptionPane.showMessageDialog(null, "Fyll i textrutan!");
             result = false;
             text.requestFocus();
         }
@@ -33,7 +33,7 @@ public class Validation {
             String temp = text.getText();
             Integer.parseInt(temp);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Only integers is allowed!");
+            JOptionPane.showMessageDialog(null, "Enbart numeriska värden är tillåtna!");
             result = false;
             text.requestFocus();
         }

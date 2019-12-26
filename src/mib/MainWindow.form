@@ -25,78 +25,37 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="168" max="32767" attributes="0"/>
+              <EmptySpace pref="171" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelAgentUsername" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelPassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="buttonAgentLogin" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textFieldPassword" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textFieldAgentUsername" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="imageAgentLogo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="separatorLoginScreen" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="textFieldUsername1" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                              <Component id="textFieldAlienPassword" alignment="0" max="32767" attributes="0"/>
-                              <Component id="buttonAlienLogin" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="labelAlienUsername" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelAlienPassword" min="-2" max="-2" attributes="0"/>
-                          <Component id="imageAlienLogo" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="labelAgentUsername" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelAgentPassword" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldAgentUsername" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textFieldAgentPassword" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonAgentLogin" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
                   </Group>
                   <Component id="imageBanner" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="imageBanner" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="imageBanner" min="-2" pref="321" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="imageAlienLogo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                          <Component id="labelAlienUsername" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldUsername1" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelAlienPassword" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldAlienPassword" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonAlienLogin" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="imageAgentLogo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="labelAgentUsername" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldAgentUsername" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldPassword" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonAgentLogin" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="separatorLoginScreen" min="-2" pref="189" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <Component id="labelAgentUsername" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="textFieldAgentUsername" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelAgentPassword" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="textFieldAgentPassword" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="buttonAgentLogin" min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,9 +71,7 @@
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldPassword">
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelPassword">
+    <Component class="javax.swing.JLabel" name="labelAgentPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
@@ -134,47 +91,10 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldUsername1">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldUsername1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelAlienUsername">
+    <Component class="javax.swing.JPasswordField" name="textFieldAgentPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Username"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textFieldAlienPassword">
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelAlienPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Password"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="buttonAlienLogin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Login"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAlienLoginActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JSeparator" name="separatorLoginScreen">
-      <Properties>
-        <Property name="orientation" type="int" value="1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="imageAlienLogo">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/Shared/MIB/MIB/img/alien.png"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="imageAgentLogo">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mib/agent.png"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[15, 24]"/>
         </Property>
       </Properties>
     </Component>

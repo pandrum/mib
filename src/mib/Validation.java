@@ -5,9 +5,7 @@
  */
 package mib;
 
-import java.awt.TextField;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -15,13 +13,15 @@ import javax.swing.JTextField;
  */
 public class Validation {
 
-    public static boolean isNotEmpty(JTextField text) {
+    public static boolean isNotEmpty(JTextField... args) {
         boolean result = true;
 
-        if (text.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Fyll i textrutan!");
-            result = false;
-            text.requestFocus();
+        for (JTextField arg : args) {
+            if (arg.getText().isEmpty()) {
+                result = false;
+                arg.requestFocus();
+                JOptionPane.showMessageDialog(null, "Fyll i alla textfältet ");
+            }
         }
         return result;
     }

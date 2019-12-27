@@ -5,6 +5,7 @@
  */
 package mib;
 
+import java.awt.event.KeyEvent;
 import oru.inf.*;
 import javax.swing.JOptionPane;
 
@@ -33,25 +34,26 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textFieldAgentUsername = new javax.swing.JTextField();
-        labelAgentUsername = new javax.swing.JLabel();
-        labelAgentPassword = new javax.swing.JLabel();
-        buttonAgentLogin = new javax.swing.JButton();
-        imageBanner = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         textFieldAgentPassword = new javax.swing.JPasswordField();
+        buttonAgentLogin = new javax.swing.JButton();
+        textFieldAgentUsername = new javax.swing.JTextField();
+        labelAgentPassword = new javax.swing.JLabel();
+        labelAgentUsername = new javax.swing.JLabel();
+        imageBanner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Men In Black Database");
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
-        textFieldAgentUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldAgentUsernameActionPerformed(evt);
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
+
+        textFieldAgentPassword.setMinimumSize(new java.awt.Dimension(15, 24));
+        textFieldAgentPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldAgentPasswordKeyPressed(evt);
             }
         });
-
-        labelAgentUsername.setText("Username");
-
-        labelAgentPassword.setText("Password");
 
         buttonAgentLogin.setText("Login");
         buttonAgentLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -60,30 +62,32 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        labelAgentPassword.setText("Password");
+
+        labelAgentUsername.setText("Username");
+
         imageBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/mib.png"))); // NOI18N
 
-        textFieldAgentPassword.setMinimumSize(new java.awt.Dimension(15, 24));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(labelAgentUsername)
                         .addComponent(labelAgentPassword)
                         .addComponent(textFieldAgentUsername)
                         .addComponent(textFieldAgentPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonAgentLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(imageBanner))
-                .addGap(147, 147, 147))
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(imageBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelAgentUsername)
@@ -95,15 +99,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(textFieldAgentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonAgentLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textFieldAgentUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAgentUsernameActionPerformed
-        //TODO
-    }//GEN-LAST:event_textFieldAgentUsernameActionPerformed
 
     private void buttonAgentLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgentLoginActionPerformed
 
@@ -111,7 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
         String userNameInput = textFieldAgentUsername.getText();
         String passWordInput = textFieldAgentPassword.getText();
 
-        if (Validation.isNotEmpty(textFieldAgentUsername) && Validation.isNotEmpty(textFieldAgentPassword)) {
+        if (Validation.isNotEmpty(textFieldAgentPassword, textFieldAgentUsername)) {
 
             try {
                 String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
@@ -131,6 +133,34 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_buttonAgentLoginActionPerformed
+
+    private void textFieldAgentPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAgentPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            //Hämtar användarnamn och lösenord som användare matar in.
+            String userNameInput = textFieldAgentUsername.getText();
+            String passWordInput = textFieldAgentPassword.getText();
+
+            if (Validation.isNotEmpty(textFieldAgentPassword, textFieldAgentUsername)) {
+
+                try {
+                    String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
+                    String password = idb.fetchSingle("SELECT LOSENORD from AGENT where AGENT_ID = " + userNameInput);
+
+                    // Om användare skriver in rätt användarnamn OCH rätt lösenord.
+                    if (userNameInput.equals(username) && passWordInput.equals(password)) {
+                        setVisible(false);
+                        AgentWindow agentWindow = new AgentWindow(idb);
+                        agentWindow.setVisible(true);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
+                    }
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + System.lineSeparator() + e);
+                }
+            }
+        }
+    }//GEN-LAST:event_textFieldAgentPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -165,6 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgentLogin;
     private javax.swing.JLabel imageBanner;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAgentPassword;
     private javax.swing.JLabel labelAgentUsername;
     private javax.swing.JPasswordField textFieldAgentPassword;

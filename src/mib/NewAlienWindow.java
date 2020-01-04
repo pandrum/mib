@@ -5,9 +5,12 @@
  */
 package mib;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.*;
 
 /**
@@ -50,9 +53,11 @@ public class NewAlienWindow extends javax.swing.JFrame {
         labelUsername = new javax.swing.JLabel();
         labelNewPassword = new javax.swing.JLabel();
         buttonRegisterNewAlien = new javax.swing.JButton();
-        textFieldRegistration = new javax.swing.JTextField();
         labelRegistration = new javax.swing.JLabel();
         imageAlien = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,31 +85,47 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
         imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/outer-space-alien.png"))); // NOI18N
 
+        jLabel1.setText("Ras");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Squid", "Boglodite", "Worm" }));
+        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAlienLayout = new javax.swing.GroupLayout(panelAlien);
         panelAlien.setLayout(panelAlienLayout);
         panelAlienLayout.setHorizontalGroup(
             panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlienLayout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
+            .addGroup(panelAlienLayout.createSequentialGroup()
                 .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelRegistration)
+                    .addComponent(buttonRegisterNewAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelAlienLayout.createSequentialGroup()
-                        .addComponent(labelUsername)
-                        .addGap(64, 64, 64)
-                        .addComponent(imageAlien))
-                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNewPassword)
-                    .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelArea)
-                        .addComponent(comboBoxAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(comboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonRegisterNewAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textFieldRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(116, 116, 116))
+                        .addContainerGap()
+                        .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlienLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1)
+                                    .addComponent(labelRegistration)
+                                    .addGroup(panelAlienLayout.createSequentialGroup()
+                                        .addComponent(labelUsername)
+                                        .addGap(73, 73, 73)
+                                        .addComponent(imageAlien))
+                                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldPassword)
+                                    .addComponent(labelNewPassword)
+                                    .addComponent(comboBoxAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldTelephone)
+                                    .addComponent(datePicker2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(labelArea))))))
+                .addContainerGap())
         );
         panelAlienLayout.setVerticalGroup(
             panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,21 +144,25 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 .addComponent(labelNewPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(labelRegistration)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(7, 7, 7)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(labelArea)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboBoxAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelAgent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboBoxArea, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonRegisterNewAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelRegistration)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonRegisterNewAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         textFieldName.getAccessibleContext().setAccessibleName("");
@@ -155,33 +180,40 @@ public class NewAlienWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(118, 118, 118))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(168, Short.MAX_VALUE)
+                .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buttonRegisterNewAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAlienActionPerformed
 
         if (Validation.isNotEmpty(textFieldName, textFieldPassword, textFieldTelephone)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
+            String registration = datePicker2.getDateStringOrEmptyString();
             String name = textFieldName.getText();
             String password = textFieldPassword.getText();
             String telephone = textFieldTelephone.getText();
-            String registration = textFieldRegistration.getText();
+            String breed = jComboBox1.getSelectedItem().toString();
             int agent = Integer.parseInt(comboBoxAgent.getSelectedItem().toString());
             int area = Integer.parseInt(comboBoxArea.getSelectedItem().toString());
 
@@ -189,16 +221,21 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 String fetchAutoId = idb.getAutoIncrement("ALIEN", "ALIEN_ID");
                 int autoId = Integer.parseInt(fetchAutoId);
                 idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + name + "','" + password + "'," + telephone + ",'" + area + "','" + agent + "')");
-                JOptionPane.showConfirmDialog(null, "Registrering av ny Alien lyckades!");
+
+                if (breed.equals("Squid")) {
+                    idb.insert("INSERT INTO SQUID VALUES ('" + autoId + "','" + 6 + "')");
+                }
+                JOptionPane.showMessageDialog(null, "Registrering av ny Alien lyckades!");
+                clearAllFields(rootPane);
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
             }
         }
     }//GEN-LAST:event_buttonRegisterNewAlienActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void fillComboBoxAgent() {
         try {
@@ -219,6 +256,18 @@ public class NewAlienWindow extends javax.swing.JFrame {
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void clearAllFields(Container container) {
+
+        for (Component c : container.getComponents()) {
+            if (c instanceof JTextField) {
+                JTextField f = (JTextField) c;
+                f.setText("");
+            } else if (c instanceof Container) {
+                clearAllFields((Container) c);
+            }
         }
     }
 
@@ -260,8 +309,11 @@ public class NewAlienWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonRegisterNewAlien;
     private javax.swing.JComboBox<String> comboBoxAgent;
     private javax.swing.JComboBox<String> comboBoxArea;
+    private com.github.lgooddatepicker.components.DatePicker datePicker2;
     private javax.swing.JLabel imageAlien;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAgent;
     private javax.swing.JLabel labelArea;
     private javax.swing.JLabel labelNewPassword;
@@ -271,7 +323,6 @@ public class NewAlienWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelAlien;
     private javax.swing.JTextField textFieldName;
     private javax.swing.JPasswordField textFieldPassword;
-    private javax.swing.JTextField textFieldRegistration;
     private javax.swing.JTextField textFieldTelephone;
     // End of variables declaration//GEN-END:variables
 }

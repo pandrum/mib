@@ -20,7 +20,7 @@ public class Validation {
             if (arg.getText().isEmpty()) {
                 result = false;
                 arg.requestFocus();
-                JOptionPane.showMessageDialog(null, "Fyll i alla textfältet ");
+                JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
             }
         }
         return result;

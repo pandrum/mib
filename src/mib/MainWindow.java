@@ -34,26 +34,15 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        textFieldAgentPassword = new javax.swing.JPasswordField();
         buttonAgentLogin = new javax.swing.JButton();
-        textFieldAgentUsername = new javax.swing.JTextField();
+        textFieldAgentPassword = new javax.swing.JPasswordField();
         labelAgentPassword = new javax.swing.JLabel();
+        textFieldAgentUsername = new javax.swing.JTextField();
         labelAgentUsername = new javax.swing.JLabel();
         imageBanner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Men In Black Database");
-        getContentPane().setLayout(new java.awt.FlowLayout());
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
-
-        textFieldAgentPassword.setMinimumSize(new java.awt.Dimension(15, 24));
-        textFieldAgentPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textFieldAgentPasswordKeyPressed(evt);
-            }
-        });
 
         buttonAgentLogin.setText("Login");
         buttonAgentLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -62,47 +51,47 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        textFieldAgentPassword.setMinimumSize(new java.awt.Dimension(15, 24));
+
         labelAgentPassword.setText("Password");
 
         labelAgentUsername.setText("Username");
 
         imageBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/mib.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelAgentUsername)
-                        .addComponent(labelAgentPassword)
-                        .addComponent(textFieldAgentUsername)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAgentUsername)
+                    .addComponent(imageBanner)
+                    .addComponent(labelAgentPassword)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(textFieldAgentPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonAgentLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imageBanner))
-                .addContainerGap())
+                        .addComponent(textFieldAgentUsername)
+                        .addComponent(buttonAgentLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)))
+                .addGap(214, 214, 214))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imageBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(imageBanner)
+                .addGap(72, 72, 72)
                 .addComponent(labelAgentUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldAgentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addComponent(textFieldAgentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelAgentPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldAgentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonAgentLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(textFieldAgentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonAgentLogin)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,7 +102,7 @@ public class MainWindow extends javax.swing.JFrame {
         String userNameInput = textFieldAgentUsername.getText();
         String passWordInput = textFieldAgentPassword.getText();
 
-        if (Validation.isNotEmpty(textFieldAgentPassword, textFieldAgentUsername)) {
+        if (Validation.isNotEmpty(textFieldAgentPassword, textFieldAgentUsername) && Validation.isInteger(textFieldAgentUsername)) {
 
             try {
                 String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
@@ -133,34 +122,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_buttonAgentLoginActionPerformed
-
-    private void textFieldAgentPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAgentPasswordKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            //Hämtar användarnamn och lösenord som användare matar in.
-            String userNameInput = textFieldAgentUsername.getText();
-            String passWordInput = textFieldAgentPassword.getText();
-
-            if (Validation.isNotEmpty(textFieldAgentPassword, textFieldAgentUsername)) {
-
-                try {
-                    String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
-                    String password = idb.fetchSingle("SELECT LOSENORD from AGENT where AGENT_ID = " + userNameInput);
-
-                    // Om användare skriver in rätt användarnamn OCH rätt lösenord.
-                    if (userNameInput.equals(username) && passWordInput.equals(password)) {
-                        setVisible(false);
-                        AgentWindow agentWindow = new AgentWindow(idb);
-                        agentWindow.setVisible(true);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
-                    }
-                } catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + System.lineSeparator() + e);
-                }
-            }
-        }
-    }//GEN-LAST:event_textFieldAgentPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -195,7 +156,6 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgentLogin;
     private javax.swing.JLabel imageBanner;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAgentPassword;
     private javax.swing.JLabel labelAgentUsername;
     private javax.swing.JPasswordField textFieldAgentPassword;

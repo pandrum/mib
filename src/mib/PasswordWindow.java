@@ -22,6 +22,7 @@ public class PasswordWindow extends javax.swing.JFrame {
     public PasswordWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
+        textFieldUsername.setText(MainWindow.getId());
     }
 
     /**
@@ -45,11 +46,7 @@ public class PasswordWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldUsernameActionPerformed(evt);
-            }
-        });
+        textFieldUsername.setEditable(false);
 
         labelUsername.setText("Ange användarnamn");
 
@@ -126,10 +123,6 @@ public class PasswordWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldUsernameActionPerformed
 
     private void buttonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangePasswordActionPerformed
         if (Validation.isNotEmpty(textFieldUsername) && Validation.isNotEmpty(textFieldCurrentPassword) && Validation.isNotEmpty(textFieldNewPassword)) {

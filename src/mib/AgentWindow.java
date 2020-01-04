@@ -198,7 +198,7 @@ public class AgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLogoutActionPerformed
 
     private void labelGearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGearMouseClicked
-        //
+        //TODO
     }//GEN-LAST:event_labelGearMouseClicked
 
     private void imageGearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageGearMouseClicked

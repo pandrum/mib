@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class MainWindow extends javax.swing.JFrame {
 
     private static InfDB idb;
+    private static String id;
 
     /**
      * Creates new form mainWindow
@@ -110,6 +111,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 // Om användare skriver in rätt användarnamn OCH rätt lösenord.
                 if (userNameInput.equals(username) && passWordInput.equals(password)) {
+                    id = username;
                     setVisible(false);
                     AgentWindow agentWindow = new AgentWindow(idb);
                     agentWindow.setVisible(true);
@@ -122,6 +124,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_buttonAgentLoginActionPerformed
+
+    public static String getId() {
+        return id;
+    }
 
     /**
      * @param args the command line arguments

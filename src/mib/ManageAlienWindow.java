@@ -5,16 +5,8 @@
  */
 package mib;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.resource.cci.ResultSet;
-import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import oru.inf.*;
-import javax.swing.JOptionPane;
 
 /**
  *

@@ -213,7 +213,6 @@ public class NewAlienWindow extends javax.swing.JFrame {
             String name = textFieldName.getText();
             String password = textFieldPassword.getText();
             String telephone = textFieldTelephone.getText();
-            String breed = jComboBox1.getSelectedItem().toString();
             int agent = Integer.parseInt(comboBoxAgent.getSelectedItem().toString());
             int area = Integer.parseInt(comboBoxArea.getSelectedItem().toString());
 
@@ -221,10 +220,6 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 String fetchAutoId = idb.getAutoIncrement("ALIEN", "ALIEN_ID");
                 int autoId = Integer.parseInt(fetchAutoId);
                 idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + name + "','" + password + "'," + telephone + ",'" + area + "','" + agent + "')");
-
-                if (breed.equals("Squid")) {
-                    idb.insert("INSERT INTO SQUID VALUES ('" + autoId + "','" + 6 + "')");
-                }
                 JOptionPane.showMessageDialog(null, "Registrering av ny Alien lyckades!");
                 clearAllFields(rootPane);
             } catch (InfException | NumberFormatException e) {

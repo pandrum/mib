@@ -9,7 +9,7 @@ import oru.inf.*;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * testtest
  * @author sbf
  */
 public class AgentWindow extends javax.swing.JFrame {

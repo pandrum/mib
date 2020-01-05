@@ -25,11 +25,11 @@ public class NewAlienWindow extends javax.swing.JFrame {
      * Creates new form PasswordWindow
      */
     public NewAlienWindow(InfDB idb) {
-
         initComponents();
         this.idb = idb;
-        fillComboBoxAgent();
-        fillComboBoxArea();
+        txtRaceInfo.setVisible(false);
+        labelRaceInfo.setVisible(false);
+        fillCbs();
     }
 
     /**
@@ -42,56 +42,70 @@ public class NewAlienWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         panelAlien = new javax.swing.JPanel();
-        comboBoxAgent = new javax.swing.JComboBox<>();
-        textFieldName = new javax.swing.JTextField();
-        textFieldTelephone = new javax.swing.JTextField();
-        textFieldPassword = new javax.swing.JPasswordField();
+        cbArea = new javax.swing.JComboBox<>();
+        txtName = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         labelAgent = new javax.swing.JLabel();
         labelPassword = new javax.swing.JLabel();
-        comboBoxArea = new javax.swing.JComboBox<>();
+        cbAgent = new javax.swing.JComboBox<>();
         labelArea = new javax.swing.JLabel();
-        labelUsername = new javax.swing.JLabel();
-        labelNewPassword = new javax.swing.JLabel();
-        buttonRegisterNewAlien = new javax.swing.JButton();
-        labelRegistration = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
+        labelPhone = new javax.swing.JLabel();
+        btnRegister = new javax.swing.JButton();
+        labelDate = new javax.swing.JLabel();
         imageAlien = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        labelRace = new javax.swing.JLabel();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
+        cbRace = new javax.swing.JComboBox<>();
+        labelRaceInfo = new javax.swing.JLabel();
+        txtRaceInfo = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelAlien.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        cbArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAreaActionPerformed(evt);
+            }
+        });
+
         labelAgent.setText("Ansvarig agent");
 
         labelPassword.setText("Lösenord");
 
-        labelArea.setText("Tillhörande plats");
-
-        labelUsername.setText("Namn");
-
-        labelNewPassword.setText("Telefon");
-
-        buttonRegisterNewAlien.setText("Registrera");
-        buttonRegisterNewAlien.addActionListener(new java.awt.event.ActionListener() {
+        cbAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRegisterNewAlienActionPerformed(evt);
+                cbAgentActionPerformed(evt);
             }
         });
 
-        labelRegistration.setText("Registreringsdatum");
+        labelArea.setText("Tillhörande plats");
+
+        labelName.setText("Namn");
+
+        labelPhone.setText("Telefon");
+
+        btnRegister.setText("Registrera");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        labelDate.setText("Registreringsdatum");
 
         imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/outer-space-alien.png"))); // NOI18N
 
-        jLabel1.setText("Ras");
+        labelRace.setText("Ras");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Squid", "Boglodite", "Worm" }));
-        jComboBox1.setSelectedIndex(-1);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbRace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Squid", "Boglodite", "Worm" }));
+        cbRace.setSelectedIndex(-1);
+        cbRace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbRaceActionPerformed(evt);
             }
         });
 
@@ -101,30 +115,35 @@ public class NewAlienWindow extends javax.swing.JFrame {
             panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAlienLayout.createSequentialGroup()
                 .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonRegisterNewAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelAlienLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbRace, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlienLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1)
-                                    .addComponent(labelRegistration)
+                                    .addComponent(labelRace)
+                                    .addComponent(labelDate)
                                     .addGroup(panelAlienLayout.createSequentialGroup()
-                                        .addComponent(labelUsername)
+                                        .addComponent(labelName)
                                         .addGap(73, 73, 73)
                                         .addComponent(imageAlien))
-                                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldPassword)
-                                    .addComponent(labelNewPassword)
-                                    .addComponent(comboBoxAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelPhone)
+                                    .addComponent(cbArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textFieldTelephone)
-                                    .addComponent(datePicker2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(labelArea))))))
+                                    .addComponent(cbAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(labelArea)
+                                    .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(txtRaceInfo)
+                            .addGroup(panelAlienLayout.createSequentialGroup()
+                                .addComponent(labelRaceInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         panelAlienLayout.setVerticalGroup(
@@ -132,45 +151,49 @@ public class NewAlienWindow extends javax.swing.JFrame {
             .addGroup(panelAlienLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelUsername)
+                    .addComponent(labelName)
                     .addComponent(imageAlien))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNewPassword)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(labelPhone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(labelRace)
+                .addGap(1, 1, 1)
+                .addComponent(cbRace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(7, 7, 7)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addComponent(labelRaceInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtRaceInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(labelArea)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBoxAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(labelAgent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBoxArea, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelRegistration)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelDate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonRegisterNewAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        textFieldName.getAccessibleContext().setAccessibleName("");
+        txtName.getAccessibleContext().setAccessibleName("");
 
-        jButton1.setText("Tillbaka");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Tillbaka");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -180,12 +203,10 @@ public class NewAlienWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,78 +214,95 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnBack)
                 .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void fillCbs() {
+
+        //Hämtar och fyllar i alla Platser i samtliga comboboxes.
+        String queryLocation = "SELECT BENAMNING FROM PLATS;";
+        ArrayList<String> locations = new ArrayList<>();
+        try {
+            locations = idb.fetchColumn(queryLocation);
+
+            for (String location : locations) {
+                cbAgent.addItem(location);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+        }
+        cbAgent.setSelectedIndex(-1);
+
+        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
+        String queryAgent = "SELECT Namn FROM AGENT;";
+        ArrayList<String> names = new ArrayList<>();
+        try {
+            names = idb.fetchColumn(queryAgent);
+
+            for (String name : names) {
+                cbArea.addItem(name);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+        }
+        cbArea.setSelectedIndex(-1);
+    }
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void buttonRegisterNewAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAlienActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
-        if (Validation.isNotEmpty(textFieldName, textFieldPassword, textFieldTelephone)) {
+        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
-            String registration = datePicker2.getDateStringOrEmptyString();
-            String name = textFieldName.getText();
-            String password = textFieldPassword.getText();
-            String telephone = textFieldTelephone.getText();
-            int agent = Integer.parseInt(comboBoxAgent.getSelectedItem().toString());
-            int area = Integer.parseInt(comboBoxArea.getSelectedItem().toString());
+            String registration = datePicker.getDateStringOrEmptyString();
+            String name = txtName.getText();
+            String password = txtPassword.getText();
+            String telephone = txtPhone.getText();
+            int agent = Integer.parseInt(cbArea.getSelectedItem().toString());
+            int area = Integer.parseInt(cbAgent.getSelectedItem().toString());
 
             try {
                 String fetchAutoId = idb.getAutoIncrement("ALIEN", "ALIEN_ID");
                 int autoId = Integer.parseInt(fetchAutoId);
                 idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + name + "','" + password + "'," + telephone + ",'" + area + "','" + agent + "')");
                 JOptionPane.showMessageDialog(null, "Registrering av ny Alien lyckades!");
-                clearAllFields(rootPane);
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
             }
         }
-    }//GEN-LAST:event_buttonRegisterNewAlienActionPerformed
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cbRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceActionPerformed
 
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void fillComboBoxAgent() {
-        try {
-            ArrayList<String> names = idb.fetchColumn("SELECT AGENT_ID FROM AGENT;");
-            for (int i = 0; i < names.size(); i++) {
-                comboBoxAgent.addItem(names.get(i));
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, e);
+        String choice = cbRace.getSelectedItem().toString();
+        if (choice.equals("Boglodite")) {
+            txtRaceInfo.setVisible(true);
+            labelRaceInfo.setVisible(true);
+            labelRaceInfo.setText("Antal boogies");
+        } else if (choice.equals("Squid")) {
+            txtRaceInfo.setVisible(true);
+            labelRaceInfo.setVisible(true);
+            labelRaceInfo.setText("Antal armar");
+        } else {
+            txtRaceInfo.setVisible(false);
+            labelRaceInfo.setVisible(false);
         }
-    }
+    }//GEN-LAST:event_cbRaceActionPerformed
 
-    private void fillComboBoxArea() {
-        try {
-            ArrayList<String> area = idb.fetchColumn("SELECT PLATS_ID FROM PLATS;");
-            for (int i = 0; i < area.size(); i++) {
-                comboBoxArea.addItem(area.get(i));
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
+    private void cbAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAreaActionPerformed
 
-    public void clearAllFields(Container container) {
-
-        for (Component c : container.getComponents()) {
-            if (c instanceof JTextField) {
-                JTextField f = (JTextField) c;
-                f.setText("");
-            } else if (c instanceof Container) {
-                clearAllFields((Container) c);
-            }
-        }
-    }
+    private void cbAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAgentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAgentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,23 +339,25 @@ public class NewAlienWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonRegisterNewAlien;
-    private javax.swing.JComboBox<String> comboBoxAgent;
-    private javax.swing.JComboBox<String> comboBoxArea;
-    private com.github.lgooddatepicker.components.DatePicker datePicker2;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JComboBox<String> cbAgent;
+    private javax.swing.JComboBox<String> cbArea;
+    private javax.swing.JComboBox<String> cbRace;
+    private com.github.lgooddatepicker.components.DatePicker datePicker;
     private javax.swing.JLabel imageAlien;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAgent;
     private javax.swing.JLabel labelArea;
-    private javax.swing.JLabel labelNewPassword;
+    private javax.swing.JLabel labelDate;
+    private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelRegistration;
-    private javax.swing.JLabel labelUsername;
+    private javax.swing.JLabel labelPhone;
+    private javax.swing.JLabel labelRace;
+    private javax.swing.JLabel labelRaceInfo;
     private javax.swing.JPanel panelAlien;
-    private javax.swing.JTextField textFieldName;
-    private javax.swing.JPasswordField textFieldPassword;
-    private javax.swing.JTextField textFieldTelephone;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtRaceInfo;
     // End of variables declaration//GEN-END:variables
 }

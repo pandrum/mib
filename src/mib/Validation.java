@@ -19,9 +19,10 @@ public class Validation {
         for (JTextField arg : args) {
             if (arg.getText().isEmpty()) {
                 result = false;
-                arg.requestFocus();
-                JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
             }
+        }
+        if (!result) {
+            JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
         }
         return result;
     }
@@ -33,9 +34,11 @@ public class Validation {
             String temp = text.getText();
             Integer.parseInt(temp);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Enbart numeriska värden är tillåtna!");
             result = false;
             text.requestFocus();
+        }
+        if (!result) {
+            JOptionPane.showMessageDialog(null, "Enbart numeriska värden är tillåtna!");
         }
         return result;
     }

@@ -24,6 +24,9 @@ public class ManageAlienWindow extends javax.swing.JFrame {
     public ManageAlienWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
+        txtBreedInfo.setVisible(false);
+        labelBreedInfo.setVisible(false);
+        fillCbs();
     }
 
     /**
@@ -38,12 +41,10 @@ public class ManageAlienWindow extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         labelWelcome = new javax.swing.JLabel();
         labelLogo = new javax.swing.JLabel();
-        buttonLogout = new javax.swing.JButton();
-        buttonRegisterNewAliens = new javax.swing.JButton();
-        buttonListAliens = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnRegNewAliens = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        txtSearchAlien = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtAlienID = new javax.swing.JTextField();
@@ -54,15 +55,24 @@ public class ManageAlienWindow extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnChangeInfoAlien = new javax.swing.JButton();
-        cbLocation = new javax.swing.JComboBox<>();
+        cbLocationSearchBar = new javax.swing.JComboBox<>();
         cbAgent = new javax.swing.JComboBox<>();
         txtAlienPhone = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        txtSearchAlien = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btnSearchAlien = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        cbBreedSearchBar = new javax.swing.JComboBox<>();
+        txtBreedInfo = new javax.swing.JTextField();
+        labelBreedInfo = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        cbBreed = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        btnListAliens = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        cbLocation = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,36 +81,23 @@ public class ManageAlienWindow extends javax.swing.JFrame {
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
 
-        buttonLogout.setText("Tillbaka");
-        buttonLogout.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setText("Tillbaka");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLogoutActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
-        buttonRegisterNewAliens.setText("Registrera ny Alien...");
-        buttonRegisterNewAliens.addActionListener(new java.awt.event.ActionListener() {
+        btnRegNewAliens.setText("Registrera ny Alien...");
+        btnRegNewAliens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRegisterNewAliensActionPerformed(evt);
+                btnRegNewAliensActionPerformed(evt);
             }
         });
 
-        buttonListAliens.setText("Lista alla Aliens");
-        buttonListAliens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonListAliensActionPerformed(evt);
-            }
-        });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        txtSearchAlien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchAlienActionPerformed(evt);
-            }
-        });
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -117,8 +114,72 @@ public class ManageAlienWindow extends javax.swing.JFrame {
         jLabel7.setText("Agent");
 
         btnChangeInfoAlien.setText("Ändra");
+        btnChangeInfoAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeInfoAlienActionPerformed(evt);
+            }
+        });
+
+        cbLocationSearchBar.setToolTipText("");
 
         jLabel10.setText("Telefon");
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        txtSearchAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchAlienActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Sök Alien");
+
+        btnSearchAlien.setText("Sök");
+        btnSearchAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAlienActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSearchAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtSearchAlien))
+                        .addContainerGap())))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearchAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearchAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jLabel11.setText("Ras");
+
+        cbBreedSearchBar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Squid", "Boglodite", "Worm" }));
+        cbBreedSearchBar.setSelectedIndex(-1);
+        cbBreedSearchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBreedSearchBarActionPerformed(evt);
+            }
+        });
+
+        labelBreedInfo.setText("Antal Boogies");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,26 +187,41 @@ public class ManageAlienWindow extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
-                    .addComponent(txtRegDate)
-                    .addComponent(txtAlienName)
-                    .addComponent(txtAlienID)
-                    .addComponent(txtAlienPhone)
-                    .addComponent(cbLocation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnChangeInfoAlien, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnChangeInfoAlien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbAgent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel10)
+                                        .addComponent(txtRegDate)
+                                        .addComponent(txtAlienName)
+                                        .addComponent(txtAlienID)
+                                        .addComponent(txtAlienPhone)
+                                        .addComponent(cbLocationSearchBar, 0, 183, Short.MAX_VALUE)
+                                        .addComponent(jLabel11))
+                                    .addComponent(jLabel7)
+                                    .addComponent(cbBreedSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBreedInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelBreedInfo))))
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,32 +240,83 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbLocationSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbBreedSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(labelBreedInfo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBreedInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnChangeInfoAlien)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        cbBreed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Squid", "Boglodite", "Worm" }));
+        cbBreed.setSelectedIndex(-1);
+        cbBreed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbBreedActionPerformed(evt);
             }
         });
 
         jLabel8.setText("Plats");
 
-        jLabel9.setText("Agent");
-
-        btnSearchAlien.setText("Sök");
-        btnSearchAlien.addActionListener(new java.awt.event.ActionListener() {
+        btnListAliens.setText("Lista alla Aliens");
+        btnListAliens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchAlienActionPerformed(evt);
+                btnListAliensActionPerformed(evt);
             }
         });
+
+        jLabel9.setText("Ras");
+
+        cbLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLocationActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbBreed, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnListAliens)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbBreed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListAliens))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,38 +328,19 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonListAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel9)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonRegisterNewAliens, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtSearchAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnSearchAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(126, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnRegNewAliens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE))))
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,47 +353,67 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(buttonRegisterNewAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearchAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegNewAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonListAliens))
-                .addGap(0, 158, Short.MAX_VALUE))
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
+    private void fillCbs() {
+
+        //Hämtar och fyllar i alla Platser i samtliga comboboxes.
+        String queryLocation = "SELECT BENAMNING FROM PLATS;";
+        ArrayList<String> locations = new ArrayList<>();
+        try {
+            locations = idb.fetchColumn(queryLocation);
+
+            for (String location : locations) {
+                cbLocationSearchBar.addItem(location);
+                cbLocation.addItem(location);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+        }
+        cbLocationSearchBar.setSelectedIndex(-1);
+        cbLocation.setSelectedIndex(-1);
+
+        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
+        String queryAgent = "SELECT Namn FROM AGENT;";
+        ArrayList<String> names = new ArrayList<>();
+        try {
+            names = idb.fetchColumn(queryAgent);
+
+            for (String name : names) {
+                cbAgent.addItem(name);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+        }
+        cbAgent.setSelectedIndex(-1);
+    }
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         setVisible(false);
         AgentWindow agentwindow = new AgentWindow(idb);
         agentwindow.setVisible(true);
-    }//GEN-LAST:event_buttonLogoutActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void buttonRegisterNewAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAliensActionPerformed
+    private void btnRegNewAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNewAliensActionPerformed
         NewAlienWindow newalien = new NewAlienWindow(idb);
         newalien.setVisible(true);
-    }//GEN-LAST:event_buttonRegisterNewAliensActionPerformed
+    }//GEN-LAST:event_btnRegNewAliensActionPerformed
 
-    private void buttonListAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListAliensActionPerformed
-        jTextArea1.setText("");
+    private void btnListAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAliensActionPerformed
+        txtArea.setText("");
         ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
         try {
@@ -294,21 +422,42 @@ public class ManageAlienWindow extends javax.swing.JFrame {
             aliens = idb.fetchRows(query);
 
             for (HashMap<String, String> alien : aliens) {
-                jTextArea1.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
-                jTextArea1.append("Namn: " + alien.get("NAMN") + "\n");
-                jTextArea1.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
-                jTextArea1.append("Plats: " + alien.get("PLATS") + "\n");
-                jTextArea1.append("Ansvarig agent: " + alien.get("ANSVARIG_AGENT") + "\n");
-                jTextArea1.append("--------------------------------------------------------" + "\n");
+                txtArea.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
+                txtArea.append("Namn: " + alien.get("NAMN") + "\n");
+                txtArea.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
+                txtArea.append("Plats: " + alien.get("PLATS") + "\n");
+                txtArea.append("Ansvarig agent: " + alien.get("ANSVARIG_AGENT") + "\n");
+                txtArea.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
-    }//GEN-LAST:event_buttonListAliensActionPerformed
+    }//GEN-LAST:event_btnListAliensActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cbLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLocationActionPerformed
+        txtArea.setText("");
+        ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
+
+        try {
+            String choice = cbLocation.getSelectedItem().toString();
+            String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM ALIEN WHERE PLATS = (SELECT PLATS_ID FROM PLATS WHERE BENAMNING = '" + choice + "')) ORDER BY ALIEN_ID;";
+
+            aliens = idb.fetchRows(query);
+
+            for (HashMap<String, String> alien : aliens) {
+                txtArea.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
+                txtArea.append("Namn: " + alien.get("NAMN") + "\n");
+                txtArea.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
+                txtArea.append("Ansvarig agent: " + alien.get("ANSVARIG_AGENT") + "\n");
+                txtArea.append("--------------------------------------------------------" + "\n");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+        } catch (java.lang.NullPointerException e) {
+            txtArea.setText("");
+            txtArea.setText("Inga aliens hittades!");
+        }
+    }//GEN-LAST:event_cbLocationActionPerformed
 
     private void txtSearchAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchAlienActionPerformed
 
@@ -339,11 +488,11 @@ public class ManageAlienWindow extends javax.swing.JFrame {
 
                 //Hämtar Plats
                 String alienLocation = idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
-                cbLocation.addItem(alienLocation);
+                cbLocationSearchBar.setSelectedItem(alienLocation);
 
                 //Hämtar Agent
                 String alienAgent = idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
-                cbAgent.addItem(alienAgent);
+                cbAgent.setSelectedItem(alienAgent);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Alien hittades inte!");
@@ -354,6 +503,52 @@ public class ManageAlienWindow extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSearchAlienActionPerformed
+
+    private void cbBreedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBreedActionPerformed
+        txtArea.setText("");
+        ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
+
+        try {
+            String cbChoice = cbBreed.getSelectedItem().toString();
+            String query = "SELECT * FROM ALIEN WHERE ALIEN_ID = (SELECT ALIEN_ID FROM " + cbChoice + ");";
+            System.out.println(query);
+            aliens = idb.fetchRows(query);
+
+            for (HashMap<String, String> alien : aliens) {
+                txtArea.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
+                txtArea.append("Namn: " + alien.get("NAMN") + "\n");
+                txtArea.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
+                txtArea.append("Ansvarig agent: " + alien.get("ANSVARIG_AGENT") + "\n");
+                txtArea.append("--------------------------------------------------------" + "\n");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+        } catch (java.lang.NullPointerException e) {
+            txtArea.setText("");
+            txtArea.setText("Inga aliens hittades!");
+        }
+    }//GEN-LAST:event_cbBreedActionPerformed
+
+    private void btnChangeInfoAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoAlienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChangeInfoAlienActionPerformed
+
+    private void cbBreedSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBreedSearchBarActionPerformed
+        String choice = cbBreedSearchBar.getSelectedItem().toString();
+        System.out.println(choice);
+        if (choice.equals("Boglodite")) {
+            txtBreedInfo.setVisible(true);
+            labelBreedInfo.setVisible(true);
+            labelBreedInfo.setText("Antal Boogies");
+        } else if (choice.equals("Squid")) {
+            txtBreedInfo.setVisible(true);
+            labelBreedInfo.setVisible(true);
+            labelBreedInfo.setText("Antal armar");
+        } else {
+            txtBreedInfo.setVisible(false);
+            labelBreedInfo.setVisible(false);
+        }
+    }//GEN-LAST:event_cbBreedSearchBarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,13 +567,17 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgentWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentWindow.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgentWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentWindow.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgentWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentWindow.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgentWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentWindow.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -386,15 +585,18 @@ public class ManageAlienWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoAlien;
+    private javax.swing.JButton btnListAliens;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnRegNewAliens;
     private javax.swing.JButton btnSearchAlien;
-    private javax.swing.JButton buttonListAliens;
-    private javax.swing.JButton buttonLogout;
-    private javax.swing.JButton buttonRegisterNewAliens;
     private javax.swing.JComboBox<String> cbAgent;
+    private javax.swing.JComboBox<String> cbBreed;
+    private javax.swing.JComboBox<String> cbBreedSearchBar;
     private javax.swing.JComboBox<String> cbLocation;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cbLocationSearchBar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -403,14 +605,18 @@ public class ManageAlienWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelBreedInfo;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelWelcome;
     private javax.swing.JTextField txtAlienID;
     private javax.swing.JTextField txtAlienName;
     private javax.swing.JTextField txtAlienPhone;
+    private javax.swing.JTextArea txtArea;
+    private javax.swing.JTextField txtBreedInfo;
     private javax.swing.JTextField txtRegDate;
     private javax.swing.JTextField txtSearchAlien;
     // End of variables declaration//GEN-END:variables

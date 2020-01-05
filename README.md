@@ -1,2 +1,2 @@
 # mib
-Men In Black database.
+Men in Black db 

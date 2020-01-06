@@ -108,15 +108,23 @@ public class MainWindow extends javax.swing.JFrame {
             try {
                 String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
                 String password = idb.fetchSingle("SELECT LOSENORD from AGENT where AGENT_ID = " + userNameInput);
-
+                String admin = idb.fetchSingle("SELECT ADMINISTRATOR from AGENT where AGENT_ID = " + userNameInput);
+                if (userNameInput.equals(username) && passWordInput.equals(password) && admin.equals("J")){
+                    id = username;
+                    setVisible(false);
+                    AdminWindow adminWindow = new AdminWindow(idb);
+                    adminWindow.setVisible(true);
+                }
                 // Om användare skriver in rätt användarnamn OCH rätt lösenord.
-                if (userNameInput.equals(username) && passWordInput.equals(password)) {
+                else if (userNameInput.equals(username) && passWordInput.equals(password)) {
                     id = username;
                     setVisible(false);
                     AgentWindow agentWindow = new AgentWindow(idb);
                     agentWindow.setVisible(true);
 
-                } else {
+                } 
+                
+                else {
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {

@@ -96,6 +96,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
             }
         });
 
+        txtAreaMain.setEditable(false);
         txtAreaMain.setColumns(20);
         txtAreaMain.setRows(5);
         scrollPane.setViewportView(txtAreaMain);
@@ -392,6 +393,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void emptyInputs() {
+        txtAreaMain.setText("");
         txtSearch.setText("");
         txtAlienID.setText("");
         txtName.setText("");

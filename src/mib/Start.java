@@ -21,7 +21,7 @@ public class Start {
      */
     public static void main(String[] args) {
         try {
-            db = new InfDB("/Library/Frameworks/Firebird.framework/Versions/A/Resources/DB/MIBDB.FDB");
+            db = new InfDB("/Users/Shared/db/MIBDB.FDB");
             new MainWindow(db).setVisible(true);
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, e);

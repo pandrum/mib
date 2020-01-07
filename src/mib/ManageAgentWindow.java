@@ -502,7 +502,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
                 
                 }
-               //clearAllFields(rootPane); 
+               clearAllFields(rootPane); 
                JOptionPane.showMessageDialog(null, "Agenten har uppdaterats");
             }
             catch (Exception e) {
@@ -566,6 +566,11 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 clearAllFields((Container) c);
             }
         }
+        CBLocationMngr.setSelectedIndex(-1);
+        cbLocation.setSelectedIndex(-1);
+        RBAdmin.setSelected(false);
+        RBOffMngr.setSelected(false);
+        rbFieldagent.setSelected(false);
     }
     
    

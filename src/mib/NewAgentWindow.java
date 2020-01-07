@@ -330,6 +330,9 @@ private void fillcb() {
                 clearAllFields((Container) c);
             }
         }
+        rbAdmin.setSelected(false);
+        RBOffMngr.setSelected(false);
+        rbFieldagent.setSelected(false);
     }
 
     /**

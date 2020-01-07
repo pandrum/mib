@@ -22,7 +22,7 @@ public class PasswordWindow extends javax.swing.JFrame {
     public PasswordWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
-        textFieldUsername.setText(MainWindow.getId());
+        txtName.setText(MainWindow.getId());
     }
 
     /**
@@ -34,65 +34,105 @@ public class PasswordWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textFieldUsername = new javax.swing.JTextField();
-        textFieldCurrentPassword = new javax.swing.JPasswordField();
-        textFieldNewPassword = new javax.swing.JPasswordField();
-        labelUsername = new javax.swing.JLabel();
-        labelPassword = new javax.swing.JLabel();
-        labelNewPassword = new javax.swing.JLabel();
         imagePadlock = new javax.swing.JLabel();
-        buttonChangePassword = new javax.swing.JButton();
-        buttonBack = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        panelMain = new javax.swing.JPanel();
+        btnChangePassword = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        labelNewPassword = new javax.swing.JLabel();
+        txtCurPassword = new javax.swing.JPasswordField();
+        txtNewPassword = new javax.swing.JPasswordField();
+        labelName = new javax.swing.JLabel();
+        labelCurPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        textFieldUsername.setEditable(false);
+        imagePadlock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/lock.png"))); // NOI18N
 
-        labelUsername.setText("Ange användarnamn");
+        btnBack.setText("Tillbaka");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        labelPassword.setText("Ange nuvarande lösenord");
+        panelMain.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        btnChangePassword.setText("Ändra");
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
+
+        txtName.setEditable(false);
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         labelNewPassword.setText("Ange nytt lösenord");
 
-        imagePadlock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/lock.png"))); // NOI18N
+        labelName.setText("Användarnamn");
 
-        buttonChangePassword.setText("Ändra");
-        buttonChangePassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonChangePasswordActionPerformed(evt);
-            }
-        });
+        labelCurPassword.setText("Ange nuvarande lösenord");
 
-        buttonBack.setText("Tillbaka");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
+        panelMain.setLayout(panelMainLayout);
+        panelMainLayout.setHorizontalGroup(
+            panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNewPassword)
+                    .addComponent(labelName)
+                    .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtName)
+                        .addComponent(txtNewPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnChangePassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelCurPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCurPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        panelMainLayout.setVerticalGroup(
+            panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelCurPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCurPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelNewPassword)
+                .addGap(4, 4, 4)
+                .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnChangePassword)
+                .addContainerGap())
+        );
+
+        txtName.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(labelNewPassword))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(imagePadlock))
-                    .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldCurrentPassword)
-                    .addComponent(textFieldUsername)
-                    .addComponent(textFieldNewPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelUsername)
-                    .addComponent(buttonChangePassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(118, 118, 118))
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(buttonBack)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(imagePadlock)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,40 +141,26 @@ public class PasswordWindow extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(imagePadlock, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(labelUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldCurrentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelNewPassword)
-                .addGap(4, 4, 4)
-                .addComponent(textFieldNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonChangePassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(buttonBack)
+                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(btnBack)
                 .addGap(16, 16, 16))
         );
-
-        textFieldUsername.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangePasswordActionPerformed
-        if (Validation.isNotEmpty(textFieldUsername) && Validation.isNotEmpty(textFieldCurrentPassword) && Validation.isNotEmpty(textFieldNewPassword)) {
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        if (Validation.isNotEmpty(txtName, txtCurPassword, txtNewPassword)) {
 
             //Hämtar användarnamn och lösenord som användare matar in.
-            String userNameInut = textFieldUsername.getText();
-            String currentPasswordInput = textFieldCurrentPassword.getText();
-            String newPassWordInput = textFieldNewPassword.getText();
+            String userNameInut = txtName.getText();
+            String currentPasswordInput = txtCurPassword.getText();
+            String newPassWordInput = txtNewPassword.getText();
 
             try {
-                String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInut);
-                String password = idb.fetchSingle("SELECT LOSENORD from AGENT where AGENT_ID = " + userNameInut);
+                String username = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE AGENT_ID = " + userNameInut);
+                String password = idb.fetchSingle("SELECT LOSENORD FROM AGENT WHERE AGENT_ID = " + userNameInut);
 
                 // Om användare skriver in rätt användarnamn OCH rätt lösenord.
                 if (userNameInut.equals(username) && currentPasswordInput.equals(password)) {
@@ -146,14 +172,18 @@ public class PasswordWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + System.lineSeparator() + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
             }
         }
-    }//GEN-LAST:event_buttonChangePasswordActionPerformed
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_buttonBackActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,14 +218,15 @@ public class PasswordWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
-    private javax.swing.JButton buttonChangePassword;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnChangePassword;
     private javax.swing.JLabel imagePadlock;
+    private javax.swing.JLabel labelCurPassword;
+    private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNewPassword;
-    private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelUsername;
-    private javax.swing.JPasswordField textFieldCurrentPassword;
-    private javax.swing.JPasswordField textFieldNewPassword;
-    private javax.swing.JTextField textFieldUsername;
+    private javax.swing.JPanel panelMain;
+    private javax.swing.JPasswordField txtCurPassword;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JPasswordField txtNewPassword;
     // End of variables declaration//GEN-END:variables
 }

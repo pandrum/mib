@@ -72,14 +72,9 @@ public class AgentWindow extends javax.swing.JFrame {
             }
         });
 
-        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/outer-space-alien.png"))); // NOI18N
-        imageAlien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imageAlienMouseClicked(evt);
-            }
-        });
+        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/alien.png"))); // NOI18N
 
-        labelAlien.setText("Alien");
+        labelAlien.setText("Hantera Alien...");
 
         javax.swing.GroupLayout panelAlienLayout = new javax.swing.GroupLayout(panelAlien);
         panelAlien.setLayout(panelAlienLayout);
@@ -106,7 +101,7 @@ public class AgentWindow extends javax.swing.JFrame {
 
         panelEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        labelEquipment.setText("Utrustning");
+        labelEquipment.setText("Hantera Utrustning...");
 
         imageToolbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/toolbox.png"))); // NOI18N
 
@@ -134,8 +129,13 @@ public class AgentWindow extends javax.swing.JFrame {
         );
 
         panelSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelSettingsMouseClicked(evt);
+            }
+        });
 
-        labelSettings.setText("Inställningar");
+        labelSettings.setText("Inställningar...");
         labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelSettingsMouseClicked(evt);
@@ -143,11 +143,6 @@ public class AgentWindow extends javax.swing.JFrame {
         });
 
         imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear-option.png"))); // NOI18N
-        imageSettings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imageSettingsMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelSettingsLayout = new javax.swing.GroupLayout(panelSettings);
         panelSettings.setLayout(panelSettingsLayout);
@@ -187,11 +182,11 @@ public class AgentWindow extends javax.swing.JFrame {
         panelInnerLayout.setVerticalGroup(
             panelInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInnerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelEquipment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -209,25 +204,24 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelLogo)
                 .addGap(12, 12, 12)
-                .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addComponent(labelLogo))
-                    .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,7 +244,7 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogout)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -266,20 +260,16 @@ public class AgentWindow extends javax.swing.JFrame {
         //TODO
     }//GEN-LAST:event_labelSettingsMouseClicked
 
-    private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
-        PasswordWindow password = new PasswordWindow(idb);
-        password.setVisible(true);
-    }//GEN-LAST:event_imageSettingsMouseClicked
-
-    private void imageAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAlienMouseClicked
-
-    }//GEN-LAST:event_imageAlienMouseClicked
-
     private void panelAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAlienMouseClicked
         setVisible(false);
         ManageAlienWindow managealien = new ManageAlienWindow(idb);
         managealien.setVisible(true);
     }//GEN-LAST:event_panelAlienMouseClicked
+
+    private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
+        PasswordWindow password = new PasswordWindow(idb);
+        password.setVisible(true);
+    }//GEN-LAST:event_panelSettingsMouseClicked
 
     /**
      * @param args the command line arguments

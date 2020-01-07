@@ -97,7 +97,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
         labelDate.setText("Registreringsdatum");
 
-        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/outer-space-alien.png"))); // NOI18N
+        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/alien.png"))); // NOI18N
 
         labelRace.setText("Ras");
 
@@ -127,7 +127,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
                                     .addComponent(labelDate)
                                     .addGroup(panelAlienLayout.createSequentialGroup()
                                         .addComponent(labelName)
-                                        .addGap(73, 73, 73)
+                                        .addGap(74, 74, 74)
                                         .addComponent(imageAlien))
                                     .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelPhone)
@@ -136,10 +136,9 @@ public class NewAlienWindow extends javax.swing.JFrame {
                                     .addComponent(cbAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                                     .addComponent(labelArea)
-                                    .addGroup(panelAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(txtPassword)
+                                    .addComponent(txtName)))
                             .addComponent(txtRaceInfo)
                             .addGroup(panelAlienLayout.createSequentialGroup()
                                 .addComponent(labelRaceInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +170,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 .addComponent(labelRaceInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRaceInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(labelArea)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,8 +210,8 @@ public class NewAlienWindow extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
                 .addGap(28, 28, 28))
@@ -221,35 +220,45 @@ public class NewAlienWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fillCbs() {
+    private void emptyInputs() {
+        txtName.setText("");
+        txtPassword.setText("");
+        txtPhone.setText("");
+        txtRaceInfo.setText("");
+        cbAgent.setSelectedIndex(-1);
+        cbArea.setSelectedIndex(-1);
+        cbRace.setSelectedIndex(-1);
+        txtRaceInfo.setVisible(false);
+    }
 
+    private void fillCbs() {
         //Hämtar och fyllar i alla Platser i samtliga comboboxes.
         String queryLocation = "SELECT BENAMNING FROM PLATS;";
-        ArrayList<String> locations = new ArrayList<>();
+        ArrayList<String> areas = new ArrayList<>();
         try {
-            locations = idb.fetchColumn(queryLocation);
+            areas = idb.fetchColumn(queryLocation);
 
-            for (String location : locations) {
-                cbAgent.addItem(location);
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
-        }
-        cbAgent.setSelectedIndex(-1);
-
-        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
-        String queryAgent = "SELECT Namn FROM AGENT;";
-        ArrayList<String> names = new ArrayList<>();
-        try {
-            names = idb.fetchColumn(queryAgent);
-
-            for (String name : names) {
-                cbArea.addItem(name);
+            for (String area : areas) {
+                cbArea.addItem(area);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
         cbArea.setSelectedIndex(-1);
+
+        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
+        String queryAgent = "SELECT Namn FROM AGENT;";
+        ArrayList<String> agents = new ArrayList<>();
+        try {
+            agents = idb.fetchColumn(queryAgent);
+
+            for (String agent : agents) {
+                cbAgent.addItem(agent);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+        }
+        cbAgent.setSelectedIndex(-1);
     }
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -258,41 +267,72 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
-        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone)) {
+        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbAgent, cbArea, cbRace)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
-            String registration = datePicker.getDateStringOrEmptyString();
             String name = txtName.getText();
+            String registration = datePicker.getDateStringOrEmptyString();
             String password = txtPassword.getText();
             String telephone = txtPhone.getText();
-            int agent = Integer.parseInt(cbArea.getSelectedItem().toString());
-            int area = Integer.parseInt(cbAgent.getSelectedItem().toString());
+            String raceInfo = txtRaceInfo.getText();
+            String agent = cbAgent.getSelectedItem().toString();
+            String area = cbArea.getSelectedItem().toString();
+            String race = cbRace.getSelectedItem().toString();
 
             try {
-                String fetchAutoId = idb.getAutoIncrement("ALIEN", "ALIEN_ID");
-                int autoId = Integer.parseInt(fetchAutoId);
-                idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + name + "','" + password + "'," + telephone + ",'" + area + "','" + agent + "')");
-                JOptionPane.showMessageDialog(null, "Registrering av ny Alien lyckades!");
+                //Skapar ett nytt ALIEN_ID att föra in i databasen.
+                String autoId = idb.getAutoIncrement("ALIEN", "ALIEN_ID");
+                Integer.parseInt(autoId);
+
+                //Hämtar plats ID
+                String areaID = idb.fetchSingle("SELECT PLATS_ID FROM PLATS WHERE BENAMNING = " + "'" + area + "'");
+                Integer.parseInt(areaID);
+
+                //Hämtar agent ID
+                String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
+                Integer.parseInt(agentID);
+
+                //Sätter ny rastillhörighet
+                if (race.equals("Boglodite")) {
+                    Integer.parseInt(raceInfo);
+                    idb.insert("INSERT INTO BOGLODITE VALUES (" + autoId + "," + raceInfo + ")");
+                } else if (race.equals("Squid")) {
+                    Integer.parseInt(raceInfo);
+                    idb.insert("INSERT INTO SQUID VALUES (" + autoId + "," + raceInfo + ")");
+                } else if (race.equals("Worm")) {
+                    idb.insert("INSERT INTO WORM VALUES (" + autoId + ")");
+                }
+
+                idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + name + "','" + password + "'," + telephone + ",'" + areaID + "','" + agentID + "')");
+                JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
+
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
             }
+            emptyInputs();
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void cbRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceActionPerformed
-
-        String choice = cbRace.getSelectedItem().toString();
-        if (choice.equals("Boglodite")) {
-            txtRaceInfo.setVisible(true);
-            labelRaceInfo.setVisible(true);
-            labelRaceInfo.setText("Antal boogies");
-        } else if (choice.equals("Squid")) {
-            txtRaceInfo.setVisible(true);
-            labelRaceInfo.setVisible(true);
-            labelRaceInfo.setText("Antal armar");
-        } else {
-            txtRaceInfo.setVisible(false);
-            labelRaceInfo.setVisible(false);
+        try {
+            String choice = cbRace.getSelectedItem().toString();
+            if (choice.equals("Boglodite")) {
+                txtRaceInfo.setVisible(true);
+                labelRaceInfo.setVisible(true);
+                labelRaceInfo.setText("Antal Boogies");
+                txtRaceInfo.setText("");
+            } else if (choice.equals("Squid")) {
+                txtRaceInfo.setVisible(true);
+                labelRaceInfo.setVisible(true);
+                labelRaceInfo.setText("Antal armar");
+                txtRaceInfo.setText("");
+            } else if (choice.equals("Worm")) {
+                txtRaceInfo.setText("");
+                txtRaceInfo.setVisible(false);
+                labelRaceInfo.setVisible(false);
+            }
+        } catch (NullPointerException e) {
+            //
         }
     }//GEN-LAST:event_cbRaceActionPerformed
 

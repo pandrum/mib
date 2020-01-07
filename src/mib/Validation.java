@@ -42,4 +42,18 @@ public class Validation {
         }
         return result;
     }
+
+    public static boolean ifCBEmpty(JComboBox... args) {
+        boolean result = true;
+
+        for (JComboBox arg : args) {
+            if (arg.getSelectedIndex() == -1) {
+                result = false;
+            }
+        }
+        if (!result) {
+            JOptionPane.showMessageDialog(null, "Fyll i alla rullgardinsmenyer!");
+        }
+        return result;
+    }
 }

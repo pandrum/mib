@@ -5,12 +5,8 @@
  */
 package mib;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import oru.inf.*;
 
 /**
@@ -229,6 +225,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
         cbArea.setSelectedIndex(-1);
         cbRace.setSelectedIndex(-1);
         txtRaceInfo.setVisible(false);
+        datePicker.setText("");
     }
 
     private void fillCbs() {
@@ -267,7 +264,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
-        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbAgent, cbArea, cbRace)) {
+        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbAgent, cbArea, cbRace) && Validation.ifDatePickerEmpty(datePicker) && Validation.isInteger(txtRaceInfo)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
             String name = txtName.getText();

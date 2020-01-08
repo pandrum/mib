@@ -618,7 +618,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         cbLocation.setSelectedIndex(-1);
         RBAdmin.setSelected(false);
         RBOffMngr.setSelected(false);
-        rbFieldagent.setSelected(false);
+        RBFieldAgent.setSelected(false);
     }
 
     /**
@@ -684,8 +684,3 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearchAgent;
     // End of variables declaration//GEN-END:variables
 }
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(7, 7, 7)
-                .addComponent(buttonRegisterNewAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)

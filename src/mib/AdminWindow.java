@@ -105,6 +105,11 @@ public class AdminWindow extends javax.swing.JFrame {
         );
 
         panelAgent.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelAgentMouseClicked(evt);
+            }
+        });
 
         labelAgent.setText("Hantera Agent...");
 
@@ -301,7 +306,8 @@ public class AdminWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
-        //TODO
+        PasswordWindow password = new PasswordWindow(idb);
+        password.setVisible(true);
     }//GEN-LAST:event_labelSettingsMouseClicked
 
     private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
@@ -322,8 +328,16 @@ public class AdminWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_imageAgentMouseClicked
 
     private void panelAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAlienMouseClicked
-        // TODO add your handling code here:
+        setVisible(false);
+        ManageAlienWindow managealien = new ManageAlienWindow(idb);
+        managealien.setVisible(true);
     }//GEN-LAST:event_panelAlienMouseClicked
+
+    private void panelAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAgentMouseClicked
+        setVisible(false);
+        ManageAgentWindow manageagent = new ManageAgentWindow(idb);
+        manageagent.setVisible(true);
+    }//GEN-LAST:event_panelAgentMouseClicked
 
     /**
      * @param args the command line arguments

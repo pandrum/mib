@@ -5,6 +5,7 @@
  */
 package mib;
 
+import com.github.lgooddatepicker.components.DatePicker;
 import javax.swing.*;
 
 /**
@@ -27,18 +28,20 @@ public class Validation {
         return result;
     }
 
-    public static boolean isInteger(JTextField text) {
+    public static boolean isInteger(JTextField... args) {
         boolean result = true;
 
-        try {
-            String temp = text.getText();
-            Integer.parseInt(temp);
-        } catch (NumberFormatException e) {
-            result = false;
-            text.requestFocus();
-        }
-        if (!result) {
-            JOptionPane.showMessageDialog(null, "Enbart numeriska värden är tillåtna!");
+        for (JTextField arg : args) {
+            try {
+                String temp = arg.getText();
+                Integer.parseInt(temp);
+            } catch (NumberFormatException e) {
+                result = false;
+                arg.requestFocus();
+            }
+            if (!result) {
+                JOptionPane.showMessageDialog(null, "Enbart numeriska värden är tillåtna!");
+            }
         }
         return result;
     }
@@ -53,6 +56,20 @@ public class Validation {
         }
         if (!result) {
             JOptionPane.showMessageDialog(null, "Fyll i alla rullgardinsmenyer!");
+        }
+        return result;
+    }
+
+    public static boolean ifDatePickerEmpty(DatePicker... args) {
+        boolean result = true;
+
+        for (DatePicker arg : args) {
+            if (arg.getDateStringOrEmptyString().isEmpty()) {
+                result = false;
+            }
+        }
+        if (!result) {
+            JOptionPane.showMessageDialog(null, "Fyll i datum!");
         }
         return result;
     }

@@ -48,6 +48,9 @@ public class AgentWindow extends javax.swing.JFrame {
         panelSettings = new javax.swing.JPanel();
         labelSettings = new javax.swing.JLabel();
         imageSettings = new javax.swing.JLabel();
+        panelManager = new javax.swing.JPanel();
+        labelManager = new javax.swing.JLabel();
+        imageManager = new javax.swing.JLabel();
         labelLogo = new javax.swing.JLabel();
         labelWelcome = new javax.swing.JLabel();
 
@@ -153,7 +156,7 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addComponent(imageSettings)
                 .addGap(18, 18, 18)
                 .addComponent(labelSettings)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         panelSettingsLayout.setVerticalGroup(
             panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +170,45 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        panelManager.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelManagerMouseClicked(evt);
+            }
+        });
+
+        labelManager.setText("Områdeschef...");
+        labelManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelManagerMouseClicked(evt);
+            }
+        });
+
+        imageManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelManagerLayout = new javax.swing.GroupLayout(panelManager);
+        panelManager.setLayout(panelManagerLayout);
+        panelManagerLayout.setHorizontalGroup(
+            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManagerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imageManager)
+                .addGap(18, 18, 18)
+                .addComponent(labelManager)
+                .addContainerGap(209, Short.MAX_VALUE))
+        );
+        panelManagerLayout.setVerticalGroup(
+            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManagerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageManager, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelManagerLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(labelManager)))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout panelInnerLayout = new javax.swing.GroupLayout(panelInner);
         panelInner.setLayout(panelInnerLayout);
         panelInnerLayout.setHorizontalGroup(
@@ -176,7 +218,8 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addGroup(panelInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelEquipment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInnerLayout.setVerticalGroup(
@@ -188,6 +231,8 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addComponent(panelEquipment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelManager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -221,7 +266,7 @@ public class AgentWindow extends javax.swing.JFrame {
                         .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,20 +276,18 @@ public class AgentWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnLogout))
-                    .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnLogout)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -270,6 +313,15 @@ public class AgentWindow extends javax.swing.JFrame {
         PasswordWindow password = new PasswordWindow(idb);
         password.setVisible(true);
     }//GEN-LAST:event_panelSettingsMouseClicked
+
+    private void labelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelManagerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelManagerMouseClicked
+
+    private void panelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManagerMouseClicked
+        LocationManager manager = new LocationManager(idb);
+        manager.setVisible(true);
+    }//GEN-LAST:event_panelManagerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -303,18 +355,21 @@ public class AgentWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
     private javax.swing.JLabel imageAlien;
+    private javax.swing.JLabel imageManager;
     private javax.swing.JLabel imageSettings;
     private javax.swing.JLabel imageToolbox;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel labelAlien;
     private javax.swing.JLabel labelEquipment;
     private javax.swing.JLabel labelLogo;
+    private javax.swing.JLabel labelManager;
     private javax.swing.JLabel labelSettings;
     private javax.swing.JLabel labelWelcome;
     private javax.swing.JPanel panelAlien;
     private javax.swing.JPanel panelEquipment;
     private javax.swing.JPanel panelInner;
     private javax.swing.JPanel panelMain;
+    private javax.swing.JPanel panelManager;
     private javax.swing.JPanel panelSettings;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,12 +46,12 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         buttonRegisterNewAgent = new javax.swing.JButton();
         buttonListAgents = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
+        txtAreaMain = new javax.swing.JTextArea();
+        panelSide = new javax.swing.JPanel();
         btnChangeInfoAgent = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        panelSideInner = new javax.swing.JPanel();
         cbLocation = new javax.swing.JComboBox<>();
-        rbFieldagent = new javax.swing.JRadioButton();
+        RBFieldAgent = new javax.swing.JRadioButton();
         txtAgentName = new javax.swing.JTextField();
         txtAgentPhone = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -65,7 +65,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         RBAdmin = new javax.swing.JRadioButton();
         LbLocationMngr = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        panelSearch = new javax.swing.JPanel();
         btnSearchAgent = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtSearchAgent = new javax.swing.JTextField();
@@ -73,8 +73,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labelWelcome.setText("Välkommen ");
+        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
 
@@ -99,11 +99,11 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAreaMain.setColumns(20);
+        txtAreaMain.setRows(5);
+        jScrollPane1.setViewportView(txtAreaMain);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelSide.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnChangeInfoAgent.setText("Ändra");
         btnChangeInfoAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +112,14 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelSideInner.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        rbFieldagent.setText("Fältagent");
+        RBFieldAgent.setText("Fältagent");
+        RBFieldAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBFieldAgentActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Namn");
 
@@ -144,17 +149,17 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         LbLocationMngr.setText("Områdeschef");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSideInnerLayout = new javax.swing.GroupLayout(panelSideInner);
+        panelSideInner.setLayout(panelSideInnerLayout);
+        panelSideInnerLayout.setHorizontalGroup(
+            panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSideInnerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRegDate)
                     .addComponent(txtAgentPhone)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSideInnerLayout.createSequentialGroup()
+                        .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
@@ -163,7 +168,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                             .addComponent(LbLocationMngr)
                             .addComponent(RBAdmin)
                             .addComponent(RBOffMngr)
-                            .addComponent(rbFieldagent))
+                            .addComponent(RBFieldAgent))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(txtAgentName)
                     .addComponent(txtAgentID)
@@ -171,9 +176,9 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     .addComponent(CBLocationMngr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelSideInnerLayout.setVerticalGroup(
+            panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSideInnerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,11 +208,11 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RBAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbFieldagent)
-                .addContainerGap())
+                .addComponent(RBFieldAgent)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnSearchAgent.setText("Sök");
         btnSearchAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -224,21 +229,21 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
+        panelSearch.setLayout(panelSearchLayout);
+        panelSearchLayout.setHorizontalGroup(
+            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSearchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSearchAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtSearchAgent)
                     .addComponent(jLabel1))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelSearchLayout.setVerticalGroup(
+            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(2, 2, 2)
@@ -255,29 +260,29 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSideLayout = new javax.swing.GroupLayout(panelSide);
+        panelSide.setLayout(panelSideLayout);
+        panelSideLayout.setHorizontalGroup(
+            panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelSideInner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelSideLayout.createSequentialGroup()
                         .addComponent(btnChangeInfoAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelSideLayout.setVerticalGroup(
+            panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSideLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelSideInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnChangeInfoAgent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemove)
@@ -303,7 +308,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonRegisterNewAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(panelSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonListAgents)
@@ -324,16 +329,32 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     .addComponent(buttonListAgents, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(7, 7, 7)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                    .addComponent(panelSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(buttonRegisterNewAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void emptyInputs() {
+        txtAreaMain.setText("");
+        txtSearchAgent.setText("");
+        txtAgentID.setText("");
+        txtAgentName.setText("");
+        txtRegDate.setText("");
+        txtAgentPhone.setText("");
+        cbLocation.setSelectedIndex(-1);
+        CBLocationMngr.setSelectedIndex(-1);
+        RBAdmin.setSelected(false);
+        RBOffMngr.setSelected(false);
+        RBAdmin.setSelected(false);
+        RBFieldAgent.setSelected(false);
+    }
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
         setVisible(false);
@@ -347,7 +368,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRegisterNewAgentActionPerformed
 
     private void buttonListAgentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListAgentsActionPerformed
-        jTextArea1.setText("");
+        txtAreaMain.setText("");
         ArrayList<HashMap<String, String>> agents = new ArrayList<HashMap<String, String>>();
 
         try {
@@ -356,13 +377,13 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             agents = idb.fetchRows(query);
 
             for (HashMap<String, String> agent : agents) {
-                jTextArea1.append("Agent ID: " + agent.get("AGENT_ID") + "\n");
-                jTextArea1.append("Namn: " + agent.get("NAMN") + "\n");
-                jTextArea1.append("Telefon: " + agent.get("TELEFON") + "\n");
-                jTextArea1.append("Anställningsdatum: " + agent.get("ANSTALLNINGSDATUM") + "\n");
-                jTextArea1.append("Administratör: " + agent.get("ADMINISTRATOR") + "\n");
-                jTextArea1.append("Område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
-                jTextArea1.append("--------------------------------------------------------" + "\n");
+                txtAreaMain.append("Agent ID: " + agent.get("AGENT_ID") + "\n");
+                txtAreaMain.append("Namn: " + agent.get("NAMN") + "\n");
+                txtAreaMain.append("Telefon: " + agent.get("TELEFON") + "\n");
+                txtAreaMain.append("Anställningsdatum: " + agent.get("ANSTALLNINGSDATUM") + "\n");
+                txtAreaMain.append("Administratör: " + agent.get("ADMINISTRATOR") + "\n");
+                txtAreaMain.append("Område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
+                txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
@@ -412,7 +433,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 for (String field : fields) {
                     int id = Integer.parseInt(field);
                     if (agentID == id) {
-                        rbFieldagent.setSelected(true);
+                        RBFieldAgent.setSelected(true);
                     }
                 }
 
@@ -490,7 +511,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     if (RBOffMngr.isSelected()) {
                         idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + "'" + agentID + "'");
                     }
-                    if (rbFieldagent.isSelected()) {
+                    if (RBFieldAgent.isSelected()) {
                         idb.delete("DELETE FROM FALTAGENT WHERE AGENT_ID = " + "'" + agentID + "'");
                         idb.insert("INSERT INTO FALTAGENT VALUES ('" + agentID + "')");
                     } else {
@@ -531,8 +552,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                         idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
 
                     }
-                    //clearAllFields(rootPane);
                     JOptionPane.showMessageDialog(null, "Agenten har uppdaterats");
+                    emptyInputs();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Agent hittades inte!");
                     txtSearchAgent.setText("");
@@ -545,6 +566,10 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private void RBOffMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBOffMngrActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RBOffMngrActionPerformed
+
+    private void RBFieldAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBFieldAgentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RBFieldAgentActionPerformed
 
     private void fillcb() {
 
@@ -624,6 +649,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CBLocationMngr;
     private javax.swing.JLabel LbLocationMngr;
     private javax.swing.JRadioButton RBAdmin;
+    private javax.swing.JRadioButton RBFieldAgent;
     private javax.swing.JRadioButton RBOffMngr;
     private javax.swing.JButton btnChangeInfoAgent;
     private javax.swing.JButton btnRemove;
@@ -638,18 +664,17 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelWelcome;
-    private javax.swing.JRadioButton rbFieldagent;
+    private javax.swing.JPanel panelSearch;
+    private javax.swing.JPanel panelSide;
+    private javax.swing.JPanel panelSideInner;
     private javax.swing.JTextField txtAgentID;
     private javax.swing.JTextField txtAgentName;
     private javax.swing.JTextField txtAgentPhone;
+    private javax.swing.JTextArea txtAreaMain;
     private javax.swing.JTextField txtRegDate;
     private javax.swing.JTextField txtSearchAgent;
     // End of variables declaration//GEN-END:variables

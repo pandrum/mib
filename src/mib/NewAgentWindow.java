@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import oru.inf.*;
 
 /**
- * 
+ *
  * @author sbf
  */
 public class NewAgentWindow extends javax.swing.JFrame {
@@ -30,26 +30,26 @@ public class NewAgentWindow extends javax.swing.JFrame {
         this.idb = idb;
         fillcb();
     }
-private void fillcb() {
-        
-       //cbLocation.addItem(null);
-       cbLocationMngr.addItem("Ej chef");
+
+    private void fillcb() {
+
+        //cbLocation.addItem(null);
+        cbLocationMngr.addItem("Ej chef");
         String Location = "SELECT BENAMNING FROM OMRADE";
-       ArrayList<String> allLocation;
-       try {
-        allLocation = idb.fetchColumn(Location);
-        for (String name:allLocation){
-            cbLocation.addItem(name);
-            cbLocationMngr.addItem(name);
-        }
-    } 
-       catch (InfException e) {
+        ArrayList<String> allLocation;
+        try {
+            allLocation = idb.fetchColumn(Location);
+            for (String name : allLocation) {
+                cbLocation.addItem(name);
+                cbLocationMngr.addItem(name);
+            }
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
-    }
-       cbLocation.setSelectedIndex(-1);
-       //CBLocationMngr.setSelectedIndex(-1);
-   
-      /* //cbOffMngr.addItem(null);
+        }
+        cbLocation.setSelectedIndex(-1);
+        //CBLocationMngr.setSelectedIndex(-1);
+
+        /* //cbOffMngr.addItem(null);
         String fraga = "SELECT KONTORSBETECKNING FROM KONTORSCHEF";
        ArrayList<String> allOffice;
        try {
@@ -57,12 +57,13 @@ private void fillcb() {
         for (String name:allOffice){
             cbOffMngr.addItem(name);
         }
-    } 
+    }
        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
     }
     cbOffMngr.setSelectedIndex(-1 */
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,8 +85,8 @@ private void fillcb() {
         labelUsername = new javax.swing.JLabel();
         labelNewPassword = new javax.swing.JLabel();
         buttonRegisterNewAgent = new javax.swing.JButton();
+        imageAgent = new javax.swing.JLabel();
         labelRegistration = new javax.swing.JLabel();
-        imageAlien = new javax.swing.JLabel();
         datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
         rbAdmin = new javax.swing.JRadioButton();
         RBOffMngr = new javax.swing.JRadioButton();
@@ -113,9 +114,9 @@ private void fillcb() {
             }
         });
 
-        labelRegistration.setText("Anställningsdatum");
+        imageAgent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
 
-        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/outer-space-alien.png"))); // NOI18N
+        labelRegistration.setText("Anställningsdatum");
 
         rbAdmin.setText("Administratör");
 
@@ -145,7 +146,7 @@ private void fillcb() {
                                     .addGroup(panelAgentLayout.createSequentialGroup()
                                         .addComponent(labelUsername)
                                         .addGap(73, 73, 73)
-                                        .addComponent(imageAlien))
+                                        .addComponent(imageAgent))
                                     .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtPassword)
@@ -173,7 +174,7 @@ private void fillcb() {
                 .addContainerGap()
                 .addGroup(panelAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelUsername)
-                    .addComponent(imageAlien))
+                    .addComponent(imageAgent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -194,7 +195,7 @@ private void fillcb() {
                 .addComponent(RBOffMngr)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbFieldagent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelArea)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,47 +264,45 @@ private void fillcb() {
                 int autoId = Integer.parseInt(fetchAutoId);
                 String Area = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + "'" + cbLocation.getSelectedItem().toString() + "'");
                 int area = Integer.parseInt(Area);
-                if (rbAdmin.isSelected()){
-                admin= "J";
-                }
-                else{
-                admin = "N";
+                if (rbAdmin.isSelected()) {
+                    admin = "J";
+                } else {
+                    admin = "N";
                 }
                 idb.insert("INSERT INTO AGENT VALUES ('" + autoId + "','" + name + "','" + telephone + "','" + anstdatum + "','" + admin + "','" + password + "','" + area + "')");
-                if (RBOffMngr.isSelected()){
-                idb.update("UPDATE KONTORSCHEF SET AGENT_ID = "+ "'" + autoId + "'");
+                if (RBOffMngr.isSelected()) {
+                    idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + "'" + autoId + "'");
                 }
-                if (rbFieldagent.isSelected()){
-                idb.insert("INSERT INTO FALTAGENT VALUES ('"+  autoId + "')");
+                if (rbFieldagent.isSelected()) {
+                    idb.insert("INSERT INTO FALTAGENT VALUES ('" + autoId + "')");
                 }
                 ArrayList<String> ids = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
                 int i = 0;
                 String LocMn = cbLocationMngr.getSelectedItem().toString();
                 boolean find = false;
-                while (i < ids.size() && find == false){
-                String id = ids.get(i);
-                int ag_id = Integer.parseInt(id);
-                
-                if (LocMn.equals("Ej chef")){
-                idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + autoId + "'" );
-                find = true;
+                while (i < ids.size() && find == false) {
+                    String id = ids.get(i);
+                    int ag_id = Integer.parseInt(id);
+
+                    if (LocMn.equals("Ej chef")) {
+                        idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + autoId + "'");
+                        find = true;
+                    }
+                    if (ag_id == autoId) {
+                        String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + cbLocationMngr.getSelectedItem().toString() + "'");
+                        int locationMn = Integer.parseInt(LocationMn);
+                        idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + autoId + "'");
+                        idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
+                        find = true;
+                    } else {
+                        i++;
+                    }
                 }
-                if(ag_id == autoId){
+                if (find == false) {
                     String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + cbLocationMngr.getSelectedItem().toString() + "'");
                     int locationMn = Integer.parseInt(LocationMn);
-                    idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + autoId + "'" );
                     idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
-                    find = true;
-                }
-                else{
-                i++;
-                }
-                }
-                if (find == false ){
-                    String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + cbLocationMngr.getSelectedItem().toString() + "'");
-                int locationMn = Integer.parseInt(LocationMn);
-                    idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
-                
+
                 }
                 JOptionPane.showMessageDialog(null, "Registrering av ny Agent lyckades!");
                 clearAllFields(rootPane);
@@ -316,9 +315,6 @@ private void fillcb() {
     private void RBOffMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBOffMngrActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RBOffMngrActionPerformed
-
-
-
 
     public void clearAllFields(Container container) {
 
@@ -376,7 +372,7 @@ private void fillcb() {
     private javax.swing.JComboBox<String> cbLocation;
     private javax.swing.JComboBox<String> cbLocationMngr;
     private com.github.lgooddatepicker.components.DatePicker datePicker2;
-    private javax.swing.JLabel imageAlien;
+    private javax.swing.JLabel imageAgent;
     private javax.swing.JLabel labelAgent;
     private javax.swing.JLabel labelArea;
     private javax.swing.JLabel labelNewPassword;

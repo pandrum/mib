@@ -76,7 +76,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         labelWelcome.setText("Välkommen ");
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
         buttonLogout.setText("Tillbaka");
         buttonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +329,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     .addComponent(buttonListAgents, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                     .addComponent(panelSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonRegisterNewAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)

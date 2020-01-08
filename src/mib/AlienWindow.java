@@ -53,7 +53,7 @@ public class AlienWindow extends javax.swing.JFrame {
             }
         });
 
-        imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear-option.png"))); // NOI18N
+        imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear.png"))); // NOI18N
         imageSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imageSettingsMouseClicked(evt);
@@ -119,7 +119,7 @@ public class AlienWindow extends javax.swing.JFrame {
             }
         });
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labelWelcome.setText("Välkommen ");

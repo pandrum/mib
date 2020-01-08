@@ -86,7 +86,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
         labelWelcome.setText("Välkommen ");
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
         btnBack.setText("Tillbaka");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -404,7 +404,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(24, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -842,4 +842,3 @@ public class ManageAlienWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
-

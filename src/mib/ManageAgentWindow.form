@@ -75,7 +75,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="693" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="725" max="32767" attributes="0"/>
                   <Component id="panelSide" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -90,16 +90,16 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelWelcome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lkommen "/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="24" style="0"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lkommen "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mib/agent.png"/>
+          <Image iconType="3" name="/mib/agent-small.png"/>
         </Property>
       </Properties>
     </Component>

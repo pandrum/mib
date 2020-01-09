@@ -540,7 +540,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (Validation.isNotEmpty(txtName) && Validation.ifCBEmpty(cbType, cbAgent)) {
+        if (Validation.isNotEmpty(txtName) && Validation.ifCBEmpty(cbType, cbAgent) && Validation.regexDate(txtDate.getText())) {
 
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
             if (input == 0) {

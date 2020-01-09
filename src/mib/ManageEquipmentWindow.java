@@ -76,7 +76,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labelWelcome.setText("Välkommen ");
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
         btnBack.setText("Tillbaka");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +278,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemove)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         panelBottom.setBorder(javax.swing.BorderFactory.createEtchedBorder());

@@ -28,6 +28,10 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         fillcb();
+        fillcb2();
+        labelReplace.setVisible(false);
+        cbchoice.setVisible(false);
+       
     }
 
     /**
@@ -65,6 +69,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         RBAdmin = new javax.swing.JRadioButton();
         LbLocationMngr = new javax.swing.JLabel();
+        cbchoice = new javax.swing.JComboBox<>();
+        labelReplace = new javax.swing.JLabel();
         panelSearch = new javax.swing.JPanel();
         btnSearchAgent = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -73,8 +79,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelWelcome.setText("Välkommen ");
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labelWelcome.setText("Välkommen ");
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
@@ -115,24 +121,22 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         panelSideInner.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         RBFieldAgent.setText("Fältagent");
-        RBFieldAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBFieldAgentActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Namn");
 
         RBOffMngr.setText("Kontorschef");
-        RBOffMngr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBOffMngrActionPerformed(evt);
-            }
-        });
 
         txtAgentID.setEditable(false);
 
         jLabel3.setText("Agent ID");
+
+        CBLocationMngr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ej chef", "Svealand", "Gotaland", "Norrland" }));
+        CBLocationMngr.setSelectedIndex(-1);
+        CBLocationMngr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBLocationMngrActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Område");
 
@@ -149,6 +153,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         LbLocationMngr.setText("Områdeschef");
 
+        labelReplace.setText("Välj ersättare");
+
         javax.swing.GroupLayout panelSideInnerLayout = new javax.swing.GroupLayout(panelSideInner);
         panelSideInner.setLayout(panelSideInnerLayout);
         panelSideInnerLayout.setHorizontalGroup(
@@ -158,6 +164,11 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRegDate)
                     .addComponent(txtAgentPhone)
+                    .addComponent(txtAgentName)
+                    .addComponent(txtAgentID)
+                    .addComponent(cbLocation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CBLocationMngr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbchoice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelSideInnerLayout.createSequentialGroup()
                         .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -168,12 +179,9 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                             .addComponent(LbLocationMngr)
                             .addComponent(RBAdmin)
                             .addComponent(RBOffMngr)
-                            .addComponent(RBFieldAgent))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtAgentName)
-                    .addComponent(txtAgentID)
-                    .addComponent(cbLocation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CBLocationMngr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(RBFieldAgent)
+                            .addComponent(labelReplace))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelSideInnerLayout.setVerticalGroup(
@@ -203,7 +211,11 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 .addComponent(LbLocationMngr)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CBLocationMngr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelReplace)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbchoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RBOffMngr)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RBAdmin)
@@ -329,7 +341,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     .addComponent(buttonListAgents, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(panelSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonRegisterNewAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,11 +361,13 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         txtRegDate.setText("");
         txtAgentPhone.setText("");
         cbLocation.setSelectedIndex(-1);
-        CBLocationMngr.setSelectedIndex(-1);
+        //CBLocationMngr.setSelectedIndex(-1);
         RBAdmin.setSelected(false);
         RBOffMngr.setSelected(false);
         RBAdmin.setSelected(false);
         RBFieldAgent.setSelected(false);
+        labelReplace.setVisible(false);
+        cbchoice.setVisible(false);
     }
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
@@ -384,13 +398,14 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 txtAreaMain.append("Anställningsdatum: " + agent.get("ANSTALLNINGSDATUM") + "\n");
                 txtAreaMain.append("Administratör: " + agent.get("ADMINISTRATOR") + "\n");
                 txtAreaMain.append("Område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
+                if(mngrID != null){
                 for (int i = 0; i < mngrID.size();i++) {
                     int id = Integer.parseInt(mngrID.get(i));
                     int ids = Integer.parseInt(agent.get("AGENT_ID"));
                     if (id == ids) {
-                        txtAreaMain.append("Chef över område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + ids + "')") + "\n");
+                        txtAreaMain.append("Chef över område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + ids + "')") + "\n");
                     }
-                }
+                }}
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         }   catch (InfException e) {
@@ -449,9 +464,13 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 String LocationMngr = idb.fetchSingle(LocationQuarry);
                 if(LocationMngr != null){
                 CBLocationMngr.getModel().setSelectedItem(LocationMngr);
+                labelReplace.setVisible(false);
+                cbchoice.setVisible(false);
                 }
                 else{
                 CBLocationMngr.getModel().setSelectedItem("Ej chef");
+                labelReplace.setVisible(false);
+                cbchoice.setVisible(false);
                 }
                 
                 String admin = idb.fetchSingle("SELECT ADMINISTRATOR from AGENT where AGENT_ID = " + agentID);
@@ -491,6 +510,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                         idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + 0);
                     }
                     JOptionPane.showMessageDialog(null, "Agenten har raderats");
+                    emptyInputs();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Agent hittades inte!");
                     txtSearchAgent.setText("");
@@ -512,7 +532,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 String telephone = txtAgentPhone.getText();
                 String date = txtRegDate.getText();
                 String LocMn = CBLocationMngr.getSelectedItem().toString();
-                //String officeMn = cbOffMngr.getSelectedItem().toString();
+                String choice = cbchoice.getSelectedItem().toString();
                 String admin = "";
                 try {
                     String Area = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + "'" + cbLocation.getSelectedItem().toString() + "'");
@@ -538,33 +558,43 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     idb.update("UPDATE AGENT SET ADMINISTRATOR = " + "'" + admin + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
                     idb.update("UPDATE AGENT SET OMRADE = " + "'" + area + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
 
-                    ArrayList<String> ids = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
-                    String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + CBLocationMngr.getSelectedItem().toString() + "'");
-                    int locationMn = Integer.parseInt(LocationMn);
-                    int i = 0;
-                    boolean find = false;
-                    while (i < ids.size() && find == false) {
-                        String id = ids.get(i);
-                        int ag_id = Integer.parseInt(id);
+                    String ag = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
 
-                        if (LocMn.equals("Ej chef")) {
+                    if (LocMn.equals("Ej chef")) {
+                        if (ag != null) {
+                            String replaceid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + choice + "'");
+                            int Replaceid = Integer.parseInt(replaceid);
+                            String replaceloc = idb.fetchSingle("SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
+                            int Replaceloc = Integer.parseInt(replaceloc);
+                            idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + Replaceid + "','" + Replaceloc + "')");
                             idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
-                            find = true;
-                        }
-                        if (ag_id == agentID) {
-                            idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
-                            idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
-                            find = true;
-                        } else {
-                            i++;
-                        }
-                    }
-                    if (find == false) {
+                        }}
+                    
+                    else if (ag != null){
+                        String replaceid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + choice + "'");
+                        int Replaceid = Integer.parseInt(replaceid);
+                        String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");  
+                        int locationMn = Integer.parseInt(LocationMn);
+                        String replaceloc = idb.fetchSingle("SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
+                        int Replaceloc = Integer.parseInt(replaceloc);
+                        idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + Replaceid + "','" + Replaceloc + "')");
+                        idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
+                        idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
                         idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
-
                     }
+                    
+                    else if(ag == null){    
+                       String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");  
+                       int locationMn = Integer.parseInt(LocationMn);
+                       idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
+                       idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
+                    
+                    }
+                    
                     JOptionPane.showMessageDialog(null, "Agenten har uppdaterats");
                     emptyInputs();
+                    cbchoice.removeAllItems();
+                    fillcb2();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Agent hittades inte!");
                     txtSearchAgent.setText("");
@@ -574,63 +604,64 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnChangeInfoAgentActionPerformed
 
-    private void RBOffMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBOffMngrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBOffMngrActionPerformed
-
-    private void RBFieldAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBFieldAgentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBFieldAgentActionPerformed
+    private void CBLocationMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBLocationMngrActionPerformed
+        try {
+            int agentID = Integer.parseInt(txtAgentID.getText());
+            String choice = CBLocationMngr.getSelectedItem().toString();
+            String ag = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
+            if (choice.equals("Ej chef") && ag != null) {
+                labelReplace.setVisible(true);
+                cbchoice.setVisible(true);
+            }else {
+                if(ag != null){
+                labelReplace.setVisible(true);
+                cbchoice.setVisible(true);
+            } 
+            }
+        } catch (NullPointerException e) {
+            //
+        }
+        catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "fungerar inte");
+                    txtSearchAgent.setText("");
+                    txtSearchAgent.requestFocus();
+                }
+    }//GEN-LAST:event_CBLocationMngrActionPerformed
 
     private void fillcb() {
 
         //cbLocation.addItem(null);
-        CBLocationMngr.addItem("Ej chef");
+        //CBLocationMngr.addItem("Ej chef");
         String Location = "SELECT BENAMNING FROM OMRADE";
         ArrayList<String> allLocation;
         try {
             allLocation = idb.fetchColumn(Location);
             for (String name : allLocation) {
                 cbLocation.addItem(name);
-                CBLocationMngr.addItem(name);
+                //CBLocationMngr.addItem(name);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
         cbLocation.setSelectedIndex(-1);
         //CBLocationMngr.setSelectedIndex(-1);
-
-        /* //cbOffMngr.addItem(null);
-        String fraga = "SELECT KONTORSBETECKNING FROM KONTORSCHEF";
-       ArrayList<String> allOffice;
+    }
+    private void fillcb2() {    
+        
+        String fraga = "SELECT NAMN FROM AGENT WHERE AGENT_ID NOT IN (SELECT AGENT_ID FROM OMRADESCHEF)";
+       ArrayList<String> possible;
        try {
-        allOffice = idb.fetchColumn(fraga);
-        for (String name:allOffice){
-            cbOffMngr.addItem(name);
+        possible = idb.fetchColumn(fraga);
+        for (String name:possible){
+            cbchoice.addItem(name);
         }
     }
        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
     }
-    cbOffMngr.setSelectedIndex(-1 */
+    //cbchoice.setSelectedIndex(-1); 
     }
 
-    public void clearAllFields(Container container) {
-
-        for (Component c : container.getComponents()) {
-            if (c instanceof JTextField) {
-                JTextField f = (JTextField) c;
-                f.setText("");
-            } else if (c instanceof Container) {
-                clearAllFields((Container) c);
-            }
-        }
-        CBLocationMngr.setSelectedIndex(-1);
-        cbLocation.setSelectedIndex(-1);
-        RBAdmin.setSelected(false);
-        RBOffMngr.setSelected(false);
-        RBFieldAgent.setSelected(false);
-    }
 
     /**
      * @param args the command line arguments
@@ -674,6 +705,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogout;
     private javax.swing.JButton buttonRegisterNewAgent;
     private javax.swing.JComboBox<String> cbLocation;
+    private javax.swing.JComboBox<String> cbchoice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
@@ -683,6 +715,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelLogo;
+    private javax.swing.JLabel labelReplace;
     private javax.swing.JLabel labelWelcome;
     private javax.swing.JPanel panelSearch;
     private javax.swing.JPanel panelSide;

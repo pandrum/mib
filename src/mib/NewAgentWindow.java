@@ -47,21 +47,6 @@ public class NewAgentWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
         cbLocation.setSelectedIndex(-1);
-        //CBLocationMngr.setSelectedIndex(-1);
-
-        /* //cbOffMngr.addItem(null);
-        String fraga = "SELECT KONTORSBETECKNING FROM KONTORSCHEF";
-       ArrayList<String> allOffice;
-       try {
-        allOffice = idb.fetchColumn(fraga);
-        for (String name:allOffice){
-            cbOffMngr.addItem(name);
-        }
-    }
-       catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
-    }
-    cbOffMngr.setSelectedIndex(-1 */
     }
 
     /**
@@ -257,7 +242,11 @@ public class NewAgentWindow extends javax.swing.JFrame {
             String telephone = txtPhone.getText();
             String password = txtPassword.getText();
             String admin = "";
-            //int locationMngr = Integer.parseInt(cbLocationMngr.getSelectedItem().toString());
+            String LocMn = cbLocationMngr.getSelectedItem().toString();
+            ArrayList<String> Loc = new ArrayList<String>(4);
+            Loc.add("Svealand");
+            Loc.add("Gotaland");
+            Loc.add("Norrland");
 
             try {
                 String fetchAutoId = idb.getAutoIncrement("AGENT", "AGENT_ID");
@@ -276,34 +265,14 @@ public class NewAgentWindow extends javax.swing.JFrame {
                 if (rbFieldagent.isSelected()) {
                     idb.insert("INSERT INTO FALTAGENT VALUES ('" + autoId + "')");
                 }
-                ArrayList<String> ids = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
-                int i = 0;
-                String LocMn = cbLocationMngr.getSelectedItem().toString();
-                boolean find = false;
-                while (i < ids.size() && find == false) {
-                    String id = ids.get(i);
-                    int ag_id = Integer.parseInt(id);
-
-                    if (LocMn.equals("Ej chef")) {
-                        idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + autoId + "'");
-                        find = true;
-                    }
-                    if (ag_id == autoId) {
-                        String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + cbLocationMngr.getSelectedItem().toString() + "'");
-                        int locationMn = Integer.parseInt(LocationMn);
-                        idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + autoId + "'");
-                        idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
-                        find = true;
-                    } else {
-                        i++;
-                    }
+              
+                if (Loc.contains(LocMn)) {
+                String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");  
+                       int locationMn = Integer.parseInt(LocationMn);
+                       idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
+                       idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')"); 
                 }
-                if (find == false) {
-                    String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + cbLocationMngr.getSelectedItem().toString() + "'");
-                    int locationMn = Integer.parseInt(LocationMn);
-                    idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
-
-                }
+ 
                 JOptionPane.showMessageDialog(null, "Registrering av ny Agent lyckades!");
                 clearAllFields(rootPane);
             } catch (InfException | NumberFormatException e) {

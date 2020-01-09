@@ -523,8 +523,8 @@ public class AgentManageEquipmentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnRegNewEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNewEquipmentActionPerformed
-        NewAlienWindow newalien = new NewAlienWindow(idb);
-        newalien.setVisible(true);
+        NewEquipmentWindow newequipment = new NewEquipmentWindow(idb);
+        newequipment.setVisible(true);
     }//GEN-LAST:event_btnRegNewEquipmentActionPerformed
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed

@@ -429,6 +429,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             for (HashMap<String, String> equipment : equipments) {
                 txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
+                if(datesID != null){
                 for (int i = 0; i < datesID.size(); i++) {
                     int id = Integer.parseInt(datesID.get(i));
                     int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
@@ -436,7 +437,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                         txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
                         txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
                     }
-                }
+                }}
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
@@ -456,6 +457,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             for (HashMap<String, String> equipment : equipments) {
                 txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
+                if(datesID != null){
                 for (int i = 0; i < datesID.size(); i++) {
                     int id = Integer.parseInt(datesID.get(i));
                     int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
@@ -463,7 +465,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                         txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
                         txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
                     }
-                }
+                }}
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
@@ -555,54 +557,35 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                     //Uppdaterar utrustningsnamn
                     idb.update("UPDATE UTRUSTNING SET BENAMNING = " + "'" + name + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
-                    //Uppdaterar kvittenssdatum
-                    ArrayList<String> dateID = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-                    if (kvittDate != null) {
-                        for (String dateid : dateID) {
-                            int id = Integer.parseInt(dateid);
-                            if (equipmentID == id) {
-                                idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-                            }
-                        }
-                    }
-                    if (kvittDate == null) {
-                        idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + null + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-
-                    }
+                    //Uppdaterar kvittenssdatum                   
+                   String exist = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID ='" + equipmentID + "'");
+                   if (exist != null){
+                   
+                   idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+                   }
 
                     //Hämtar och uppdaterar agent
-                    String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
-                    int agentID = Integer.parseInt(agentid);
-                    ArrayList<String> ids = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-                    int i = 0;
-                    boolean find = false;
-                    while (i < ids.size() && find == false) {
-                        String id = ids.get(i);
-                        int ut_id = Integer.parseInt(id);
-
-                        if (agent.equals("Ej utlånad")) {
-                            idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-                            find = true;
-                        }
-                        if (ut_id == equipmentID) {
-                            idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-                            idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
-                            find = true;
-                        } else {
-                            i++;
-                        }
-                    }
-                    if (find == false) {
-                        idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
-
+                    if (agent.equals("Ej utlånad")) {
+                    idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+                    
+                     }
+                    else if (exist != null){
+                       String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
+                       int agentID = Integer.parseInt(agentid); 
+                       idb.update("UPDATE INNEHAR_UTRUSTNING SET AGENT_ID = '" + agentID + "'" + "WHERE UTRUSTNINGS_ID ='" + equipmentID +"'" );
+                    }   
+                    else if (exist == null){   
+                       String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
+                       int agentID = Integer.parseInt(agentid);
+                       idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
                     }
 
-                    //Hämtar rastillhörighet
+                    //Hämtar typ
                     String vapen = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM VAPEN WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                     String kommunikation = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM KOMMUNIKATION WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                     String teknik = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM TEKNIK WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
-                    //Bestämmer nuvarande rastillhörighet
+                    //Bestämmer nuvarande typ
                     String Epinfo = "";
                     if (vapen != null) {
                         Epinfo = "Vapen";
@@ -612,10 +595,10 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                         Epinfo = "Teknik";
                     }
 
-                    //Tar bort existerande rastillhörighet
-                    idb.delete("DELETE FROM " + Epinfo + " WHERE ALIEN_ID = " + equipmentID);
+                    //Tar bort existerande Typ
+                    idb.delete("DELETE FROM " + Epinfo + " WHERE UTRUSTNINGS_ID = " + equipmentID);
 
-                    //Sätter ny rastillhörighet
+                    //Sätter ny typ
                     if (type.equals("Vapen")) {
                         idb.insert("INSERT INTO VAPEN VALUES (" + equipmentID + ",'" + eqinfo + "')");
                     } else if (type.equals("Kommunikation")) {
@@ -628,14 +611,14 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                 } catch (InfException | NumberFormatException | NullPointerException e) {
                     JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
                 }
-                emptyInputs();
+               emptyInputs();
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnRegNewEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNewEquipmentActionPerformed
-        NewAlienWindow newalien = new NewAlienWindow(idb);
-        newalien.setVisible(true);
+        NewEquipmentWindow newequipment = new NewEquipmentWindow(idb);
+        newequipment.setVisible(true);
     }//GEN-LAST:event_btnRegNewEquipmentActionPerformed
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed

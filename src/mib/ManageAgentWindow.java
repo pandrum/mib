@@ -73,8 +73,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelWelcome.setText("Välkommen ");
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labelWelcome.setText("Välkommen ");
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
@@ -122,6 +122,12 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Namn");
+
+        txtRegDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRegDateActionPerformed(evt);
+            }
+        });
 
         RBOffMngr.setText("Kontorschef");
         RBOffMngr.addActionListener(new java.awt.event.ActionListener() {
@@ -376,7 +382,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
             agents = idb.fetchRows(query);
             mngrID = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
-            
+
             for (HashMap<String, String> agent : agents) {
                 txtAreaMain.append("Agent ID: " + agent.get("AGENT_ID") + "\n");
                 txtAreaMain.append("Namn: " + agent.get("NAMN") + "\n");
@@ -384,7 +390,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 txtAreaMain.append("Anställningsdatum: " + agent.get("ANSTALLNINGSDATUM") + "\n");
                 txtAreaMain.append("Administratör: " + agent.get("ADMINISTRATOR") + "\n");
                 txtAreaMain.append("Område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
-                for (int i = 0; i < mngrID.size();i++) {
+                for (int i = 0; i < mngrID.size(); i++) {
                     int id = Integer.parseInt(mngrID.get(i));
                     int ids = Integer.parseInt(agent.get("AGENT_ID"));
                     if (id == ids) {
@@ -393,7 +399,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
-        }   catch (InfException e) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
     }//GEN-LAST:event_buttonListAgentsActionPerformed
@@ -447,13 +453,12 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
                 String LocationQuarry = "SELECT BENAMNING FROM OMRADE JOIN OMRADESCHEF ON OMRADE.OMRADES_ID = OMRADESCHEF.OMRADE JOIN AGENT ON OMRADESCHEF.AGENT_ID = AGENT.AGENT_ID WHERE AGENT.AGENT_ID= " + "'" + agentID + "'";
                 String LocationMngr = idb.fetchSingle(LocationQuarry);
-                if(LocationMngr != null){
-                CBLocationMngr.getModel().setSelectedItem(LocationMngr);
+                if (LocationMngr != null) {
+                    CBLocationMngr.getModel().setSelectedItem(LocationMngr);
+                } else {
+                    CBLocationMngr.getModel().setSelectedItem("Ej chef");
                 }
-                else{
-                CBLocationMngr.getModel().setSelectedItem("Ej chef");
-                }
-                
+
                 String admin = idb.fetchSingle("SELECT ADMINISTRATOR from AGENT where AGENT_ID = " + agentID);
                 if (admin.equals("J")) {
                     RBAdmin.setSelected(true);
@@ -502,7 +507,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeInfoAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoAgentActionPerformed
-        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation)) {
+        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation) && Validation.regexDate(txtRegDate.getText())) {
 
             int agentID = Integer.parseInt(txtAgentID.getText());
 
@@ -581,6 +586,10 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private void RBFieldAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBFieldAgentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RBFieldAgentActionPerformed
+
+    private void txtRegDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRegDateActionPerformed
 
     private void fillcb() {
 

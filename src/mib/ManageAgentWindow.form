@@ -301,6 +301,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtRegDate">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRegDateActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="RBOffMngr">
               <Properties>

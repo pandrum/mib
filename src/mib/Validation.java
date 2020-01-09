@@ -6,6 +6,8 @@
 package mib;
 
 import com.github.lgooddatepicker.components.DatePicker;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 /**
@@ -70,6 +72,28 @@ public class Validation {
         }
         if (!result) {
             JOptionPane.showMessageDialog(null, "Fyll i datum!");
+        }
+        return result;
+    }
+
+    public static boolean regexDate(String date) {
+        boolean result = false;
+
+        String strDateRegEx = "\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])";
+
+        if (date.matches(strDateRegEx)) {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            try {
+                sdf.parse(date);
+                result = true;
+            } catch (ParseException e) {
+                //
+            }
+        }
+        if (!result) {
+            JOptionPane.showMessageDialog(null, "Fyll i datum enligt följande mall: \"YYYY-MM-DD\"");
         }
         return result;
     }

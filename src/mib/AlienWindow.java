@@ -32,17 +32,66 @@ public class AlienWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelSettings = new javax.swing.JPanel();
-        labelSettings = new javax.swing.JLabel();
-        imageSettings = new javax.swing.JLabel();
-        panelEquipment = new javax.swing.JPanel();
-        labelEquipment = new javax.swing.JLabel();
-        chief = new javax.swing.JLabel();
         alienLogout = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
         labelWelcome = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        panelEquipment = new javax.swing.JPanel();
+        labelEquipment = new javax.swing.JLabel();
+        chief = new javax.swing.JLabel();
+        panelSettings = new javax.swing.JPanel();
+        labelSettings = new javax.swing.JLabel();
+        imageSettings = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        alienLogout.setText("Logga ut");
+        alienLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alienLogoutActionPerformed(evt);
+            }
+        });
+
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
+
+        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labelWelcome.setText("Välkommen ");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        panelEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        labelEquipment.setText("Min Områdeschef");
+
+        chief.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
+        chief.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chiefMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelEquipmentLayout = new javax.swing.GroupLayout(panelEquipment);
+        panelEquipment.setLayout(panelEquipmentLayout);
+        panelEquipmentLayout.setHorizontalGroup(
+            panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEquipmentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chief)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelEquipment)
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+        panelEquipmentLayout.setVerticalGroup(
+            panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEquipmentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chief, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEquipmentLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelEquipment)
+                .addGap(40, 40, 40))
+        );
 
         panelSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         panelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,70 +132,42 @@ public class AlienWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        labelEquipment.setText("Min Områdeschef");
-
-        chief.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
-        chief.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chiefMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelEquipmentLayout = new javax.swing.GroupLayout(panelEquipment);
-        panelEquipment.setLayout(panelEquipmentLayout);
-        panelEquipmentLayout.setHorizontalGroup(
-            panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEquipmentLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chief)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelEquipment)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addComponent(panelEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        panelEquipmentLayout.setVerticalGroup(
-            panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEquipmentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(chief, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEquipmentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelEquipment)
-                .addGap(40, 40, 40))
-        );
-
-        alienLogout.setText("Logout");
-        alienLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alienLogoutActionPerformed(evt);
-            }
-        });
-
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
-
-        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        labelWelcome.setText("Välkommen ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addComponent(panelEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(15, 15, 15)
-                            .addComponent(labelLogo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(alienLogout))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(alienLogout, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(labelLogo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,12 +177,10 @@ public class AlienWindow extends javax.swing.JFrame {
                     .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(108, 108, 108)
                 .addComponent(alienLogout)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -220,6 +239,7 @@ public class AlienWindow extends javax.swing.JFrame {
     private javax.swing.JButton alienLogout;
     private javax.swing.JLabel chief;
     private javax.swing.JLabel imageSettings;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelEquipment;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelSettings;

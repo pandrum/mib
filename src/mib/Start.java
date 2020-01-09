@@ -28,9 +28,11 @@ public class Start {
                     System.out.println(os);
                     dbPath = dir + "/db/MIBDB.FDB";
                     break;
-                case "Windows":
+                case "Windows 10":
                     System.out.println(os);
-                    dbPath = dir + ("\\db\\MIBDF.FDB");
+                    dbPath = dir + ("\\db\\MIBDB.FDB");
+                case "Windows 7":
+                    System.out.println(os);
             }
             idb = new InfDB(dbPath);
             new MainWindow(idb).setVisible(true);

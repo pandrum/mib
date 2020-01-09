@@ -197,13 +197,10 @@ public class NewAlienWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,9 +208,9 @@ public class NewAlienWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addGap(28, 28, 28))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -267,7 +264,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
-        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbAgent, cbArea, cbRace) && Validation.ifDatePickerEmpty(datePicker) && Validation.isInteger(txtRaceInfo)) {
+        if (Validation.isNotEmpty(txtName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbAgent, cbArea, cbRace) && Validation.ifDatePickerEmpty(datePicker)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
             String name = txtName.getText();
@@ -292,7 +289,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                 Integer.parseInt(agentID);
 
-                //Sätter ny rastillhörighet
+                //Sätter rastillhörighet
                 if (race.equals("Boglodite")) {
                     Integer.parseInt(raceInfo);
                     idb.insert("INSERT INTO BOGLODITE VALUES (" + autoId + "," + raceInfo + ")");

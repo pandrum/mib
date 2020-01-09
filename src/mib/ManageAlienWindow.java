@@ -201,13 +201,11 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelRaceInfo)
-                                    .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(labelAlienID, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelName, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelArea, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtAlienID, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cbArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelRace, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(labelAlienID)
+                                    .addComponent(labelName)
+                                    .addComponent(labelArea)
+                                    .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelRace)))
                             .addGroup(panelSideInnerLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -229,6 +227,10 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                                     .addComponent(labelAgent))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(panelSideInnerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbArea, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSideInnerLayout.setVerticalGroup(
             panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,6 +573,9 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 String regDate = idb.fetchSingle("SELECT REGISTRERINGSDATUM FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtDate.setText(regDate);
 
+                //Hämtar Regdatum
+                String regDate2 = idb.fetchSingle("SELECT REGISTRERINGSDATUM FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
+
                 //Hämtar Telefon
                 String phone = idb.fetchSingle("SELECT TELEFON FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtPhone.setText(phone);
@@ -636,7 +641,9 @@ public class ManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_cbRaceBottomActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (Validation.isNotEmpty(txtName, txtDate, txtPhone) && Validation.ifCBEmpty(cbArea, cbRace, cbAgent) && Validation.isInteger(txtRaceInfo)) {
+        if (Validation.isNotEmpty(txtName, txtDate, txtPhone) && Validation.ifCBEmpty(cbArea, cbRace, cbAgent) && Validation.isInteger(txtRaceInfo) && Validation.regexDate(txtDate.getText())) {
+
+            System.out.print(txtDate.getText());
 
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
             if (input == 0) {
@@ -735,32 +742,34 @@ public class ManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegNewAlienActionPerformed
 
     private void btnSearchByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchByDateActionPerformed
-        txtAreaMain.setText("");
 
         //Hämtar användar-input
         String userStartDate = datePickerStart.getDateStringOrEmptyString().toString();
         String userEndDate = datePickerEnd.getDateStringOrEmptyString().toString();
 
-        ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
-
-        try {
-            String query = "SELECT * FROM ALIEN WHERE REGISTRERINGSDATUM BETWEEN " + "'" + userStartDate + "'" + " AND " + "'" + userEndDate + "'" + "ORDER BY REGISTRERINGSDATUM;";
-
-            aliens = idb.fetchRows(query);
-
-            for (HashMap<String, String> alien : aliens) {
-                txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
-                txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
-                txtAreaMain.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
-                txtAreaMain.append("Plats: " + idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
-                txtAreaMain.append("Ansvarig agent: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
-                txtAreaMain.append("--------------------------------------------------------" + "\n");
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
-        } catch (NullPointerException e) {
+        if (Validation.regexDate(userStartDate) && Validation.regexDate(userEndDate)) {
             txtAreaMain.setText("");
-            txtAreaMain.setText("Inga aliens hittades.");
+            ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
+
+            try {
+                String query = "SELECT * FROM ALIEN WHERE REGISTRERINGSDATUM BETWEEN " + "'" + userStartDate + "'" + " AND " + "'" + userEndDate + "'" + "ORDER BY REGISTRERINGSDATUM;";
+
+                aliens = idb.fetchRows(query);
+
+                for (HashMap<String, String> alien : aliens) {
+                    txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
+                    txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
+                    txtAreaMain.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
+                    txtAreaMain.append("Plats: " + idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
+                    txtAreaMain.append("Ansvarig agent: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
+                    txtAreaMain.append("--------------------------------------------------------" + "\n");
+                }
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            } catch (NullPointerException e) {
+                txtAreaMain.setText("");
+                txtAreaMain.setText("Inga aliens hittades.");
+            }
         }
     }//GEN-LAST:event_btnSearchByDateActionPerformed
 

@@ -124,6 +124,12 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         jLabel4.setText("Namn");
 
+        txtRegDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRegDateActionPerformed(evt);
+            }
+        });
+
         RBOffMngr.setText("Kontorschef");
 
         txtAgentID.setEditable(false);
@@ -390,7 +396,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
             agents = idb.fetchRows(query);
             mngrID = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
-            
+
             for (HashMap<String, String> agent : agents) {
                 txtAreaMain.append("Agent ID: " + agent.get("AGENT_ID") + "\n");
                 txtAreaMain.append("Namn: " + agent.get("NAMN") + "\n");
@@ -408,7 +414,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 }}
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
-        }   catch (InfException e) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
     }//GEN-LAST:event_buttonListAgentsActionPerformed
@@ -522,7 +528,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeInfoAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoAgentActionPerformed
-        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation)) {
+        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation) && Validation.regexDate(txtRegDate.getText())) {
 
             int agentID = Integer.parseInt(txtAgentID.getText());
 
@@ -627,6 +633,10 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     txtSearchAgent.requestFocus();
                 }
     }//GEN-LAST:event_CBLocationMngrActionPerformed
+
+    private void txtRegDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRegDateActionPerformed
 
     private void fillcb() {
 

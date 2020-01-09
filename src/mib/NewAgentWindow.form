@@ -23,15 +23,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-              <Component id="btnBack" min="-2" pref="96" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="panelAgent" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnBack" min="-2" pref="96" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -40,9 +40,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelAgent" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,14 +117,14 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="textFieldName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="labelPhone" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtPhone" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="labelNewPassword" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtPassword" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="labelPhone" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="txtPhone" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="labelRegistration" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="datePicker2" min="-2" pref="32" max="-2" attributes="0"/>

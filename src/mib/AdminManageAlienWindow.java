@@ -647,7 +647,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_cbRaceBottomActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (Validation.isNotEmpty(txtName, txtDate, txtPhone) && Validation.ifCBEmpty(cbArea, cbRace, cbAgent) && Validation.isInteger(txtRaceInfo)) {
+        if (Validation.isNotEmpty(txtName, txtDate, txtPhone) && Validation.ifCBEmpty(cbArea, cbRace, cbAgent) && Validation.isInteger(txtRaceInfo) && Validation.regexDate(txtDate.getText())) {
 
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
             if (input == 0) {
@@ -746,32 +746,34 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegNewAlienActionPerformed
 
     private void btnSearchByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchByDateActionPerformed
-        txtAreaMain.setText("");
 
         //Hämtar användar-input
         String userStartDate = datePickerStart.getDateStringOrEmptyString().toString();
         String userEndDate = datePickerEnd.getDateStringOrEmptyString().toString();
 
-        ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
-
-        try {
-            String query = "SELECT * FROM ALIEN WHERE REGISTRERINGSDATUM BETWEEN " + "'" + userStartDate + "'" + " AND " + "'" + userEndDate + "'" + "ORDER BY REGISTRERINGSDATUM;";
-
-            aliens = idb.fetchRows(query);
-
-            for (HashMap<String, String> alien : aliens) {
-                txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
-                txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
-                txtAreaMain.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
-                txtAreaMain.append("Plats: " + idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
-                txtAreaMain.append("Ansvarig agent: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
-                txtAreaMain.append("--------------------------------------------------------" + "\n");
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
-        } catch (NullPointerException e) {
+        if (Validation.regexDate(userStartDate) && Validation.regexDate(userEndDate)) {
             txtAreaMain.setText("");
-            txtAreaMain.setText("Inga aliens hittades.");
+            ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
+
+            try {
+                String query = "SELECT * FROM ALIEN WHERE REGISTRERINGSDATUM BETWEEN " + "'" + userStartDate + "'" + " AND " + "'" + userEndDate + "'" + "ORDER BY REGISTRERINGSDATUM;";
+
+                aliens = idb.fetchRows(query);
+
+                for (HashMap<String, String> alien : aliens) {
+                    txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
+                    txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
+                    txtAreaMain.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
+                    txtAreaMain.append("Plats: " + idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
+                    txtAreaMain.append("Ansvarig agent: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
+                    txtAreaMain.append("--------------------------------------------------------" + "\n");
+                }
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            } catch (NullPointerException e) {
+                txtAreaMain.setText("");
+                txtAreaMain.setText("Inga aliens hittades.");
+            }
         }
     }//GEN-LAST:event_btnSearchByDateActionPerformed
 

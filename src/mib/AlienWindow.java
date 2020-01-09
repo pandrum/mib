@@ -45,13 +45,13 @@ public class AlienWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        labelSettings.setText("Inställningar");
-        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelSettingsMouseClicked(evt);
+                panelSettingsMouseClicked(evt);
             }
         });
+
+        labelSettings.setText("Inställningar");
 
         imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear.png"))); // NOI18N
         imageSettings.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,13 +167,9 @@ public class AlienWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
-        //TODO
-    }//GEN-LAST:event_labelSettingsMouseClicked
-
     private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
-        PasswordWindow password = new PasswordWindow(idb);
-        password.setVisible(true);
+        AlienPasswordWindow alienpassword = new AlienPasswordWindow(idb);
+        alienpassword.setVisible(true);
     }//GEN-LAST:event_imageSettingsMouseClicked
 
     private void alienLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alienLogoutActionPerformed
@@ -182,9 +178,14 @@ public class AlienWindow extends javax.swing.JFrame {
         mainwindow.setVisible(true);    }//GEN-LAST:event_alienLogoutActionPerformed
 
     private void chiefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chiefMouseClicked
-       // setVisible(false);
+        // setVisible(false);
         AlienChiefWindow chiefWindow = new AlienChiefWindow(idb);
         chiefWindow.setVisible(true);    }//GEN-LAST:event_chiefMouseClicked
+
+    private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
+        AlienPasswordWindow alienpassword = new AlienPasswordWindow(idb);
+        alienpassword.setVisible(true);
+    }//GEN-LAST:event_panelSettingsMouseClicked
 
     /**
      * @param args the command line arguments

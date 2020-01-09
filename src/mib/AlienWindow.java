@@ -37,7 +37,7 @@ public class AlienWindow extends javax.swing.JFrame {
         imageSettings = new javax.swing.JLabel();
         panelEquipment = new javax.swing.JPanel();
         labelEquipment = new javax.swing.JLabel();
-        imageToolbox = new javax.swing.JLabel();
+        chief = new javax.swing.JLabel();
         alienLogout = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
         labelWelcome = new javax.swing.JLabel();
@@ -87,7 +87,12 @@ public class AlienWindow extends javax.swing.JFrame {
 
         labelEquipment.setText("Min Områdeschef");
 
-        imageToolbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/toolbox.png"))); // NOI18N
+        chief.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
+        chief.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chiefMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelEquipmentLayout = new javax.swing.GroupLayout(panelEquipment);
         panelEquipment.setLayout(panelEquipmentLayout);
@@ -95,7 +100,7 @@ public class AlienWindow extends javax.swing.JFrame {
             panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEquipmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imageToolbox)
+                .addComponent(chief)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelEquipment)
                 .addContainerGap(211, Short.MAX_VALUE))
@@ -104,7 +109,7 @@ public class AlienWindow extends javax.swing.JFrame {
             panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEquipmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imageToolbox, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chief, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEquipmentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -176,6 +181,11 @@ public class AlienWindow extends javax.swing.JFrame {
         MainWindow mainwindow = new MainWindow(idb);
         mainwindow.setVisible(true);    }//GEN-LAST:event_alienLogoutActionPerformed
 
+    private void chiefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chiefMouseClicked
+       // setVisible(false);
+        AlienChiefWindow chiefWindow = new AlienChiefWindow(idb);
+        chiefWindow.setVisible(true);    }//GEN-LAST:event_chiefMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -207,8 +217,8 @@ public class AlienWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alienLogout;
+    private javax.swing.JLabel chief;
     private javax.swing.JLabel imageSettings;
-    private javax.swing.JLabel imageToolbox;
     private javax.swing.JLabel labelEquipment;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelSettings;

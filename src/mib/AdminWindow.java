@@ -339,8 +339,8 @@ public class AdminWindow extends javax.swing.JFrame {
 
     private void panelAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAlienMouseClicked
         setVisible(false);
-        ManageAlienWindow managealien = new ManageAlienWindow(idb);
-        managealien.setVisible(true);
+        AdminManageAlienWindow adminmanagealien = new AdminManageAlienWindow(idb);
+        adminmanagealien.setVisible(true);
     }//GEN-LAST:event_panelAlienMouseClicked
 
     private void panelAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAgentMouseClicked

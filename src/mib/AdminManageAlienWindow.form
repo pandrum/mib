@@ -41,7 +41,7 @@
                           <Component id="btnBack" min="-2" pref="96" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="panelSide" max="32767" attributes="0"/>
-                              <Component id="btnRegNewEquipment" max="32767" attributes="0"/>
+                              <Component id="btnRegNewAlien" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -50,7 +50,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="scrollPane" alignment="0" pref="752" max="32767" attributes="0"/>
                   <Component id="panelBottom" max="32767" attributes="0"/>
-                  <Component id="btnListEquipment" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnListAliens" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
           </Group>
@@ -67,7 +67,7 @@
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelWelcome" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="btnListEquipment" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnListAliens" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -78,7 +78,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="panelBottom" max="32767" attributes="0"/>
-                  <Component id="btnRegNewEquipment" max="32767" attributes="0"/>
+                  <Component id="btnRegNewAlien" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnBack" min="-2" pref="40" max="-2" attributes="0"/>
@@ -90,16 +90,16 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelWelcome">
       <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lkommen "/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lkommen "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mib/agent.png"/>
+          <Image iconType="3" name="/mib/agent-small.png"/>
         </Property>
       </Properties>
     </Component>
@@ -111,12 +111,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRegNewEquipment">
+    <Component class="javax.swing.JButton" name="btnRegNewAlien">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registrera ny Utrustning..."/>
+        <Property name="text" type="java.lang.String" value="Registrera ny Alien..."/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegNewEquipmentActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegNewAlienActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="scrollPane">
@@ -147,20 +147,22 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnRemove" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnSave" max="32767" attributes="0"/>
-                              <Component id="panelSideInner" alignment="0" max="32767" attributes="0"/>
-                              <Component id="panelSearch" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelSearch" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="panelSideInner" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSave" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="btnRemove" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -170,12 +172,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelSearch" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="panelSideInner" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="panelSideInner" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnRemove" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -207,7 +209,7 @@
                           <Component id="txtSearch" max="32767" attributes="0"/>
                           <Component id="btnSearch" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelEquipment" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelAlien" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -219,7 +221,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelEquipment" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelAlien" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtSearch" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -235,9 +237,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearchActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelEquipment">
+            <Component class="javax.swing.JLabel" name="labelAlien">
               <Properties>
-                <Property name="text" type="java.lang.String" value="S&#xf6;k Utrustning"/>
+                <Property name="text" type="java.lang.String" value="S&#xf6;k Alien"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnSearch">
@@ -264,45 +266,49 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="labelEquipmentID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelType" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelRaceInfo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="labelAlienID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelArea" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtAlienID" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cbArea" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                              <Component id="labelRace" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtName" min="-2" pref="183" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="cbRace" min="-2" pref="187" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cbAgent" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="labelDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtDate" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                          <Component id="labelPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtPhone" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                          <Component id="txtRaceInfo" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
                                           <Component id="labelAgent" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelEqInfo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelName" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="cbType" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtEqInfo" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtDate" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtName" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtEquipmentID" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -313,46 +319,54 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelEquipmentID" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtEquipmentID" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelAlienID" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtAlienID" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelAgent" min="-2" pref="16" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cbAgent" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="labelDate" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtDate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="labelType" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelPhone" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtPhone" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelArea" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cbType" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelEqInfo" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbArea" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtEqInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <Component id="labelRace" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cbRace" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelRaceInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtRaceInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelAgent" min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cbAgent" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="labelType">
+            <Component class="javax.swing.JLabel" name="labelArea">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Typ"/>
+                <Property name="text" type="java.lang.String" value="Plats"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelEqInfo">
+            <Component class="javax.swing.JLabel" name="labelRaceInfo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Kaliber"/>
+                <Property name="text" type="java.lang.String" value="Antal Boogies"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEquipmentID">
+            <Component class="javax.swing.JTextField" name="txtAlienID">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -361,31 +375,28 @@
             </Component>
             <Component class="javax.swing.JLabel" name="labelDate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Utkvitterings Datum"/>
+                <Property name="text" type="java.lang.String" value="Registeringsdatum"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbType">
+            <Component class="javax.swing.JComboBox" name="cbArea">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Vapen"/>
-                    <StringItem index="1" value="Kommunikation"/>
-                    <StringItem index="2" value="Teknik"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
-                <Property name="selectedIndex" type="int" value="-1"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbTypeActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="labelAgent">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Utl&#xe5;nad till Agent"/>
+                <Property name="text" type="java.lang.String" value="Agent"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelRace">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ras"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbAgent">
@@ -400,26 +411,48 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtDate">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEqInfo">
-              <Properties>
-                <Property name="actionCommand" type="java.lang.String" value="null"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="txtRaceInfo">
             </Component>
-            <Component class="javax.swing.JLabel" name="labelEquipmentID">
+            <Component class="javax.swing.JLabel" name="labelAlienID">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Utrustnings ID"/>
+                <Property name="text" type="java.lang.String" value="Alien ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelName">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ben&#xe4;mning"/>
+                <Property name="text" type="java.lang.String" value="Namn"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPhone">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbRace">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="Squid"/>
+                    <StringItem index="1" value="Boglodite"/>
+                    <StringItem index="2" value="Worm"/>
+                  </StringArray>
+                </Property>
+                <Property name="selectedIndex" type="int" value="-1"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbRaceActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelPhone">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Telefon"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="btnRemove">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ta bort Utrustning"/>
+            <Property name="text" type="java.lang.String" value="Ta bort Alien"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveActionPerformed"/>
@@ -440,55 +473,138 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="datePickerStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="datePickerEnd" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="btnSearchByDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="separator" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelTypeBottom" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbTypeBottom" min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="labelAreaBottom" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbAreaBottom" min="-2" pref="158" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="176" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cbRaceBottom" min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="labelRaceBottom" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="labelTypeBottom" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="separator" alignment="1" min="-2" pref="92" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelEndDate" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="datePickerEnd" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelStartDate" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="datePickerStart" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="labelAreaBottom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelRaceBottom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cbAreaBottom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbRaceBottom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbTypeBottom" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSearchByDate" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="separator" min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelTypeBottom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Typ"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cbTypeBottom">
+        <Component class="javax.swing.JComboBox" name="cbRaceBottom">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="Vapen"/>
-                <StringItem index="1" value="Kommunikation"/>
-                <StringItem index="2" value="Teknik"/>
+                <StringItem index="0" value="Squid"/>
+                <StringItem index="1" value="Boglodite"/>
+                <StringItem index="2" value="Worm"/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbTypeBottomActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbRaceBottomActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAreaBottom">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Plats"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelRaceBottom">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ras"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbAreaBottom">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbAreaBottomActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePickerStart">
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePickerEnd">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelStartDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Startdatum"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSearchByDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="S&#xf6;k mellan datum"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchByDateActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelEndDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Slutdatum"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="separator">
           <Properties>
@@ -497,12 +613,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnListEquipment">
+    <Component class="javax.swing.JButton" name="btnListAliens">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista all Utrustning"/>
+        <Property name="text" type="java.lang.String" value="Lista alla Aliens"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListEquipmentActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListAliensActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

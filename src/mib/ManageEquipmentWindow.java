@@ -73,8 +73,8 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelWelcome.setText("Välkommen ");
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labelWelcome.setText("Välkommen ");
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
 
@@ -170,7 +170,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
 
         labelAgent.setText("Utlånad till Agent");
 
-        txtEqInfo.setActionCommand(null);
+        txtEqInfo.setActionCommand("null");
 
         labelEquipmentID.setText("Utrustnings ID");
 
@@ -183,16 +183,10 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             .addGroup(panelSideInnerLayout.createSequentialGroup()
                 .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSideInnerLayout.createSequentialGroup()
-                        .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelSideInnerLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelEquipmentID, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelType, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEquipmentID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelSideInnerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelEquipmentID, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelType, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelSideInnerLayout.createSequentialGroup()
                         .addContainerGap()
@@ -201,17 +195,24 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                             .addGroup(panelSideInnerLayout.createSequentialGroup()
                                 .addGroup(panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelDate)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEqInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelAgent)
                                     .addComponent(labelEqInfo)
                                     .addComponent(labelName))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(cbType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelSideInnerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtEqInfo))
+                    .addGroup(panelSideInnerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtDate))
+                    .addGroup(panelSideInnerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtName))
+                    .addGroup(panelSideInnerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtEquipmentID)))
                 .addContainerGap())
-            .addGroup(panelSideInnerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbType, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSideInnerLayout.setVerticalGroup(
             panelSideInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,15 +258,14 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             .addGroup(panelSideLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSideLayout.createSequentialGroup()
-                        .addComponent(panelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelSideLayout.createSequentialGroup()
                         .addGroup(panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelSideInner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(panelSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelSideLayout.setVerticalGroup(
             panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,15 +309,14 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
         );
         panelBottomLayout.setVerticalGroup(
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBottomLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTypeBottom)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbTypeBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBottomLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBottomLayout.createSequentialGroup()
+                        .addComponent(labelTypeBottom)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTypeBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnListEquipment.setText("Lista all Utrustning");
@@ -426,11 +425,11 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
 
             equipments = idb.fetchRows(query);
             datesID = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-            
+
             for (HashMap<String, String> equipment : equipments) {
-                txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n"); 
+                txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
-                for (int i = 0; i < datesID.size();i++) {
+                for (int i = 0; i < datesID.size(); i++) {
                     int id = Integer.parseInt(datesID.get(i));
                     int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
                     if (id == ids) {
@@ -453,11 +452,11 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             String query = "SELECT * FROM UTRUSTNING WHERE UTRUSTNINGS_ID IN (SELECT UTRUSTNINGS_ID FROM " + cbChoice + ");";
             ArrayList<HashMap<String, String>> equipments = idb.fetchRows(query);
             ArrayList<String> datesID = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-            
+
             for (HashMap<String, String> equipment : equipments) {
-                txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n"); 
+                txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
-                for (int i = 0; i < datesID.size();i++) {
+                for (int i = 0; i < datesID.size(); i++) {
                     int id = Integer.parseInt(datesID.get(i));
                     int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
                     if (id == ids) {
@@ -497,7 +496,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                 //Hämtar Kvittdatum
                 String kvittDate = idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                 txtDate.setText(kvittDate);
-                
+
                 //Hämtar Plats
                 String location = idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + equipmentID + "')");
                 cbType.setSelectedItem(location);
@@ -524,11 +523,10 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                 //Hämtar Agent
                 String agent = idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "')");
                 cbAgent.setSelectedItem(agent);
-                if(agent != null){
-                cbAgent.setSelectedItem(agent);
-                }
-                else{
-                cbAgent.setSelectedItem("Ej utlånad");
+                if (agent != null) {
+                    cbAgent.setSelectedItem(agent);
+                } else {
+                    cbAgent.setSelectedItem("Ej utlånad");
                 }
 
             } catch (Exception e) {
@@ -556,21 +554,22 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                 try {
                     //Uppdaterar utrustningsnamn
                     idb.update("UPDATE UTRUSTNING SET BENAMNING = " + "'" + name + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-                    
+
                     //Uppdaterar kvittenssdatum
                     ArrayList<String> dateID = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-                    if(kvittDate != null) 
+                    if (kvittDate != null) {
                         for (String dateid : dateID) {
-                        int id = Integer.parseInt(dateid);
-                        if (equipmentID == id) {
-                            idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+                            int id = Integer.parseInt(dateid);
+                            if (equipmentID == id) {
+                                idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+                            }
                         }
-                        }
-                    if (kvittDate == null){
-                       idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + null + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'"); 
-                    
                     }
-                
+                    if (kvittDate == null) {
+                        idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + null + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+
+                    }
+
                     //Hämtar och uppdaterar agent
                     String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                     int agentID = Integer.parseInt(agentid);
@@ -597,7 +596,7 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                         idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
 
                     }
-                    
+
                     //Hämtar rastillhörighet
                     String vapen = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM VAPEN WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                     String kommunikation = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM KOMMUNIKATION WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
@@ -623,13 +622,13 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                         idb.insert("INSERT INTO KOMMUNIKATION VALUES (" + equipmentID + ",'" + eqinfo + "')");
                     } else if (type.equals("Teknik")) {
                         idb.insert("INSERT INTO TEKNIK VALUES (" + equipmentID + ",'" + eqinfo + "')");
-                    } 
+                    }
 
                     JOptionPane.showMessageDialog(null, "Ändring av information för utrustningen lyckades!");
                 } catch (InfException | NumberFormatException | NullPointerException e) {
                     JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
                 }
-                emptyInputs(); 
+                emptyInputs();
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -754,4 +753,3 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
-

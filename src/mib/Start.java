@@ -5,6 +5,7 @@
  */
 package mib;
 
+import java.io.File;
 import oru.inf.*;
 import javax.swing.JOptionPane;
 
@@ -27,6 +28,11 @@ public class Start {
                 case "Mac OS X":
                     System.out.println(os);
                     dbPath = dir + "/db/MIBDB.FDB";
+                    File file = new File(dbPath);
+                    file.canExecute();
+                    file.canWrite();
+                    file.canRead();
+                    System.out.println(dbPath);
                     break;
                 case "Windows 10":
                     System.out.println(os);

@@ -370,12 +370,13 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     private void buttonListAgentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListAgentsActionPerformed
         txtAreaMain.setText("");
         ArrayList<HashMap<String, String>> agents = new ArrayList<HashMap<String, String>>();
-
+        ArrayList<String> mngrID;
         try {
             String query = "SELECT * FROM AGENT;";
 
             agents = idb.fetchRows(query);
-
+            mngrID = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
+            
             for (HashMap<String, String> agent : agents) {
                 txtAreaMain.append("Agent ID: " + agent.get("AGENT_ID") + "\n");
                 txtAreaMain.append("Namn: " + agent.get("NAMN") + "\n");
@@ -383,9 +384,16 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 txtAreaMain.append("Anställningsdatum: " + agent.get("ANSTALLNINGSDATUM") + "\n");
                 txtAreaMain.append("Administratör: " + agent.get("ADMINISTRATOR") + "\n");
                 txtAreaMain.append("Område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
+                for (int i = 0; i < mngrID.size();i++) {
+                    int id = Integer.parseInt(mngrID.get(i));
+                    int ids = Integer.parseInt(agent.get("AGENT_ID"));
+                    if (id == ids) {
+                        txtAreaMain.append("Chef över område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + ids + "')") + "\n");
+                    }
+                }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
-        } catch (InfException e) {
+        }   catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
     }//GEN-LAST:event_buttonListAgentsActionPerformed
@@ -439,8 +447,13 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
                 String LocationQuarry = "SELECT BENAMNING FROM OMRADE JOIN OMRADESCHEF ON OMRADE.OMRADES_ID = OMRADESCHEF.OMRADE JOIN AGENT ON OMRADESCHEF.AGENT_ID = AGENT.AGENT_ID WHERE AGENT.AGENT_ID= " + "'" + agentID + "'";
                 String LocationMngr = idb.fetchSingle(LocationQuarry);
+                if(LocationMngr != null){
                 CBLocationMngr.getModel().setSelectedItem(LocationMngr);
-
+                }
+                else{
+                CBLocationMngr.getModel().setSelectedItem("Ej chef");
+                }
+                
                 String admin = idb.fetchSingle("SELECT ADMINISTRATOR from AGENT where AGENT_ID = " + agentID);
                 if (admin.equals("J")) {
                     RBAdmin.setSelected(true);
@@ -489,7 +502,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeInfoAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoAgentActionPerformed
-        if (Validation.isNotEmpty(txtAgentID)) {
+        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation)) {
 
             int agentID = Integer.parseInt(txtAgentID.getText());
 
@@ -498,6 +511,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                 String name = txtAgentName.getText();
                 String telephone = txtAgentPhone.getText();
                 String date = txtRegDate.getText();
+                String LocMn = CBLocationMngr.getSelectedItem().toString();
                 //String officeMn = cbOffMngr.getSelectedItem().toString();
                 String admin = "";
                 try {
@@ -525,8 +539,9 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     idb.update("UPDATE AGENT SET OMRADE = " + "'" + area + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
 
                     ArrayList<String> ids = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
+                    String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + CBLocationMngr.getSelectedItem().toString() + "'");
+                    int locationMn = Integer.parseInt(LocationMn);
                     int i = 0;
-                    String LocMn = CBLocationMngr.getSelectedItem().toString();
                     boolean find = false;
                     while (i < ids.size() && find == false) {
                         String id = ids.get(i);
@@ -537,8 +552,6 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                             find = true;
                         }
                         if (ag_id == agentID) {
-                            String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + CBLocationMngr.getSelectedItem().toString() + "'");
-                            int locationMn = Integer.parseInt(LocationMn);
                             idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
                             idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
                             find = true;
@@ -547,8 +560,6 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                         }
                     }
                     if (find == false) {
-                        String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + CBLocationMngr.getSelectedItem().toString() + "'");
-                        int locationMn = Integer.parseInt(LocationMn);
                         idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
 
                     }

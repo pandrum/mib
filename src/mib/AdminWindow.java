@@ -144,10 +144,20 @@ public class AdminWindow extends javax.swing.JFrame {
         );
 
         panelEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelEquipment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelEquipmentMouseClicked(evt);
+            }
+        });
 
         labelEquipment.setText("Hantera Utrustning...");
 
         imageEquipment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/toolbox.png"))); // NOI18N
+        imageEquipment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageEquipmentMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelEquipmentLayout = new javax.swing.GroupLayout(panelEquipment);
         panelEquipment.setLayout(panelEquipmentLayout);
@@ -338,6 +348,16 @@ public class AdminWindow extends javax.swing.JFrame {
         ManageAgentWindow manageagent = new ManageAgentWindow(idb);
         manageagent.setVisible(true);
     }//GEN-LAST:event_panelAgentMouseClicked
+
+    private void imageEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageEquipmentMouseClicked
+        setVisible(false);
+        ManageEquipmentWindow equipment = new ManageEquipmentWindow(idb);
+        equipment.setVisible(true);    }//GEN-LAST:event_imageEquipmentMouseClicked
+
+    private void panelEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEquipmentMouseClicked
+        setVisible(false);
+        ManageEquipmentWindow equipment = new ManageEquipmentWindow(idb);
+        equipment.setVisible(true);    }//GEN-LAST:event_panelEquipmentMouseClicked
 
     /**
      * @param args the command line arguments

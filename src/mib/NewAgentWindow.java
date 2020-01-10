@@ -33,7 +33,6 @@ public class NewAgentWindow extends javax.swing.JFrame {
 
     private void fillcb() {
 
-        //cbLocation.addItem(null);
         cbLocationMngr.addItem("Ej chef");
         String Location = "SELECT BENAMNING FROM OMRADE";
         ArrayList<String> allLocation;
@@ -47,6 +46,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
         cbLocation.setSelectedIndex(-1);
+        cbLocationMngr.setSelectedIndex(-1);
     }
 
     /**
@@ -234,7 +234,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
 
     private void buttonRegisterNewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAgentActionPerformed
 
-        if (Validation.isNotEmpty(textFieldName, txtPassword, txtPhone)) {
+        if (Validation.isNotEmpty(textFieldName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbLocation,cbLocationMngr) && Validation.ifDatePickerEmpty(datePicker2)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
             String anstdatum = datePicker2.getDateStringOrEmptyString();
@@ -274,7 +274,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
                 }
  
                 JOptionPane.showMessageDialog(null, "Registrering av ny Agent lyckades!");
-                clearAllFields(rootPane);
+                emptyInputs();
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
             }
@@ -285,16 +285,14 @@ public class NewAgentWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RBOffMngrActionPerformed
 
-    public void clearAllFields(Container container) {
+    private void emptyInputs() {
 
-        for (Component c : container.getComponents()) {
-            if (c instanceof JTextField) {
-                JTextField f = (JTextField) c;
-                f.setText("");
-            } else if (c instanceof Container) {
-                clearAllFields((Container) c);
-            }
-        }
+        txtPassword.setText("");
+        textFieldName.setText("");
+        datePicker2.setText("");
+        txtPhone.setText("");
+        cbLocation.setSelectedIndex(-1);
+        cbLocationMngr.setSelectedIndex(-1);
         rbAdmin.setSelected(false);
         RBOffMngr.setSelected(false);
         rbFieldagent.setSelected(false);

@@ -361,10 +361,9 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         txtRegDate.setText("");
         txtAgentPhone.setText("");
         cbLocation.setSelectedIndex(-1);
-        //CBLocationMngr.setSelectedIndex(-1);
+        CBLocationMngr.setSelectedIndex(-1);
         RBAdmin.setSelected(false);
         RBOffMngr.setSelected(false);
-        RBAdmin.setSelected(false);
         RBFieldAgent.setSelected(false);
         labelReplace.setVisible(false);
         cbchoice.setVisible(false);
@@ -522,7 +521,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeInfoAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoAgentActionPerformed
-        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation) && Validation.regexDate(txtRegDate.getText())) {
+        if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation,CBLocationMngr) && Validation.regexDate(txtRegDate.getText())) {
 
             int agentID = Integer.parseInt(txtAgentID.getText());
 
@@ -605,6 +604,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangeInfoAgentActionPerformed
 
     private void CBLocationMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBLocationMngrActionPerformed
+       if (!txtAgentID.getText().equals("")) {
         try {
             int agentID = Integer.parseInt(txtAgentID.getText());
             String choice = CBLocationMngr.getSelectedItem().toString();
@@ -612,20 +612,17 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             if (choice.equals("Ej chef") && ag != null) {
                 labelReplace.setVisible(true);
                 cbchoice.setVisible(true);
-            }else {
-                if(ag != null){
+            }else if(ag != null){
                 labelReplace.setVisible(true);
                 cbchoice.setVisible(true);
-            } 
             }
         } catch (NullPointerException e) {
             //
         }
-        catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "fungerar inte");
-                    txtSearchAgent.setText("");
-                    txtSearchAgent.requestFocus();
-                }
+          catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+        }
+       }
     }//GEN-LAST:event_CBLocationMngrActionPerformed
 
     private void txtRegDateActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -634,21 +631,17 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
     private void fillcb() {
 
-        //cbLocation.addItem(null);
-        //CBLocationMngr.addItem("Ej chef");
         String Location = "SELECT BENAMNING FROM OMRADE";
         ArrayList<String> allLocation;
         try {
             allLocation = idb.fetchColumn(Location);
             for (String name : allLocation) {
                 cbLocation.addItem(name);
-                //CBLocationMngr.addItem(name);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
         cbLocation.setSelectedIndex(-1);
-        //CBLocationMngr.setSelectedIndex(-1);
     }
     private void fillcb2() {    
         
@@ -663,7 +656,6 @@ public class ManageAgentWindow extends javax.swing.JFrame {
        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
     }
-    //cbchoice.setSelectedIndex(-1); 
     }
 
 

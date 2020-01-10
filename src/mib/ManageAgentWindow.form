@@ -75,7 +75,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="725" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Component id="panelSide" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -211,6 +211,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtRegDate" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtAgentPhone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAgentName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAgentID" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbLocation" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CBLocationMngr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbchoice" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -222,13 +227,10 @@
                                   <Component id="RBAdmin" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="RBOffMngr" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="RBFieldAgent" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelReplace" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtAgentName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtAgentID" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbLocation" alignment="0" max="32767" attributes="0"/>
-                          <Component id="CBLocationMngr" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -261,7 +263,11 @@
                       <Component id="LbLocationMngr" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CBLocationMngr" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelReplace" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cbchoice" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="RBOffMngr" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="RBAdmin" min="-2" max="-2" attributes="0"/>
@@ -287,9 +293,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="F&#xe4;ltagent"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBFieldAgentActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtAgentName">
             </Component>
@@ -301,17 +304,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtRegDate">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRegDateActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="RBOffMngr">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Kontorschef"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBOffMngrActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtAgentID">
               <Properties>
@@ -326,9 +323,18 @@
             <Component class="javax.swing.JComboBox" name="CBLocationMngr">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="Ej chef"/>
+                    <StringItem index="1" value="Svealand"/>
+                    <StringItem index="2" value="Gotaland"/>
+                    <StringItem index="3" value="Norrland"/>
+                  </StringArray>
                 </Property>
+                <Property name="selectedIndex" type="int" value="-1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBLocationMngrActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -359,6 +365,21 @@
             <Component class="javax.swing.JLabel" name="LbLocationMngr">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Omr&#xe5;deschef"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbchoice">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelReplace">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="V&#xe4;lj ers&#xe4;ttare"/>
               </Properties>
             </Component>
           </SubComponents>

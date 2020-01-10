@@ -300,7 +300,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
                     idb.insert("INSERT INTO WORM VALUES (" + autoId + ")");
                 }
 
-                idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + name + "','" + password + "'," + telephone + ",'" + areaID + "','" + agentID + "')");
+                idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + password + "','" + name + "'," + telephone + ",'" + areaID + "','" + agentID + "')");
                 JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
 
             } catch (InfException | NumberFormatException e) {

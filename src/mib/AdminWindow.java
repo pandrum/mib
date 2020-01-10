@@ -183,13 +183,13 @@ public class AdminWindow extends javax.swing.JFrame {
         );
 
         panelSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        labelSettings.setText("Inställningar...");
-        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelSettingsMouseClicked(evt);
+                panelSettingsMouseClicked(evt);
             }
         });
+
+        labelSettings.setText("Inställningar...");
 
         imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear.png"))); // NOI18N
         imageSettings.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,11 +315,6 @@ public class AdminWindow extends javax.swing.JFrame {
         mainwindow.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
-        PasswordWindow password = new PasswordWindow(idb);
-        password.setVisible(true);
-    }//GEN-LAST:event_labelSettingsMouseClicked
-
     private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
         PasswordWindow password = new PasswordWindow(idb);
         password.setVisible(true);
@@ -358,6 +353,11 @@ public class AdminWindow extends javax.swing.JFrame {
         setVisible(false);
         ManageEquipmentWindow equipment = new ManageEquipmentWindow(idb);
         equipment.setVisible(true);    }//GEN-LAST:event_panelEquipmentMouseClicked
+
+    private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
+        PasswordWindow password = new PasswordWindow(idb);
+        password.setVisible(true);
+    }//GEN-LAST:event_panelSettingsMouseClicked
 
     /**
      * @param args the command line arguments

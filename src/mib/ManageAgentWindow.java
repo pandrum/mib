@@ -130,6 +130,12 @@ public class ManageAgentWindow extends javax.swing.JFrame {
             }
         });
 
+        txtRegDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRegDateActionPerformed(evt);
+            }
+        });
+
         RBOffMngr.setText("Kontorschef");
 
         txtAgentID.setEditable(false);
@@ -633,6 +639,10 @@ public class ManageAgentWindow extends javax.swing.JFrame {
                     txtSearchAgent.requestFocus();
                 }
     }//GEN-LAST:event_CBLocationMngrActionPerformed
+
+    private void txtRegDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRegDateActionPerformed
 
     private void txtRegDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegDateActionPerformed
         // TODO add your handling code here:

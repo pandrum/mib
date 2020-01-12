@@ -220,7 +220,7 @@ public class AlienWindow extends javax.swing.JFrame {
 
     private void chiefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chiefMouseClicked
         // setVisible(false);
-        AlienChiefWindow chiefWindow = new AlienChiefWindow(idb);
+        AlienLocationManagerWindow chiefWindow = new AlienLocationManagerWindow(idb);
         chiefWindow.setVisible(true);    }//GEN-LAST:event_chiefMouseClicked
 
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked

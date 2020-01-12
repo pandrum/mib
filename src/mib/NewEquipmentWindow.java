@@ -5,7 +5,6 @@
  */
 package mib;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.*;
 
@@ -163,7 +162,6 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
         txtTypeInfo.setVisible(false);
     }
 
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -183,19 +181,19 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
                 int equipmentID = Integer.parseInt(autoId);
 
                 //Sätter ny typ
-                    if (type.equals("Vapen")) {
-                        idb.insert("INSERT INTO VAPEN VALUES (" + equipmentID + ",'" + eqinfo + "')");
-                    } else if (type.equals("Kommunikation")) {
-                        idb.insert("INSERT INTO KOMMUNIKATION VALUES (" + equipmentID + ",'" + eqinfo + "')");
-                    } else if (type.equals("Teknik")) {
-                        idb.insert("INSERT INTO TEKNIK VALUES (" + equipmentID + ",'" + eqinfo + "')");
-                    }
+                if (type.equals("Vapen")) {
+                    idb.insert("INSERT INTO VAPEN VALUES (" + equipmentID + ",'" + eqinfo + "')");
+                } else if (type.equals("Kommunikation")) {
+                    idb.insert("INSERT INTO KOMMUNIKATION VALUES (" + equipmentID + ",'" + eqinfo + "')");
+                } else if (type.equals("Teknik")) {
+                    idb.insert("INSERT INTO TEKNIK VALUES (" + equipmentID + ",'" + eqinfo + "')");
+                }
 
                 idb.insert("INSERT INTO UTRUSTNING VALUES ('" + autoId + "','" + name + "')");
                 JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
 
             } catch (InfException | NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
             emptyInputs();
         }
@@ -243,16 +241,16 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

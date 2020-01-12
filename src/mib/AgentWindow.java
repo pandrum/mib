@@ -320,7 +320,7 @@ public class AgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_panelAlienMouseClicked
 
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
-        PasswordWindow password = new PasswordWindow(idb);
+        AgentPasswordWindow password = new AgentPasswordWindow(idb);
         password.setVisible(true);
     }//GEN-LAST:event_panelSettingsMouseClicked
 
@@ -329,7 +329,7 @@ public class AgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_labelManagerMouseClicked
 
     private void panelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManagerMouseClicked
-        LocationManager manager = new LocationManager(idb);
+        AgentLocationManagerWindow manager = new AgentLocationManagerWindow(idb);
         manager.setVisible(true);
     }//GEN-LAST:event_panelManagerMouseClicked
 

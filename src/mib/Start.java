@@ -5,8 +5,8 @@
  */
 package mib;
 
-import oru.inf.*;
 import javax.swing.JOptionPane;
+import oru.inf.*;
 
 /**
  *
@@ -14,15 +14,25 @@ import javax.swing.JOptionPane;
  */
 public class Start {
 
-    private static InfDB db;
+    private static InfDB idb;
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         try {
-            db = new InfDB("/Users/Shared/db/MIBDB.FDB");
-            new MainWindow(db).setVisible(true);
+            String dir = System.getProperty("user.dir");
+            String os = System.getProperty("os.name");
+            String dbPath = "";
+            switch (os) {
+                case "Mac OS X":
+                    dbPath = dir + "/db/MIBDB.FDB";
+                    break;
+                case "Windows 10":
+                case "Windows 7":
+                    dbPath = dir + ("\\db\\MIBDB.FDB");
+                    System.out.println(dbPath);
+                    break;
+            }
+            idb = new InfDB(dbPath);
+            new MainWindow(idb).setVisible(true);
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }

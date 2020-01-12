@@ -416,7 +416,7 @@ public class AgentManageEquipmentWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
     }//GEN-LAST:event_btnListEquipmentActionPerformed
 
@@ -443,10 +443,9 @@ public class AgentManageEquipmentWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-            //txtAreaMain.setText("");
-            //txtAreaMain.setText("Inga aliens hittades!");
+            //
         }
     }//GEN-LAST:event_cbTypeBottomActionPerformed
 

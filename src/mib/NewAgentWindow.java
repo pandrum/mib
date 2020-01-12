@@ -5,12 +5,8 @@
  */
 package mib;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import oru.inf.*;
 
 /**
@@ -43,7 +39,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
                 cbLocationMngr.addItem(name);
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
         cbLocation.setSelectedIndex(-1);
         cbLocationMngr.setSelectedIndex(-1);
@@ -234,7 +230,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
 
     private void buttonRegisterNewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAgentActionPerformed
 
-        if (Validation.isNotEmpty(textFieldName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbLocation,cbLocationMngr) && Validation.ifDatePickerEmpty(datePicker2)) {
+        if (Validation.isNotEmpty(textFieldName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbLocation, cbLocationMngr) && Validation.ifDatePickerEmpty(datePicker2)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
             String anstdatum = datePicker2.getDateStringOrEmptyString();
@@ -265,18 +261,18 @@ public class NewAgentWindow extends javax.swing.JFrame {
                 if (rbFieldagent.isSelected()) {
                     idb.insert("INSERT INTO FALTAGENT VALUES ('" + autoId + "')");
                 }
-              
+
                 if (Loc.contains(LocMn)) {
-                String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");  
-                       int locationMn = Integer.parseInt(LocationMn);
-                       idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
-                       idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')"); 
+                    String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");
+                    int locationMn = Integer.parseInt(LocationMn);
+                    idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
+                    idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
                 }
- 
+
                 JOptionPane.showMessageDialog(null, "Registrering av ny Agent lyckades!");
                 emptyInputs();
             } catch (InfException | NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
         }
     }//GEN-LAST:event_buttonRegisterNewAgentActionPerformed
@@ -316,16 +312,16 @@ public class NewAgentWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

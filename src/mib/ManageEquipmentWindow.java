@@ -429,19 +429,20 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             for (HashMap<String, String> equipment : equipments) {
                 txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
-                if(datesID != null){
-                for (int i = 0; i < datesID.size(); i++) {
-                    int id = Integer.parseInt(datesID.get(i));
-                    int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
-                    if (id == ids) {
-                        txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
-                        txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
+                if (datesID != null) {
+                    for (int i = 0; i < datesID.size(); i++) {
+                        int id = Integer.parseInt(datesID.get(i));
+                        int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
+                        if (id == ids) {
+                            txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
+                            txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
+                        }
                     }
-                }}
+                }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
     }//GEN-LAST:event_btnListEquipmentActionPerformed
 
@@ -457,19 +458,20 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             for (HashMap<String, String> equipment : equipments) {
                 txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
-                if(datesID != null){
-                for (int i = 0; i < datesID.size(); i++) {
-                    int id = Integer.parseInt(datesID.get(i));
-                    int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
-                    if (id == ids) {
-                        txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
-                        txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
+                if (datesID != null) {
+                    for (int i = 0; i < datesID.size(); i++) {
+                        int id = Integer.parseInt(datesID.get(i));
+                        int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
+                        if (id == ids) {
+                            txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
+                            txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
+                        }
                     }
-                }}
+                }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
             //txtAreaMain.setText("");
             //txtAreaMain.setText("Inga aliens hittades!");
@@ -557,27 +559,25 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                     //Uppdaterar utrustningsnamn
                     idb.update("UPDATE UTRUSTNING SET BENAMNING = " + "'" + name + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
-                    //Uppdaterar kvittenssdatum                   
-                   String exist = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID ='" + equipmentID + "'");
-                   if (exist != null){
-                   
-                   idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-                   }
+                    //Uppdaterar kvittenssdatum
+                    String exist = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID ='" + equipmentID + "'");
+                    if (exist != null) {
+
+                        idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+                    }
 
                     //Hämtar och uppdaterar agent
                     if (agent.equals("Ej utlånad")) {
-                    idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
-                    
-                     }
-                    else if (exist != null){
-                       String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
-                       int agentID = Integer.parseInt(agentid); 
-                       idb.update("UPDATE INNEHAR_UTRUSTNING SET AGENT_ID = '" + agentID + "'" + "WHERE UTRUSTNINGS_ID ='" + equipmentID +"'" );
-                    }   
-                    else if (exist == null){   
-                       String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
-                       int agentID = Integer.parseInt(agentid);
-                       idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
+                        idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
+
+                    } else if (exist != null) {
+                        String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
+                        int agentID = Integer.parseInt(agentid);
+                        idb.update("UPDATE INNEHAR_UTRUSTNING SET AGENT_ID = '" + agentID + "'" + "WHERE UTRUSTNINGS_ID ='" + equipmentID + "'");
+                    } else if (exist == null) {
+                        String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
+                        int agentID = Integer.parseInt(agentid);
+                        idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
                     }
 
                     //Hämtar typ
@@ -609,9 +609,9 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(null, "Ändring av information för utrustningen lyckades!");
                 } catch (InfException | NumberFormatException | NullPointerException e) {
-                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 }
-               emptyInputs();
+                emptyInputs();
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed

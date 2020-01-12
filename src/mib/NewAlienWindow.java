@@ -304,7 +304,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
 
             } catch (InfException | NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
             emptyInputs();
         }
@@ -359,16 +359,16 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PasswordWindow.class
+            java.util.logging.Logger.getLogger(AgentPasswordWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

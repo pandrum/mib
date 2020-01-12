@@ -284,14 +284,16 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSideLayout.createSequentialGroup()
-                        .addComponent(panelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelSideLayout.createSequentialGroup()
-                        .addGroup(panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelSideInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelSideInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSideLayout.createSequentialGroup()
+                        .addGroup(panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSideLayout.createSequentialGroup()
+                                .addComponent(panelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         panelSideLayout.setVerticalGroup(
             panelSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,13 +358,13 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                             .addComponent(datePickerEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelEndDate)))
                     .addComponent(btnSearchByDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAreaBottom)
                     .addComponent(cbAreaBottom, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbRaceBottom, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelRaceBottom))
@@ -372,9 +374,8 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBottomLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBottomLayout.createSequentialGroup()
+                .addGroup(panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBottomLayout.createSequentialGroup()
                         .addGroup(panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBottomLayout.createSequentialGroup()
                                 .addComponent(labelEndDate)
@@ -393,7 +394,11 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                                     .addComponent(cbAreaBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbRaceBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearchByDate))))
+                        .addComponent(btnSearchByDate))
+                    .addGroup(panelBottomLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         btnListAliens.setText("Lista alla Aliens");
@@ -529,7 +534,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
     }//GEN-LAST:event_btnListAliensActionPerformed
 
@@ -552,10 +557,9 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-            //txtAreaMain.setText("");
-            //txtAreaMain.setText("Inga aliens hittades!");
+            //
         }
     }//GEN-LAST:event_cbAreaBottomActionPerformed
 
@@ -590,13 +594,14 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 String location = idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
                 cbArea.setSelectedItem(location);
 
-                //Hämtar Ras
+                //Hämtar Ras genom att querya alla 3 alien tabeller
                 String boglodite = idb.fetchSingle("SELECT ALIEN_ID FROM BOGLODITE WHERE ALIEN_ID = " + "'" + alienID + "'");
                 String bogloditeBoogies = idb.fetchSingle("SELECT ANTAL_BOOGIES FROM BOGLODITE WHERE ALIEN_ID = " + "'" + alienID + "'");
                 String squid = idb.fetchSingle("SELECT ALIEN_ID FROM SQUID WHERE ALIEN_ID = " + "'" + alienID + "'");
                 String squidArms = idb.fetchSingle("SELECT ANTAL_ARMAR FROM SQUID WHERE ALIEN_ID = " + "'" + alienID + "'");
                 String worm = idb.fetchSingle("SELECT ALIEN_ID FROM WORM WHERE ALIEN_ID = " + "'" + alienID + "'");
 
+                //Jämför strängarna ovan för att kolla vilken som inte är NULL då en alien alltid måste tillhöra någon ras
                 if (boglodite != null) {
                     cbRace.setSelectedItem("Boglodite");
                     txtRaceInfo.setText(bogloditeBoogies);
@@ -616,7 +621,6 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 txtSearch.setText("");
                 txtSearch.requestFocus();
             }
-
         }
 
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -629,6 +633,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
             String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM " + cbChoice + ");";
             ArrayList<HashMap<String, String>> aliens = idb.fetchRows(query);
 
+            //Printar ut all info i textrutan om en viss ras
             for (HashMap<String, String> alien : aliens) {
                 txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                 txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
@@ -639,10 +644,9 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-//            txtAreaMain.setText("");
-//            txtAreaMain.setText("Inga aliens hittades!");
+            //
         }
     }//GEN-LAST:event_cbRaceBottomActionPerformed
 
@@ -710,7 +714,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(null, "Ändring av information för alien lyckades!");
                 } catch (InfException | NumberFormatException | NullPointerException e) {
-                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 }
                 emptyInputs();
             }
@@ -769,7 +773,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                     txtAreaMain.append("--------------------------------------------------------" + "\n");
                 }
             } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             } catch (NullPointerException e) {
                 txtAreaMain.setText("");
                 txtAreaMain.setText("Inga aliens hittades.");

@@ -15,14 +15,14 @@ import oru.inf.InfException;
  *
  * @author sbf
  */
-public class LocationManager extends javax.swing.JFrame {
+public class AgentLocationManagerWindow extends javax.swing.JFrame {
 
     private InfDB idb;
 
     /**
      * Creates new form LocationManager
      */
-    public LocationManager(InfDB idb) {
+    public AgentLocationManagerWindow(InfDB idb) {
         this.idb = idb;
         initComponents();
         fillCbs();
@@ -160,7 +160,7 @@ public class LocationManager extends javax.swing.JFrame {
                 txtArea.append("Ansvarig chef(er): " + location.get("NAMN") + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
             //
         }
@@ -188,18 +188,21 @@ public class LocationManager extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LocationManager.class
+            java.util.logging.Logger.getLogger(AgentLocationManagerWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LocationManager.class
+            java.util.logging.Logger.getLogger(AgentLocationManagerWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LocationManager.class
+            java.util.logging.Logger.getLogger(AgentLocationManagerWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LocationManager.class
+            java.util.logging.Logger.getLogger(AgentLocationManagerWindow.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
     }
 

@@ -172,7 +172,7 @@ public class AlienPasswordWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
         }
     }//GEN-LAST:event_btnChangePasswordActionPerformed

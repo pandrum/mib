@@ -5,9 +5,8 @@
  */
 package mib;
 
-import java.awt.event.KeyEvent;
-import oru.inf.*;
 import javax.swing.JOptionPane;
+import oru.inf.*;
 
 /**
  *
@@ -234,7 +233,7 @@ public class MainWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + System.lineSeparator() + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
         }
     }//GEN-LAST:event_buttonAgentLoginActionPerformed
@@ -262,7 +261,7 @@ public class MainWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + System.lineSeparator() + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
         }
     }//GEN-LAST:event_btnAlienLoginActionPerformed

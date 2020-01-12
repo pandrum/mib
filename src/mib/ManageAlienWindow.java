@@ -520,7 +520,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
     }//GEN-LAST:event_btnListAliensActionPerformed
 
@@ -543,7 +543,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
             //txtAreaMain.setText("");
             //txtAreaMain.setText("Inga aliens hittades!");
@@ -633,7 +633,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
 //            txtAreaMain.setText("");
 //            txtAreaMain.setText("Inga aliens hittades!");
@@ -706,7 +706,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(null, "Ändring av information för alien lyckades!");
                 } catch (InfException | NumberFormatException | NullPointerException e) {
-                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                    JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 }
                 emptyInputs();
             }
@@ -765,7 +765,7 @@ public class ManageAlienWindow extends javax.swing.JFrame {
                     txtAreaMain.append("--------------------------------------------------------" + "\n");
                 }
             } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
+                JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             } catch (NullPointerException e) {
                 txtAreaMain.setText("");
                 txtAreaMain.setText("Inga aliens hittades.");

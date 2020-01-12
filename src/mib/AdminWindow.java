@@ -6,7 +6,6 @@
 package mib;
 
 import oru.inf.*;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -316,7 +315,7 @@ public class AdminWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
-        PasswordWindow password = new PasswordWindow(idb);
+        AgentPasswordWindow password = new AgentPasswordWindow(idb);
         password.setVisible(true);
     }//GEN-LAST:event_imageSettingsMouseClicked
 
@@ -355,7 +354,7 @@ public class AdminWindow extends javax.swing.JFrame {
         equipment.setVisible(true);    }//GEN-LAST:event_panelEquipmentMouseClicked
 
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
-        PasswordWindow password = new PasswordWindow(idb);
+        AgentPasswordWindow password = new AgentPasswordWindow(idb);
         password.setVisible(true);
     }//GEN-LAST:event_panelSettingsMouseClicked
 

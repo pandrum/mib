@@ -55,6 +55,7 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
         panelMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtArea.setColumns(20);
+        txtArea.setEditable(false);
         txtArea.setRows(5);
         scrollPane.setViewportView(txtArea);
 

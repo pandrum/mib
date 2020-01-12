@@ -321,13 +321,13 @@ public class AdminWindow extends javax.swing.JFrame {
 
     private void imageAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAlienMouseClicked
         setVisible(false);
-        ManageAlienWindow managealien = new ManageAlienWindow(idb);
-        managealien.setVisible(true);
+        AdminManageAlienWindow adminmanagealien = new AdminManageAlienWindow(idb);
+        adminmanagealien.setVisible(true);
     }//GEN-LAST:event_imageAlienMouseClicked
 
     private void imageAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAgentMouseClicked
         setVisible(false);
-        ManageAgentWindow manageagent = new ManageAgentWindow(idb);
+        AdminManageAgentWindow manageagent = new AdminManageAgentWindow(idb);
         manageagent.setVisible(true);
     }//GEN-LAST:event_imageAgentMouseClicked
 
@@ -339,18 +339,18 @@ public class AdminWindow extends javax.swing.JFrame {
 
     private void panelAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAgentMouseClicked
         setVisible(false);
-        ManageAgentWindow manageagent = new ManageAgentWindow(idb);
+        AdminManageAgentWindow manageagent = new AdminManageAgentWindow(idb);
         manageagent.setVisible(true);
     }//GEN-LAST:event_panelAgentMouseClicked
 
     private void imageEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageEquipmentMouseClicked
         setVisible(false);
-        ManageEquipmentWindow equipment = new ManageEquipmentWindow(idb);
+        AdminManageEquipmentWindow equipment = new AdminManageEquipmentWindow(idb);
         equipment.setVisible(true);    }//GEN-LAST:event_imageEquipmentMouseClicked
 
     private void panelEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEquipmentMouseClicked
         setVisible(false);
-        ManageEquipmentWindow equipment = new ManageEquipmentWindow(idb);
+        AdminManageEquipmentWindow equipment = new AdminManageEquipmentWindow(idb);
         equipment.setVisible(true);    }//GEN-LAST:event_panelEquipmentMouseClicked
 
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked

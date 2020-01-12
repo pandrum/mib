@@ -190,7 +190,7 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
                 }
 
                 idb.insert("INSERT INTO UTRUSTNING VALUES ('" + autoId + "','" + name + "')");
-                JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
+                JOptionPane.showMessageDialog(null, "Registrering av ny utrustning lyckades!");
 
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");

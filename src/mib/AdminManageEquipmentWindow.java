@@ -14,14 +14,14 @@ import oru.inf.*;
  *
  * @author HH
  */
-public class ManageEquipmentWindow extends javax.swing.JFrame {
+public class AdminManageEquipmentWindow extends javax.swing.JFrame {
 
     private static InfDB idb;
 
     /**
      * Creates new form agentWindow
      */
-    public ManageEquipmentWindow(InfDB idb) {
+    public AdminManageEquipmentWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
         txtEqInfo.setVisible(false);
@@ -92,8 +92,8 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
             }
         });
 
-        txtAreaMain.setColumns(20);
         txtAreaMain.setEditable(false);
+        txtAreaMain.setColumns(20);
         txtAreaMain.setRows(5);
         scrollPane.setViewportView(txtAreaMain);
 
@@ -658,12 +658,12 @@ public class ManageEquipmentWindow extends javax.swing.JFrame {
                     idb.delete("DELETE FROM TEKNIK WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
                     idb.delete("DELETE FROM UTRUSTNING WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
                     JOptionPane.showMessageDialog(null, "Utrustningen har raderats");
+                    emptyInputs();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Utrustningen hittades inte!");
                     txtSearch.setText("");
                     txtSearch.requestFocus();
                 }
-
             }
         }
     }//GEN-LAST:event_btnRemoveActionPerformed

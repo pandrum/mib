@@ -14,14 +14,14 @@ import oru.inf.*;
  *
  * @author HH
  */
-public class ManageAgentWindow extends javax.swing.JFrame {
+public class AdminManageAgentWindow extends javax.swing.JFrame {
 
     private static InfDB idb;
 
     /**
      * Creates new form agentWindow
      */
-    public ManageAgentWindow(InfDB idb) {
+    public AdminManageAgentWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
         fillcb();
@@ -76,8 +76,8 @@ public class ManageAgentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labelWelcome.setText("Välkommen ");
+        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
@@ -103,6 +103,7 @@ public class ManageAgentWindow extends javax.swing.JFrame {
         });
 
         txtAreaMain.setColumns(20);
+        txtAreaMain.setEditable(false);
         txtAreaMain.setRows(5);
         jScrollPane1.setViewportView(txtAreaMain);
 

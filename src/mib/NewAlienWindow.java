@@ -289,6 +289,12 @@ public class NewAlienWindow extends javax.swing.JFrame {
                 String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                 Integer.parseInt(agentID);
 
+                String test = "INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + password + "','" + name + "'," + telephone + ",'" + areaID + "','" + agentID + "')";
+
+                System.out.println(test);
+
+                idb.insert("INSERT INTO ALIEN VALUES (" + autoId + ",'" + registration + "','" + password + "','" + name + "'," + telephone + "," + areaID + "," + agentID + ")");
+
                 //Sätter rastillhörighet
                 if (race.equals("Boglodite")) {
                     Integer.parseInt(raceInfo);
@@ -300,11 +306,11 @@ public class NewAlienWindow extends javax.swing.JFrame {
                     idb.insert("INSERT INTO WORM VALUES (" + autoId + ")");
                 }
 
-                idb.insert("INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + password + "','" + name + "'," + telephone + ",'" + areaID + "','" + agentID + "')");
                 JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
 
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+                System.out.println(e);
             }
             emptyInputs();
         }

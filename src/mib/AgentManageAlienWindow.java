@@ -14,14 +14,14 @@ import oru.inf.*;
  *
  * @author sbf
  */
-public class ManageAlienWindow extends javax.swing.JFrame {
+public class AgentManageAlienWindow extends javax.swing.JFrame {
 
     private static InfDB idb;
 
     /**
      * Creates new form agentWindow
      */
-    public ManageAlienWindow(InfDB idb) {
+    public AgentManageAlienWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
         txtRaceInfo.setVisible(false);

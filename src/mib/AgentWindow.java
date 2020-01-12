@@ -5,9 +5,7 @@
  */
 package mib;
 
-import java.awt.Color;
 import oru.inf.*;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -315,7 +313,7 @@ public class AgentWindow extends javax.swing.JFrame {
 
     private void panelAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAlienMouseClicked
         setVisible(false);
-        ManageAlienWindow managealien = new ManageAlienWindow(idb);
+        AgentManageAlienWindow managealien = new AgentManageAlienWindow(idb);
         managealien.setVisible(true);
     }//GEN-LAST:event_panelAlienMouseClicked
 

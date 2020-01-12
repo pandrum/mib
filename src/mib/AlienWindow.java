@@ -32,65 +32,65 @@ public class AlienWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        alienLogout = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        btnLogout = new javax.swing.JButton();
+        panelMain = new javax.swing.JPanel();
         labelWelcome = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        panelEquipment = new javax.swing.JPanel();
-        labelEquipment = new javax.swing.JLabel();
-        chief = new javax.swing.JLabel();
+        panelInner = new javax.swing.JPanel();
+        panelManager = new javax.swing.JPanel();
+        labelManager = new javax.swing.JLabel();
+        imageManager = new javax.swing.JLabel();
         panelSettings = new javax.swing.JPanel();
         labelSettings = new javax.swing.JLabel();
         imageSettings = new javax.swing.JLabel();
-        labelLogo = new javax.swing.JLabel();
+        imageLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        alienLogout.setText("Logga ut");
-        alienLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alienLogoutActionPerformed(evt);
-            }
-        });
+        btnLogout.setText("Logga ut");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelMain.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labelWelcome.setText("Välkommen ");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelInner.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        panelEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        labelEquipment.setText("Min Områdeschef");
-
-        chief.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
-        chief.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelManager.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelManager.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chiefMouseClicked(evt);
+                panelManagerMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout panelEquipmentLayout = new javax.swing.GroupLayout(panelEquipment);
-        panelEquipment.setLayout(panelEquipmentLayout);
-        panelEquipmentLayout.setHorizontalGroup(
-            panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEquipmentLayout.createSequentialGroup()
+        labelManager.setText("Min Områdeschef");
+
+        imageManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
+        imageManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageManagerMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelManagerLayout = new javax.swing.GroupLayout(panelManager);
+        panelManager.setLayout(panelManagerLayout);
+        panelManagerLayout.setHorizontalGroup(
+            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManagerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chief)
+                .addComponent(imageManager)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelEquipment)
+                .addComponent(labelManager)
                 .addContainerGap(211, Short.MAX_VALUE))
         );
-        panelEquipmentLayout.setVerticalGroup(
-            panelEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEquipmentLayout.createSequentialGroup()
+        panelManagerLayout.setVerticalGroup(
+            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManagerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chief, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imageManager, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEquipmentLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManagerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelEquipment)
+                .addComponent(labelManager)
                 .addGap(40, 40, 40))
         );
 
@@ -133,54 +133,54 @@ public class AlienWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelInnerLayout = new javax.swing.GroupLayout(panelInner);
+        panelInner.setLayout(panelInnerLayout);
+        panelInnerLayout.setHorizontalGroup(
+            panelInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInnerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelManager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelInnerLayout.setVerticalGroup(
+            panelInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInnerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelManager, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
+        imageLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
+        panelMain.setLayout(panelMainLayout);
+        panelMainLayout.setHorizontalGroup(
+            panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMainLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(labelLogo)
+                        .addComponent(imageLogo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(panelMainLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelMainLayout.setVerticalGroup(
+            panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imageLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelInner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(51, 51, 51))
         );
 
@@ -191,17 +191,17 @@ public class AlienWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alienLogout))
+                    .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(alienLogout)
+                .addComponent(btnLogout)
                 .addGap(41, 41, 41))
         );
 
@@ -213,20 +213,20 @@ public class AlienWindow extends javax.swing.JFrame {
         alienpassword.setVisible(true);
     }//GEN-LAST:event_imageSettingsMouseClicked
 
-    private void alienLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alienLogoutActionPerformed
-        setVisible(false);
-        MainWindow mainwindow = new MainWindow(idb);
-        mainwindow.setVisible(true);    }//GEN-LAST:event_alienLogoutActionPerformed
-
-    private void chiefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chiefMouseClicked
-        // setVisible(false);
-        AlienLocationManagerWindow chiefWindow = new AlienLocationManagerWindow(idb);
-        chiefWindow.setVisible(true);    }//GEN-LAST:event_chiefMouseClicked
-
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
         AlienPasswordWindow alienpassword = new AlienPasswordWindow(idb);
         alienpassword.setVisible(true);
     }//GEN-LAST:event_panelSettingsMouseClicked
+
+    private void panelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManagerMouseClicked
+        AlienLocationManagerWindow alienmanager = new AlienLocationManagerWindow(idb);
+        alienmanager.setVisible(true);
+    }//GEN-LAST:event_panelManagerMouseClicked
+
+    private void imageManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageManagerMouseClicked
+        AlienLocationManagerWindow alienmanager = new AlienLocationManagerWindow(idb);
+        alienmanager.setVisible(true);
+    }//GEN-LAST:event_imageManagerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -258,16 +258,16 @@ public class AlienWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton alienLogout;
-    private javax.swing.JLabel chief;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel imageLogo;
+    private javax.swing.JLabel imageManager;
     private javax.swing.JLabel imageSettings;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelEquipment;
-    private javax.swing.JLabel labelLogo;
+    private javax.swing.JLabel labelManager;
     private javax.swing.JLabel labelSettings;
     private javax.swing.JLabel labelWelcome;
-    private javax.swing.JPanel panelEquipment;
+    private javax.swing.JPanel panelInner;
+    private javax.swing.JPanel panelMain;
+    private javax.swing.JPanel panelManager;
     private javax.swing.JPanel panelSettings;
     // End of variables declaration//GEN-END:variables
 }

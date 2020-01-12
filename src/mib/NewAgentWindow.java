@@ -99,7 +99,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
             }
         });
 
-        imageAgent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent.png"))); // NOI18N
+        imageAgent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/spy.png"))); // NOI18N
 
         labelRegistration.setText("Anställningsdatum");
 

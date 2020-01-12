@@ -24,7 +24,7 @@ public class Start {
             db = new InfDB("/Users/Shared/db/MIBDB.FDB");
             new MainWindow(db).setVisible(true);
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
     }
 

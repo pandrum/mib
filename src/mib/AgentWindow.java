@@ -42,15 +42,15 @@ public class AgentWindow extends javax.swing.JFrame {
         panelAlien = new javax.swing.JPanel();
         imageAlien = new javax.swing.JLabel();
         labelAlien = new javax.swing.JLabel();
-        panelEquipment = new javax.swing.JPanel();
-        labelEquipment = new javax.swing.JLabel();
-        imageToolbox = new javax.swing.JLabel();
-        panelSettings = new javax.swing.JPanel();
-        labelSettings = new javax.swing.JLabel();
-        imageSettings = new javax.swing.JLabel();
         panelManager = new javax.swing.JPanel();
         labelManager = new javax.swing.JLabel();
         imageManager = new javax.swing.JLabel();
+        panelSettings = new javax.swing.JPanel();
+        labelSettings = new javax.swing.JLabel();
+        imageSettings = new javax.swing.JLabel();
+        panelEquipment = new javax.swing.JPanel();
+        labelEquipment = new javax.swing.JLabel();
+        imageToolbox = new javax.swing.JLabel();
         labelLogo = new javax.swing.JLabel();
         labelWelcome = new javax.swing.JLabel();
 
@@ -102,6 +102,84 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        panelManager.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelManagerMouseClicked(evt);
+            }
+        });
+
+        labelManager.setText("Områdeschef...");
+        labelManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelManagerMouseClicked(evt);
+            }
+        });
+
+        imageManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelManagerLayout = new javax.swing.GroupLayout(panelManager);
+        panelManager.setLayout(panelManagerLayout);
+        panelManagerLayout.setHorizontalGroup(
+            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManagerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imageManager)
+                .addGap(18, 18, 18)
+                .addComponent(labelManager)
+                .addContainerGap(219, Short.MAX_VALUE))
+        );
+        panelManagerLayout.setVerticalGroup(
+            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManagerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageManager, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelManagerLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(labelManager)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelSettingsMouseClicked(evt);
+            }
+        });
+
+        labelSettings.setText("Inställningar...");
+        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSettingsMouseClicked(evt);
+            }
+        });
+
+        imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelSettingsLayout = new javax.swing.GroupLayout(panelSettings);
+        panelSettings.setLayout(panelSettingsLayout);
+        panelSettingsLayout.setHorizontalGroup(
+            panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSettingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imageSettings)
+                .addGap(18, 18, 18)
+                .addComponent(labelSettings)
+                .addContainerGap(227, Short.MAX_VALUE))
+        );
+        panelSettingsLayout.setVerticalGroup(
+            panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSettingsLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSettingsLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(labelSettings)))
+                .addContainerGap())
+        );
+
         panelEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         panelEquipment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,84 +219,6 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        panelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelSettingsMouseClicked(evt);
-            }
-        });
-
-        labelSettings.setText("Inställningar...");
-        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelSettingsMouseClicked(evt);
-            }
-        });
-
-        imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelSettingsLayout = new javax.swing.GroupLayout(panelSettings);
-        panelSettings.setLayout(panelSettingsLayout);
-        panelSettingsLayout.setHorizontalGroup(
-            panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imageSettings)
-                .addGap(18, 18, 18)
-                .addComponent(labelSettings)
-                .addContainerGap(213, Short.MAX_VALUE))
-        );
-        panelSettingsLayout.setVerticalGroup(
-            panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelSettingsLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(labelSettings)))
-                .addContainerGap())
-        );
-
-        panelManager.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        panelManager.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelManagerMouseClicked(evt);
-            }
-        });
-
-        labelManager.setText("Områdeschef...");
-        labelManager.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelManagerMouseClicked(evt);
-            }
-        });
-
-        imageManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelManagerLayout = new javax.swing.GroupLayout(panelManager);
-        panelManager.setLayout(panelManagerLayout);
-        panelManagerLayout.setHorizontalGroup(
-            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelManagerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imageManager)
-                .addGap(18, 18, 18)
-                .addComponent(labelManager)
-                .addContainerGap(209, Short.MAX_VALUE))
-        );
-        panelManagerLayout.setVerticalGroup(
-            panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelManagerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageManager, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelManagerLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(labelManager)))
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout panelInnerLayout = new javax.swing.GroupLayout(panelInner);
         panelInner.setLayout(panelInnerLayout);
         panelInnerLayout.setHorizontalGroup(
@@ -227,9 +227,9 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelInnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelEquipment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelEquipment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInnerLayout.setVerticalGroup(
@@ -237,13 +237,13 @@ public class AgentWindow extends javax.swing.JFrame {
             .addGroup(panelInnerLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(panelAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelManager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelEquipment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelManager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
@@ -276,7 +276,7 @@ public class AgentWindow extends javax.swing.JFrame {
                         .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,7 +288,7 @@ public class AgentWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

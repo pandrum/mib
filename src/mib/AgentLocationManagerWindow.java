@@ -17,7 +17,7 @@ import oru.inf.InfException;
  */
 public class AgentLocationManagerWindow extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private static InfDB idb;
 
     /**
      * Creates new form LocationManager

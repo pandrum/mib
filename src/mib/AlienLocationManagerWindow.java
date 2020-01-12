@@ -17,15 +17,9 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
 
     private static InfDB idb;
 
-    /**
-     * Creates new form AlienChiefWindow
-     */
-    public AlienLocationManagerWindow() {
+    public AlienLocationManagerWindow(InfDB idb) {
+        this.idb = idb;
         initComponents();
-    }
-
-    AlienLocationManagerWindow(InfDB idb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -37,25 +31,20 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imageAlien = new javax.swing.JLabel();
-        labelWelcome = new javax.swing.JLabel();
         panelMain = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         btnLocationMngr = new javax.swing.JButton();
+        imageAlien = new javax.swing.JLabel();
+        labelWelcome = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/alien-small.png"))); // NOI18N
+        panelMain.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        labelWelcome.setText("Välkommen ");
-
-        panelMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        txtArea.setColumns(20);
         txtArea.setEditable(false);
+        txtArea.setColumns(20);
         txtArea.setRows(5);
         scrollPane.setViewportView(txtArea);
 
@@ -66,20 +55,34 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
             }
         });
 
+        imageAlien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/alien-small.png"))); // NOI18N
+
+        labelWelcome.setText("Områdeschef");
+
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnLocationMngr, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imageAlien)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelWelcome))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(imageAlien)
+                    .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLocationMngr)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         btnBack.setText("Tillbaka");
@@ -94,47 +97,31 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(imageAlien)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack)
-                            .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageAlien))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBack)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        setVisible(false);
-        AlienWindow prevWindow = new AlienWindow(idb);
-        prevWindow.setVisible(true);    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnLocationMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocationMngrActionPerformed
         txtArea.setText("");
-        String username = MainWindow.getId();
+        int username = Integer.parseInt(MainWindow.getId());
 
         try {
-            String agentID = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF JOIN PLATS ON OMRADESCHEF.OMRADE = PLATS.FINNS_I JOIN ALIEN ON ALIEN.PLATS = PLATS.PLATS_ID WHERE ALIEN_ID =" + "'" + username + "'");
+            String agentID = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF JOIN PLATS ON OMRADESCHEF.OMRADE = PLATS.FINNS_I JOIN ALIEN ON ALIEN.PLATS = PLATS.PLATS_ID WHERE ALIEN_ID =" + "" + username + "");
             String name = idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = " + username);
             String phone = idb.fetchSingle("SELECT TELEFON FROM AGENT WHERE AGENT_ID = " + username);
 
@@ -146,6 +133,10 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
     }//GEN-LAST:event_btnLocationMngrActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,13 +167,6 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AlienLocationManagerWindow().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

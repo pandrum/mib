@@ -78,8 +78,8 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelWelcome.setText("Välkommen ");
         labelWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labelWelcome.setText("Välkommen ");
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
 
@@ -313,7 +313,9 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonListAgents)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(334, 334, 334)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(188, 188, 188))))
         );
         layout.setVerticalGroup(
@@ -490,31 +492,59 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
         if (Validation.isNotEmpty(txtAgentID)) {
             // Hämtar id och sparar det som en int 
             int agentID = Integer.parseInt(txtAgentID.getText());
+            // Skapar en arraylist av strängar 
+            ArrayList<String> agenter = new ArrayList<String>();
             // Öppnar en ruta som frågar om man vill ta bort agenten
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort agenten?", "Ta bort agent..", 2);
             // Om svaret är ja, ja = 0
-            if (input == 0) {
-                // Tar bort agenten ur alla tabeller
+            if (input == 0) {             
                 try {
+                    // Hämtar kolumnen namn från agent utom agenten ifråga och spara den i en arraylist av strängar
+                    agenter = idb.fetchColumn("SELECT NAMN FROM AGENT WHERE NOT AGENT_ID ='" + agentID + "'");
+                    // Gör om arraylisten till objekt
+                    Object[] agent = agenter.toArray();
+                    // Hämtar agent id ut ansvarig agent
+                    String ag = idb.fetchSingle("SELECT ANSVARIG_AGENT FROM ALIEN WHERE ANSVARIG_AGENT = " + "'" + agentID + "'");
+                    // Om agenten var ansvarig för en alien
+                    if(ag != null){
+                        // Öppnar en ruta där man får välja en ny agent som skall ersätta den man tar bort och sparar användarens svar i Ansid
+                        Object Ansid = JOptionPane.showInputDialog(null, "Välj ny ansvarig agent", "Agenten är ansvarig för Alien", JOptionPane.QUESTION_MESSAGE, null, agent, agent[0]);
+                        // Gör om objekt till en sträng
+                        String Ansidstr = String.valueOf(Ansid);
+                        // Hämtar id för namnet på agenten man valt och gör om det till en int
+                        int ansid = Integer.parseInt(idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + Ansidstr + "'"));
+                        // Uppdaterar ersättande agent till ansvarig agent för den agenten man tog bort
+                        idb.update("UPDATE ALIEN SET ANSVARIG_AGENT = " + ansid + "WHERE ANSVARIG_AGENT = " + "'" + agentID + "'");
+                    }
+                    // Om agenten var kontorschef
+                    if (agentID == Integer.parseInt(idb.fetchSingle("SELECT AGENT_ID FROM KONTORSCHEF"))) {
+                         // Öppnar en ruta där man får välja en ny agent som skall ersätta den man tar bort och sparar användarens svar i Offid
+                        Object Offid = JOptionPane.showInputDialog(null, "Välj ny kontorschef", "Agenten är kontorschef", JOptionPane.QUESTION_MESSAGE, null, agent, agent[0]);
+                        // Gör om objekt till en sträng
+                        String Offidstr = String.valueOf(Offid);
+                         // Hämtar id för namnet på agenten man valt och gör om det till en int
+                        int Ofid = Integer.parseInt(idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + Offidstr + "'"));
+                        // Uppdaterar ersättande agent till kontorschef
+                        idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + "'" + Ofid + "'");
+                    }
+                    // Tar bort agenten ur alla tabeller
                     idb.delete("DELETE FROM INNEHAR_FORDON WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM AGENT WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM FALTAGENT WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID =" + "'" + agentID + "'");
-                    // Om agenten var kontorschef sätts det id:t till 0 
-                    if (agentID == Integer.parseInt(idb.fetchSingle("SELECT AGENT_ID FROM KONTORSCHEF"))) {
-                        idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + 0);
-                    }
                      // Meddelande att agenten har raderats 
                     JOptionPane.showMessageDialog(null, "Agenten har raderats");
                     // Tömmer alla fälten
                     emptyInputs();
-                } catch (Exception e) {
+                } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Agent hittades inte!");
                     // Tömmer sökfältet och sätter fokus i det fältet
                     txtSearchAgent.setText("");
                     txtSearchAgent.requestFocus();
-                }
+                }catch (java.lang.NullPointerException e) {
+            
+            }
 
             }
         }

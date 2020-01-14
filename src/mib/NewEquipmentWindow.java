@@ -10,7 +10,7 @@ import oru.inf.*;
 
 /**
  *
- * @author sbf
+ * @author HH
  */
 public class NewEquipmentWindow extends javax.swing.JFrame {
 
@@ -22,6 +22,7 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
     public NewEquipmentWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
+        // Dölj textruta och titel
         txtTypeInfo.setVisible(false);
         labelTypeInfo.setVisible(false);
     }
@@ -156,18 +157,24 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void emptyInputs() {
+        // Metoden tömmer alla textfält, resetar comboboxar samt radioknappar och döljer vissa comboboxar och titlar
+        // Tömmer textfält
         txtName.setText("");
         txtTypeInfo.setText("");
+        // Reset comboboxar
         cbType.setSelectedIndex(-1);
+        // Dölj textruta
         txtTypeInfo.setVisible(false);
     }
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // Metoden stänger fönstret när man klickar på tillbaka knappen
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-
+        // Metoden registrerar en ny agent
+        // Kollar så att namn och att comboboxar är ifyllda
         if (Validation.isNotEmpty(txtName) && Validation.ifCBEmpty(cbType)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
@@ -179,8 +186,11 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
                 //Skapar ett nytt Utrustnings_ID att föra in i databasen.
                 String autoId = idb.getAutoIncrement("UTRUSTNING", "UTRUSTNINGS_ID");
                 int equipmentID = Integer.parseInt(autoId);
-
-                //Sätter ny typ
+                
+                // Lägger till en ny utrustning i tabellen utrustning 
+                idb.insert("INSERT INTO UTRUSTNING VALUES ('" + equipmentID + "','" + name + "')");
+                
+                //Sätter typ baserat på de användaren valt i comboboxen
                 if (type.equals("Vapen")) {
                     idb.insert("INSERT INTO VAPEN VALUES (" + equipmentID + ",'" + eqinfo + "')");
                 } else if (type.equals("Kommunikation")) {
@@ -188,38 +198,51 @@ public class NewEquipmentWindow extends javax.swing.JFrame {
                 } else if (type.equals("Teknik")) {
                     idb.insert("INSERT INTO TEKNIK VALUES (" + equipmentID + ",'" + eqinfo + "')");
                 }
-
-                idb.insert("INSERT INTO UTRUSTNING VALUES ('" + autoId + "','" + name + "')");
+                // Meddelande att utrustningen har registrerats 
                 JOptionPane.showMessageDialog(null, "Registrering av ny utrustning lyckades!");
 
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             }
+            // Tömmer alla fälten
             emptyInputs();
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed
+        // Metoden visar en till textruta beroende på vilket val man gör
         try {
+            // Hämtar valet gjort i comboboxen och spara det i en sträng
             String choice = cbType.getSelectedItem().toString();
+            // Om man valt Vapen i comboboxen
             if (choice.equals("Vapen")) {
+                // Sätts den nya textrutan och titeln till att det skall visas
                 txtTypeInfo.setVisible(true);
                 labelTypeInfo.setVisible(true);
+                // Titeln sätts till den överstämmande information till typen
                 labelTypeInfo.setText("Kaliber");
                 txtTypeInfo.setText("");
-            } else if (choice.equals("Kommunikation")) {
+            } 
+            // Om man valt Kommunikation i comboboxen
+            else if (choice.equals("Kommunikation")) {
+                // Sätts den nya textrutan och titeln till att det skall visas
                 txtTypeInfo.setVisible(true);
                 labelTypeInfo.setVisible(true);
+                // Titeln sätts till den överstämmande information till typen
                 labelTypeInfo.setText("Typ av överföringsteknik");
                 txtTypeInfo.setText("");
-            } else if (choice.equals("Teknik")) {
+            } 
+            // Om man valt Teknik i comboboxen
+            else if (choice.equals("Teknik")) {
+                // Sätts den nya textrutan och titeln till att det skall visas
                 txtTypeInfo.setVisible(true);
                 labelTypeInfo.setVisible(true);
+                // Titeln sätts till den överstämmande information till typen
                 labelTypeInfo.setText("Typ av kraftkälla");
                 txtTypeInfo.setText("");
             }
         } catch (NullPointerException e) {
-            //
+
         }
     }//GEN-LAST:event_cbTypeActionPerformed
 

@@ -24,8 +24,10 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
     public AdminManageAgentWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
+        // Kör metoderna som fyller comboboxarna
         fillcb();
         fillcb2();
+        // Dölj combobox och titel
         labelReplace.setVisible(false);
         cbchoice.setVisible(false);
 
@@ -143,11 +145,6 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
         jLabel10.setText("Anställningsdatum");
 
         RBAdmin.setText("Administratör");
-        RBAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBAdminActionPerformed(evt);
-            }
-        });
 
         LbLocationMngr.setText("Områdeschef");
 
@@ -232,12 +229,6 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Sök Agent");
-
-        txtSearchAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchAgentActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
         panelSearch.setLayout(panelSearchLayout);
@@ -352,42 +343,51 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void emptyInputs() {
+        // Metoden tömmer alla textfält, resetar comboboxar samt radioknappar och döljer vissa comboboxar och titlar
+        // Tömmer textfält
         txtAreaMain.setText("");
         txtSearchAgent.setText("");
         txtAgentID.setText("");
         txtAgentName.setText("");
         txtRegDate.setText("");
         txtAgentPhone.setText("");
+        // Reset comboboxar
         cbLocation.setSelectedIndex(-1);
         CBLocationMngr.setSelectedIndex(-1);
+        // Reset radioknappar
         RBAdmin.setSelected(false);
         RBOffMngr.setSelected(false);
         RBFieldAgent.setSelected(false);
+        // Dölj combobox och titel
         labelReplace.setVisible(false);
         cbchoice.setVisible(false);
     }
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
+        // Metoden stänger fönstret och öppnar föregående när man klickar på tillbaka knappen
         setVisible(false);
         AdminWindow adminwindow = new AdminWindow(idb);
         adminwindow.setVisible(true);
     }//GEN-LAST:event_buttonLogoutActionPerformed
 
     private void buttonRegisterNewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAgentActionPerformed
+        // Metoden öppnar fönstret Newagent när man klickar på knappen Registrera ny Agent
         NewAgentWindow newagent = new NewAgentWindow(idb);
         newagent.setVisible(true);
     }//GEN-LAST:event_buttonRegisterNewAgentActionPerformed
 
     private void buttonListAgentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListAgentsActionPerformed
+        // Metoden hämtar imformation om alla agenter och listar dem i ett textfönster
+        // Tömmer textfönsteret 
         txtAreaMain.setText("");
+        // Skapar en arraylist av hashmaps(string, string)
         ArrayList<HashMap<String, String>> agents = new ArrayList<HashMap<String, String>>();
-        ArrayList<String> mngrID;
         try {
             String query = "SELECT * FROM AGENT;";
-
+            // Hämtar all information i en rad och sparar det i en arraylist av hashmaps(string, string)
             agents = idb.fetchRows(query);
-            mngrID = idb.fetchColumn("SELECT AGENT_ID FROM OMRADESCHEF");
 
+            // Loopar igenom arraylisten och "skriver ut" agent id, namn,telefon,anställningsdatum,admin status och område för varje position i arraylisten
             for (HashMap<String, String> agent : agents) {
                 txtAreaMain.append("Agent ID: " + agent.get("AGENT_ID") + "\n");
                 txtAreaMain.append("Namn: " + agent.get("NAMN") + "\n");
@@ -395,14 +395,11 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                 txtAreaMain.append("Anställningsdatum: " + agent.get("ANSTALLNINGSDATUM") + "\n");
                 txtAreaMain.append("Administratör: " + agent.get("ADMINISTRATOR") + "\n");
                 txtAreaMain.append("Område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
-                if (mngrID != null) {
-                    for (int i = 0; i < mngrID.size(); i++) {
-                        int id = Integer.parseInt(mngrID.get(i));
-                        int ids = Integer.parseInt(agent.get("AGENT_ID"));
-                        if (id == ids) {
-                            txtAreaMain.append("Chef över område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + ids + "')") + "\n");
-                        }
-                    }
+                // Hämtar agent id i områdeschef och sparar det i en sträng 
+                String mngrID = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID")+ "'");
+                // Kollar om agenten är områdeschef
+                if(mngrID!=null){
+                   txtAreaMain.append("Chef över område: " + idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agent.get("AGENT_ID") + "')") + "\n");
                 }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
@@ -411,17 +408,15 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonListAgentsActionPerformed
 
-    private void txtSearchAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchAgentActionPerformed
-
-    }//GEN-LAST:event_txtSearchAgentActionPerformed
-
     private void btnSearchAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAgentActionPerformed
+        // Metoden visar information om agenten som sökts fram
+        // Kollar så att sökfältet inte är tomt
         if (Validation.isNotEmpty(txtSearchAgent)) {
-
+            // Hämtar id för agenten som sköts fram
             String searchAgent = txtSearchAgent.getText();
 
             try {
-                //Hämtar ID
+                //Hämtar ID och sparar det som en int
                 String agent = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + searchAgent + "'");
                 txtAgentID.setText(agent);
                 int agentID = Integer.parseInt(agent);
@@ -442,7 +437,7 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                 String agentLocation = idb.fetchSingle("SELECT BENAMNING FROM OMRADE WHERE OMRADES_ID = (SELECT OMRADE FROM AGENT WHERE AGENT_ID = " + "'" + agentID + "')");
                 cbLocation.getModel().setSelectedItem(agentLocation);
 
-                //String OfficeQuarry = "SELECT KONTORSBETECKNING FROM KONTORSCHEF JOIN AGENT ON KONTORSCHEF.AGENT_ID = AGENT.AGENT_ID WHERE AGENT.AGENT_ID= " + "'" + agentID + "'";
+                // Kollar om framsökt agent är kontorschef och sätter radioknappen till true isåfall
                 String OfficeMngr = idb.fetchSingle("SELECT AGENT_ID FROM KONTORSCHEF");
                 int Off = Integer.parseInt(OfficeMngr);
                 if (Off == agentID) {
@@ -450,6 +445,7 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                 } else {
                     RBOffMngr.setSelected(false);
                 }
+                // Kollar om framsökt agent är fältagent och sätter radioknappen till true isåfall
                 ArrayList<String> fields = idb.fetchColumn("SELECT AGENT_ID FROM FALTAGENT");
                 for (String field : fields) {
                     int id = Integer.parseInt(field);
@@ -457,7 +453,7 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                         RBFieldAgent.setSelected(true);
                     }
                 }
-
+                // // Kollar om framsökt agent är områdeschef och sätter comboboxen till det området annar "Ej chef" samt döljer comboboxar och titlar som ej är väsentliga
                 String LocationQuarry = "SELECT BENAMNING FROM OMRADE JOIN OMRADESCHEF ON OMRADE.OMRADES_ID = OMRADESCHEF.OMRADE JOIN AGENT ON OMRADESCHEF.AGENT_ID = AGENT.AGENT_ID WHERE AGENT.AGENT_ID= " + "'" + agentID + "'";
                 String LocationMngr = idb.fetchSingle(LocationQuarry);
                 if (LocationMngr != null) {
@@ -469,7 +465,7 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                     labelReplace.setVisible(false);
                     cbchoice.setVisible(false);
                 }
-
+                // Kollar om framsökt agent är admin och sätter radioknappen till true isåfall
                 String admin = idb.fetchSingle("SELECT ADMINISTRATOR from AGENT where AGENT_ID = " + agentID);
                 if (admin.equals("J")) {
                     RBAdmin.setSelected(true);
@@ -479,6 +475,7 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Agent hittades inte!");
+                // Tömmer sökfältet och sätter fokus i det fältet
                 txtSearchAgent.setText("");
                 txtSearchAgent.requestFocus();
             }
@@ -487,29 +484,34 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSearchAgentActionPerformed
 
-    private void RBAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBAdminActionPerformed
-
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // Metoden tar bort framsökt agent
+        // Kollar så att id fältet inte är tomt
         if (Validation.isNotEmpty(txtAgentID)) {
-
+            // Hämtar id och sparar det som en int 
             int agentID = Integer.parseInt(txtAgentID.getText());
+            // Öppnar en ruta som frågar om man vill ta bort agenten
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort agenten?", "Ta bort agent..", 2);
+            // Om svaret är ja, ja = 0
             if (input == 0) {
+                // Tar bort agenten ur alla tabeller
                 try {
                     idb.delete("DELETE FROM INNEHAR_FORDON WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM AGENT WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM FALTAGENT WHERE AGENT_ID =" + "'" + agentID + "'");
                     idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID =" + "'" + agentID + "'");
+                    // Om agenten var kontorschef sätts det id:t till 0 
                     if (agentID == Integer.parseInt(idb.fetchSingle("SELECT AGENT_ID FROM KONTORSCHEF"))) {
                         idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + 0);
                     }
+                     // Meddelande att agenten har raderats 
                     JOptionPane.showMessageDialog(null, "Agenten har raderats");
+                    // Tömmer alla fälten
                     emptyInputs();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Agent hittades inte!");
+                    // Tömmer sökfältet och sätter fokus i det fältet
                     txtSearchAgent.setText("");
                     txtSearchAgent.requestFocus();
                 }
@@ -519,12 +521,16 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeInfoAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoAgentActionPerformed
+        // Metoden ändrar informationen om framsökt agent
+        // Kollar så att id,namn,telefon och datum fälten inte är tomma samt att comboboxar och datum ät ifyllda rätt
         if (Validation.isNotEmpty(txtAgentID, txtAgentName, txtAgentPhone, txtRegDate) && Validation.ifCBEmpty(cbLocation, CBLocationMngr) && Validation.regexDate(txtRegDate.getText())) {
-
+            // Hämtar agent id och sparar det lokalt som en int
             int agentID = Integer.parseInt(txtAgentID.getText());
-
+            // Frågar om man vill utföra ändring
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
+            // Om svaret är ja, ja = 0
             if (input == 0) {
+                // Hämtar in alla nödvändiga textfält från användaren
                 String name = txtAgentName.getText();
                 String telephone = txtAgentPhone.getText();
                 String date = txtRegDate.getText();
@@ -532,65 +538,86 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
                 String choice = cbchoice.getSelectedItem().toString();
                 String admin = "";
                 try {
+                    // Hämtar id för området baserat på benämningen som användaren valt och sparar det som en int
                     String Area = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + "'" + cbLocation.getSelectedItem().toString() + "'");
                     int area = Integer.parseInt(Area);
+                    // Sätter den tomma strängen admin till "J" eller "N" baserat på om radioknappen är ifylld eller inte
                     if (RBAdmin.isSelected()) {
                         admin = "J";
                     } else {
                         admin = "N";
                     }
+                    // Uppdaterar agenten till kontorschef baserat på om radioknappen är ifylld eller tar bort det om ej ifylld
                     if (RBOffMngr.isSelected()) {
                         idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + "'" + agentID + "'");
                     }
+                    // Uppdaterar agenten till fältagent baserat på om radioknappen är ifylld eller tar bort det om ej ifylld
                     if (RBFieldAgent.isSelected()) {
                         idb.delete("DELETE FROM FALTAGENT WHERE AGENT_ID = " + "'" + agentID + "'");
                         idb.insert("INSERT INTO FALTAGENT VALUES ('" + agentID + "')");
                     } else {
                         idb.delete("DELETE FROM FALTAGENT WHERE AGENT_ID = " + "'" + agentID + "'");
                     }
-
+                    // Uppdaterar agentens namn,telefonnummer,anställningsdatum,adminstatus och område
                     idb.update("UPDATE AGENT SET NAMN = " + "'" + name + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
                     idb.update("UPDATE AGENT SET TELEFON = " + "'" + telephone + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
                     idb.update("UPDATE AGENT SET ANSTALLNINGSDATUM = " + "'" + date + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
                     idb.update("UPDATE AGENT SET ADMINISTRATOR = " + "'" + admin + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
                     idb.update("UPDATE AGENT SET OMRADE = " + "'" + area + "'" + "WHERE AGENT_ID = " + "'" + agentID + "'");
-
+                    // Kollar om framsökt agent är områdeschef och spara det i strängen ag 
                     String ag = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
-
+                    // Om man valt att agenten ej skall vara chef och dem tidigare var det så tas den bort och ersätts med den man valt skall ersätta 
                     if (LocMn.equals("Ej chef")) {
                         if (ag != null) {
+                            // Hämtar ersättande agents id och spara som int
                             String replaceid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + choice + "'");
                             int Replaceid = Integer.parseInt(replaceid);
+                            // Hämtar områdes id på området som agenten var chef för och spara som int
                             String replaceloc = idb.fetchSingle("SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
                             int Replaceloc = Integer.parseInt(replaceloc);
+                            // Tillsätter ny chef och tar bort den gamla 
                             idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + Replaceid + "','" + Replaceloc + "')");
                             idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
                         }
-                    } else if (ag != null) {
+                    } 
+                    // Om agenten är chef men men vill att den skall vara chef för ett annat område
+                    else if (ag != null) {
+                        // Hämtar ersättande agents id och spara som int
                         String replaceid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + choice + "'");
                         int Replaceid = Integer.parseInt(replaceid);
+                        // Hämtar områdes id för det område agenten skall bli chef för och sparar som en int
                         String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");
                         int locationMn = Integer.parseInt(LocationMn);
+                        // Hämtar områdes id på området som agenten var chef för och spara som int
                         String replaceloc = idb.fetchSingle("SELECT OMRADE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
                         int Replaceloc = Integer.parseInt(replaceloc);
+                        // Sätter agenten som chef för det nya området samt ersättande agent till chef för dens gamla område, tar även bort den som var chef för området innan
                         idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + Replaceid + "','" + Replaceloc + "')");
                         idb.delete("DELETE FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
                         idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
                         idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
-                    } else if (ag == null) {
+                    } 
+                    // Om agenten inte är chef men skall bli det 
+                    else if (ag == null) {
+                        // Hämtar områdes id för det område agenten skall bli chef för och sparar som en int
                         String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");
                         int locationMn = Integer.parseInt(LocationMn);
+                        // Tillsätter ny chef och tar bort den gamla
                         idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
                         idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + agentID + "','" + locationMn + "')");
 
                     }
-
+                    // Meddelande att agenten har upppdaterats 
                     JOptionPane.showMessageDialog(null, "Agenten har uppdaterats");
+                    // Tömmer alla fälten
                     emptyInputs();
+                    // Tömmer comboboxen för ersättare 
                     cbchoice.removeAllItems();
+                    // Fyller comboboxen men de tillgängliga ersättande agenter
                     fillcb2();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Agent hittades inte!");
+                    // Tömmer sökfältet och sätter fokus i det fältet
                     txtSearchAgent.setText("");
                     txtSearchAgent.requestFocus();
                 }
@@ -599,15 +626,25 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangeInfoAgentActionPerformed
 
     private void CBLocationMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBLocationMngrActionPerformed
+        // Metoden visar en till combobox beroende på vilket val man gör
+        // Om valet i comboboxen inte är tomt 
         if (!txtAgentID.getText().equals("")) {
             try {
+                // Hämtar framsökt agents id och spara som int
                 int agentID = Integer.parseInt(txtAgentID.getText());
+                // Hämtar valet gjort i comboboxen och spara det i en sträng
                 String choice = CBLocationMngr.getSelectedItem().toString();
+                // Kollar om framsökt agent är områdeschef och spara det i strängen ag
                 String ag = idb.fetchSingle("SELECT AGENT_ID FROM OMRADESCHEF WHERE AGENT_ID = " + "'" + agentID + "'");
+                // Om man valt "Ej chef" i comboboxen och den framsökta agenten är områdeschef
                 if (choice.equals("Ej chef") && ag != null) {
+                    // Sätt den nya comboboxen och titeln till att det skall visas 
                     labelReplace.setVisible(true);
                     cbchoice.setVisible(true);
-                } else if (ag != null) {
+                } 
+                // Om den framsökta agenten är områdeschef men skall bli det för ett annat område
+                else if (ag != null) {
+                    // Sätt den nya comboboxen och titeln till att det skall visas 
                     labelReplace.setVisible(true);
                     cbchoice.setVisible(true);
                 }
@@ -619,14 +656,13 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CBLocationMngrActionPerformed
 
-    private void txtRegDateActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
     private void fillcb() {
-
+        // Metoden fyller comboboxar men alternativ hämtade från databasen
+        // Hämtar kolumnen benämning från område och spara den i en arraylist av strängar
         String Location = "SELECT BENAMNING FROM OMRADE";
         ArrayList<String> allLocation;
+        // Loopar igenom arraylisten och lägger till varje position i comboboxen
         try {
             allLocation = idb.fetchColumn(Location);
             for (String name : allLocation) {
@@ -635,13 +671,16 @@ public class AdminManageAgentWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        // Sätter att startläget i comboboxen skall vara en tom poosition
         cbLocation.setSelectedIndex(-1);
     }
 
     private void fillcb2() {
-
+        // Metoden fyller comboboxar men alternativ hämtade från databasen
+        // Hämtar kolumnen namn från agent och spara dem i en arraylist av strängar men tar bort de namnen som finns med i områdeschef 
         String fraga = "SELECT NAMN FROM AGENT WHERE AGENT_ID NOT IN (SELECT AGENT_ID FROM OMRADESCHEF)";
         ArrayList<String> possible;
+        // Loopar igenom arraylisten och lägger till varje position i comboboxen
         try {
             possible = idb.fetchColumn(fraga);
             for (String name : possible) {

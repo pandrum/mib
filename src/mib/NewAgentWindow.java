@@ -11,7 +11,7 @@ import oru.inf.*;
 
 /**
  *
- * @author sbf
+ * @author HH
  */
 public class NewAgentWindow extends javax.swing.JFrame {
 
@@ -24,14 +24,18 @@ public class NewAgentWindow extends javax.swing.JFrame {
 
         initComponents();
         this.idb = idb;
+        // Kör metoderna som fyller comboboxarna
         fillcb();
     }
 
     private void fillcb() {
-
+        // Metoden fyller comboboxar men alternativ hämtade från databasen
+        // Lägger till alternativet "Ej chef" i comboboxen
         cbLocationMngr.addItem("Ej chef");
+        // Hämtar kolumnen benämning från område och spara den i en arraylist av strängar
         String Location = "SELECT BENAMNING FROM OMRADE";
         ArrayList<String> allLocation;
+        // Loopar igenom arraylisten och lägger till varje position i comboboxen
         try {
             allLocation = idb.fetchColumn(Location);
             for (String name : allLocation) {
@@ -41,6 +45,7 @@ public class NewAgentWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        // Sätter att startläget i comboboxen skall vara en tom poosition
         cbLocation.setSelectedIndex(-1);
         cbLocationMngr.setSelectedIndex(-1);
     }
@@ -102,11 +107,6 @@ public class NewAgentWindow extends javax.swing.JFrame {
         rbAdmin.setText("Administratör");
 
         RBOffMngr.setText("Kontorschef");
-        RBOffMngr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBOffMngrActionPerformed(evt);
-            }
-        });
 
         rbFieldagent.setText("Fältagent");
 
@@ -225,11 +225,13 @@ public class NewAgentWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // Metoden stänger fönstret när man klickar på tillbaka knappen
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void buttonRegisterNewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterNewAgentActionPerformed
-
+        // Metoden registrerar en ny agent
+        // Kollar så att id,namn,telefon och datum fälten inte är tomma samt att comboboxar och datum är ifyllda rätt
         if (Validation.isNotEmpty(textFieldName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbLocation, cbLocationMngr) && Validation.ifDatePickerEmpty(datePicker2)) {
 
             // Hämtar in alla nödvändiga textfält från användaren.
@@ -239,37 +241,47 @@ public class NewAgentWindow extends javax.swing.JFrame {
             String password = txtPassword.getText();
             String admin = "";
             String LocMn = cbLocationMngr.getSelectedItem().toString();
+            // Skapar en arraylist och lägger till de områden som finns 
             ArrayList<String> Loc = new ArrayList<String>(4);
             Loc.add("Svealand");
             Loc.add("Gotaland");
             Loc.add("Norrland");
 
             try {
+                //Skapar ett nytt AGENT_ID att föra in i databasen.
                 String fetchAutoId = idb.getAutoIncrement("AGENT", "AGENT_ID");
                 int autoId = Integer.parseInt(fetchAutoId);
+                // Hämtar id för området baserat på benämningen som användaren valt och sparar det som en int
                 String Area = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + "'" + cbLocation.getSelectedItem().toString() + "'");
                 int area = Integer.parseInt(Area);
+                // Sätter den tomma strängen admin till "J" eller "N" baserat på om radioknappen är ifylld eller inte
                 if (rbAdmin.isSelected()) {
                     admin = "J";
                 } else {
                     admin = "N";
                 }
+                // Lägger till en ny agent i tabellen agent 
                 idb.insert("INSERT INTO AGENT VALUES ('" + autoId + "','" + name + "','" + telephone + "','" + anstdatum + "','" + admin + "','" + password + "','" + area + "')");
+                // Sätter agenten till kontorschef baserat på om radioknappen är ifylld eller tar bort det om ej ifylld
                 if (RBOffMngr.isSelected()) {
                     idb.update("UPDATE KONTORSCHEF SET AGENT_ID = " + "'" + autoId + "'");
                 }
+                // Sätter agenten till fältagent baserat på om radioknappen är ifylld eller tar bort det om ej ifylld
                 if (rbFieldagent.isSelected()) {
                     idb.insert("INSERT INTO FALTAGENT VALUES ('" + autoId + "')");
                 }
-
+                // Sätter agenten till områdeschef och tar bort den nuvarande
                 if (Loc.contains(LocMn)) {
+                    // Hämtar områdes id för det område agenten skall bli chef för och sparar som en int
                     String LocationMn = idb.fetchSingle("SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING =" + "'" + LocMn + "'");
                     int locationMn = Integer.parseInt(LocationMn);
+                    // Tillsätter ny chef och tar bort den gamla
                     idb.delete("DELETE FROM OMRADESCHEF WHERE OMRADE = (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = '" + LocMn + "')");
                     idb.insert("INSERT INTO OMRADESCHEF VALUES ('" + autoId + "','" + locationMn + "')");
                 }
-
+                // Meddelande att agenten har registrerats 
                 JOptionPane.showMessageDialog(null, "Registrering av ny Agent lyckades!");
+                // Tömmer alla fälten
                 emptyInputs();
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
@@ -277,18 +289,17 @@ public class NewAgentWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonRegisterNewAgentActionPerformed
 
-    private void RBOffMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBOffMngrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBOffMngrActionPerformed
-
     private void emptyInputs() {
-
+        // Metoden tömmer alla textfält, resetar comboboxar samt radioknappar och döljer vissa comboboxar och titlar
+        // Tömmer textfält
         txtPassword.setText("");
         textFieldName.setText("");
         datePicker2.setText("");
         txtPhone.setText("");
+        // Reset comboboxar
         cbLocation.setSelectedIndex(-1);
         cbLocationMngr.setSelectedIndex(-1);
+        // Reset radioknappar
         rbAdmin.setSelected(false);
         RBOffMngr.setSelected(false);
         rbFieldagent.setSelected(false);

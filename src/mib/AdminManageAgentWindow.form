@@ -90,10 +90,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelWelcome">
       <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lkommen "/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lkommen "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelLogo">
@@ -359,9 +359,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrat&#xf6;r"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBAdminActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="LbLocationMngr">
               <Properties>
@@ -437,9 +434,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtSearchAgent">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearchAgentActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

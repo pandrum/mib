@@ -24,8 +24,10 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
     public AdminManageEquipmentWindow(InfDB idb) {
         initComponents();
         this.idb = idb;
+        // Dölj combobox och titel
         txtEqInfo.setVisible(false);
         labelEqInfo.setVisible(false);
+        // Kör metoderna som fyller comboboxarna
         fillCbs();
     }
 
@@ -107,12 +109,6 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
         });
 
         panelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
 
         labelEquipment.setText("Sök Utrustning");
 
@@ -379,23 +375,28 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void emptyInputs() {
+        // Metoden tömmer alla textfält, resetar comboboxar samt radioknappar och döljer vissa comboboxar och titlar
+        // Tömmer textfält
         txtAreaMain.setText("");
         txtSearch.setText("");
         txtEquipmentID.setText("");
         txtName.setText("");
         txtDate.setText("");
         txtEqInfo.setText("");
+        // Reset comboboxar
         cbType.setSelectedIndex(-1);
         cbAgent.setSelectedIndex(-1);
         cbTypeBottom.setSelectedIndex(-1);
     }
 
     private void fillCbs() {
-
-        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
+        // Metoden fyller comboboxar men alternativ hämtade från databasen
+        // Lägger till alternativet "Ej utlånad" i comboboxen
         cbAgent.addItem("Ej utlånad");
+        // Hämtar kolumnen namn från agent och spara dem i en arraylist av strängar
         String queryAgent = "SELECT Namn FROM AGENT;";
         ArrayList<String> names = new ArrayList<>();
+        // Loopar igenom arraylisten och lägger till varje position i comboboxen
         try {
             names = idb.fetchColumn(queryAgent);
 
@@ -405,39 +406,39 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        // Sätter att startläget i comboboxen skall vara en tom poosition
         cbAgent.setSelectedIndex(-1);
         cbType.setSelectedIndex(-1);
         cbTypeBottom.setSelectedIndex(-1);
     }
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // Metoden stänger fönstret och öppnar föregående när man klickar på tillbaka knappen
         setVisible(false);
         AdminWindow adminwindow = new AdminWindow(idb);
         adminwindow.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnListEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListEquipmentActionPerformed
+        // Metoden hämtar imformation om alla agenter och listar dem i ett textfönster
+        // Tömmer textfönsteret 
         txtAreaMain.setText("");
+        // Skapar en arraylist av hashmaps(string, string)
         ArrayList<HashMap<String, String>> equipments = new ArrayList<HashMap<String, String>>();
-        ArrayList<String> datesID;
         try {
             String query = "SELECT * FROM UTRUSTNING;";
-
+            // Hämtar all information i en rad och sparar det i en arraylist av hashmaps(string, string)
             equipments = idb.fetchRows(query);
-            datesID = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-
+            // Loopar igenom arraylisten och "skriver ut" utrustnings id och namn  för varje position i arraylisten
             for (HashMap<String, String> equipment : equipments) {
                 txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
-                if (datesID != null) {
-                    for (int i = 0; i < datesID.size(); i++) {
-                        int id = Integer.parseInt(datesID.get(i));
-                        int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
-                        if (id == ids) {
-                            txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
-                            txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
-                        }
-                    }
+                // Hämtar utrustnings id från innehar utrustning och sparar det i en sträng 
+                String datesID = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipment.get("UTRUSTNINGS_ID") + "'");
+                // Kollar om utrustningen är utlånad
+                if (datesID != null){
+                    txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipment.get("UTRUSTNINGS_ID") + "'") + "\n");
+                    txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipment.get("UTRUSTNINGS_ID") + "')") + "\n");
                 }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
@@ -447,48 +448,46 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListEquipmentActionPerformed
 
     private void cbTypeBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeBottomActionPerformed
+        // Metoden listar utrustning beroende på vilken typ det är, användaren välser det i en combobox
+        // Kollar så att sökfältet inte är tomt
         txtAreaMain.setText("");
 
         try {
+            // Hämtar valet gjort i comboboxen och spara det i en sträng
             String cbChoice = cbTypeBottom.getSelectedItem().toString();
             String query = "SELECT * FROM UTRUSTNING WHERE UTRUSTNINGS_ID IN (SELECT UTRUSTNINGS_ID FROM " + cbChoice + ");";
+            // Skapar en arraylist av hashmaps(string, string)
+            // Hämtar all information i en rad och sparar det i en arraylist av hashmaps(string, string) baserat på valet
             ArrayList<HashMap<String, String>> equipments = idb.fetchRows(query);
-            ArrayList<String> datesID = idb.fetchColumn("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING");
-
+            // Loopar igenom arraylisten och "skriver ut" utrustnings id och namn  för varje position i arraylisten
             for (HashMap<String, String> equipment : equipments) {
                 txtAreaMain.append("Utrustnings ID: " + equipment.get("UTRUSTNINGS_ID") + "\n");
                 txtAreaMain.append("Namn: " + equipment.get("BENAMNING") + "\n");
-                if (datesID != null) {
-                    for (int i = 0; i < datesID.size(); i++) {
-                        int id = Integer.parseInt(datesID.get(i));
-                        int ids = Integer.parseInt(equipment.get("UTRUSTNINGS_ID"));
-                        if (id == ids) {
-                            txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "'") + "\n");
-                            txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + ids + "')") + "\n");
-                        }
-                    }
+                // Hämtar utrustnings id från innehar utrustning och sparar det i en sträng 
+                String datesID = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipment.get("UTRUSTNINGS_ID") + "'");
+                // Kollar om utrustningen är utlånad
+                if (datesID != null){
+                    txtAreaMain.append("Utkvitterings Datum: " + idb.fetchSingle("SELECT UTKVITTERINGSDATUM FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipment.get("UTRUSTNINGS_ID") + "'") + "\n");
+                    txtAreaMain.append("Utlånad till: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipment.get("UTRUSTNINGS_ID") + "')") + "\n");
                 }
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-            //txtAreaMain.setText("");
-            //txtAreaMain.setText("Inga aliens hittades!");
+            
         }
     }//GEN-LAST:event_cbTypeBottomActionPerformed
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-
-    }//GEN-LAST:event_txtSearchActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // Metoden visar information om utrustningen som sökts fram
+        // Kollar så att sökfältet inte är tomt
         if (Validation.isNotEmpty(txtSearch)) {
-
+            // Hämtar id för utrustningen som sköts fram
             String searchEquipment = txtSearch.getText();
 
             try {
-                //Hämtar ID
+                //Hämtar ID och spara det som en int
                 String equipmentid = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM UTRUSTNING WHERE BENAMNING = " + "'" + searchEquipment + "'");
                 txtEquipmentID.setText(equipmentid);
                 int equipmentID = Integer.parseInt(equipmentid);
@@ -505,7 +504,7 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                 String location = idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + equipmentID + "')");
                 cbType.setSelectedItem(location);
 
-                //Hämtar Typ
+                //Hämtar Typen och dess information
                 String vapen = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM VAPEN WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                 String kaliber = idb.fetchSingle("SELECT KALIBER FROM VAPEN WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                 String kommunikation = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM KOMMUNIKATION WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
@@ -513,6 +512,7 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                 String teknik = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM TEKNIK WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                 String kraftkalla = idb.fetchSingle("SELECT KRAFTKALLA FROM TEKNIK WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
+                // Beroende på vad för typ den framsökta utrustningen är så sätts comboboxen till den rätta titeln samt tillhörande information
                 if (vapen != null) {
                     cbType.setSelectedItem("Vapen");
                     txtEqInfo.setText(kaliber);
@@ -524,9 +524,9 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                     txtEqInfo.setText(kraftkalla);
                 }
 
-                //Hämtar Agent
+                //Hämtar agent från innehar utrustning
                 String agent = idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT AGENT_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "')");
-                cbAgent.setSelectedItem(agent);
+                // Kollar om utrustningen är utlånad och sätter vilken agent den är lånad till eller "Ej utlånad" om det inte finns i listan
                 if (agent != null) {
                     cbAgent.setSelectedItem(agent);
                 } else {
@@ -535,6 +535,7 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Utrustningen hittades inte!");
+                // Tömmer sökfältet och sätter fokus i det fältet
                 txtSearch.setText("");
                 txtSearch.requestFocus();
             }
@@ -544,12 +545,16 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // Metoden ändrar informationen om framsökt agent
+        // Kollar så att id och namn fälten inte är tomma samt att comboboxar och datum ät ifyllda rätt
         if (Validation.isNotEmpty(txtName) && Validation.ifCBEmpty(cbType, cbAgent) && Validation.regexDate(txtDate.getText())) {
-
+            // Frågar om man vill utföra ändring
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
+            // Om svaret är ja, ja = 0
             if (input == 0) {
-                // Hämtar in alla nödvändiga textfält från användaren.
+                // Hämtar agent id och sparar det lokalt som en int
                 int equipmentID = Integer.parseInt(txtEquipmentID.getText());
+                // Hämtar in alla nödvändiga textfält från användaren
                 String name = txtName.getText();
                 String kvittDate = txtDate.getText();
                 String agent = cbAgent.getSelectedItem().toString();
@@ -559,24 +564,32 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                     //Uppdaterar utrustningsnamn
                     idb.update("UPDATE UTRUSTNING SET BENAMNING = " + "'" + name + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
-                    //Uppdaterar kvittenssdatum
+                    // Kollar om utrustningen är utkvitterad och uppdaterar kvittenssdatum isåfall
                     String exist = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID ='" + equipmentID + "'");
                     if (exist != null) {
 
                         idb.update("UPDATE INNEHAR_UTRUSTNING SET UTKVITTERINGSDATUM = " + "'" + kvittDate + "'" + " WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                     }
 
-                    //Hämtar och uppdaterar agent
+                    // Om man valt att "Ej utlånad" så tas utrustningen bort från innehar utrustning 
                     if (agent.equals("Ej utlånad")) {
                         idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
-                    } else if (exist != null) {
+                    } 
+                    // Om utrusningen är utlånad och man vill byta agenten den är lånad till 
+                    else if (exist != null) {
+                        // Hämtar ersättande agents id och spara som int
                         String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                         int agentID = Integer.parseInt(agentid);
+                        // Tillsätter ny agent 
                         idb.update("UPDATE INNEHAR_UTRUSTNING SET AGENT_ID = '" + agentID + "'" + "WHERE UTRUSTNINGS_ID ='" + equipmentID + "'");
-                    } else if (exist == null) {
+                    } 
+                    // Om utrustningen inte är utlånad 
+                    else if (exist == null) {
+                        // Hämtar ersättande agents id och spara som int
                         String agentid = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                         int agentID = Integer.parseInt(agentid);
+                        // Lägger till utrustningen i innehar utrustning 
                         idb.insert("INSERT INTO INNEHAR_UTRUSTNING VALUES ('" + agentID + "','" + equipmentID + "','" + kvittDate + "')");
                     }
 
@@ -585,7 +598,7 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                     String kommunikation = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM KOMMUNIKATION WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
                     String teknik = idb.fetchSingle("SELECT UTRUSTNINGS_ID FROM TEKNIK WHERE UTRUSTNINGS_ID = " + "'" + equipmentID + "'");
 
-                    //Bestämmer nuvarande typ
+                    //Bestämmer nuvarande typ genom att kolla vilken tabell utrustningen ligger i och sätter strängen EPinfo till den korrekta
                     String Epinfo = "";
                     if (vapen != null) {
                         Epinfo = "Vapen";
@@ -595,10 +608,10 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                         Epinfo = "Teknik";
                     }
 
-                    //Tar bort existerande Typ
+                    //Tar bort existerande Typen
                     idb.delete("DELETE FROM " + Epinfo + " WHERE UTRUSTNINGS_ID = " + equipmentID);
 
-                    //Sätter ny typ
+                    //Sätter ny typ baserat på de användaren valt i comboboxen
                     if (type.equals("Vapen")) {
                         idb.insert("INSERT INTO VAPEN VALUES (" + equipmentID + ",'" + eqinfo + "')");
                     } else if (type.equals("Kommunikation")) {
@@ -606,61 +619,84 @@ public class AdminManageEquipmentWindow extends javax.swing.JFrame {
                     } else if (type.equals("Teknik")) {
                         idb.insert("INSERT INTO TEKNIK VALUES (" + equipmentID + ",'" + eqinfo + "')");
                     }
-
+                    // Meddelande att utrustningen har upppdaterats 
                     JOptionPane.showMessageDialog(null, "Ändring av information för utrustningen lyckades!");
                 } catch (InfException | NumberFormatException | NullPointerException e) {
                     JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 }
+                // Tömmer alla fälten
                 emptyInputs();
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnRegNewEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNewEquipmentActionPerformed
+        // Metoden öppnar fönstret Newequipment när man klickar på knappen Registrera ny Utrustning
         NewEquipmentWindow newequipment = new NewEquipmentWindow(idb);
         newequipment.setVisible(true);
     }//GEN-LAST:event_btnRegNewEquipmentActionPerformed
 
     private void cbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTypeActionPerformed
+        // Metoden visar en till combobox beroende på vilket val man gör
         try {
+            // Hämtar valet gjort i comboboxen och spara det i en sträng
             String choice = cbType.getSelectedItem().toString();
+            // Om man valt Vapen i comboboxen
             if (choice.equals("Vapen")) {
+                // Sätts den nya comboboxen och titeln till att det skall visas
                 txtEqInfo.setVisible(true);
                 labelEqInfo.setVisible(true);
+                // Titeln sätts till den överstämmande information till typen
                 labelEqInfo.setText("Kaliber");
                 txtEqInfo.setText("");
-            } else if (choice.equals("Kommunikation")) {
+            } 
+            // Om man valt Kommunikation i comboboxen
+            else if (choice.equals("Kommunikation")) {
+                // Sätts den nya comboboxen och titeln till att det skall visas
                 txtEqInfo.setVisible(true);
                 labelEqInfo.setVisible(true);
+                // Titeln sätts till den överstämmande information till typen
                 labelEqInfo.setText("Typ av överföringsteknik");
                 txtEqInfo.setText("");
-            } else if (choice.equals("Teknik")) {
+            } 
+            // Om man valt Teknik i comboboxen
+            else if (choice.equals("Teknik")) {
+                // Sätts den nya comboboxen och titeln till att det skall visas
                 txtEqInfo.setVisible(true);
                 labelEqInfo.setVisible(true);
+                // Titeln sätts till den överstämmande information till typen
                 labelEqInfo.setText("Typ av kraftkälla");
                 txtEqInfo.setText("");
             }
         } catch (NullPointerException e) {
-            //
+            
         }
     }//GEN-LAST:event_cbTypeActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // Metoden tar bort framsökt utrusning
+        // Kollar så att id fältet inte är tomt
         if (Validation.isNotEmpty(txtEquipmentID)) {
-
+            // Hämtar id och sparar det som en int
             int equipmentID = Integer.parseInt(txtEquipmentID.getText());
+            // Öppnar en ruta som frågar om man vill ta bort utrustningen
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort utrustningen?", "Ta bort utrustning..", 2);
+            // Om svaret är ja, ja = 0
             if (input == 0) {
                 try {
+                    // Tar bort utrustningen ur alla tabeller
                     idb.delete("DELETE FROM INNEHAR_UTRUSTNING WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
                     idb.delete("DELETE FROM VAPEN WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
                     idb.delete("DELETE FROM KOMMUNIKATION WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
                     idb.delete("DELETE FROM TEKNIK WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
                     idb.delete("DELETE FROM UTRUSTNING WHERE UTRUSTNINGS_ID =" + "'" + equipmentID + "'");
+                    // Meddelande att utrustningen har raderats
                     JOptionPane.showMessageDialog(null, "Utrustningen har raderats");
+                    // Tömmer alla fälten
                     emptyInputs();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Utrustningen hittades inte!");
+                    // Tömmer sökfältet och sätter fokus i det fältet
                     txtSearch.setText("");
                     txtSearch.requestFocus();
                 }

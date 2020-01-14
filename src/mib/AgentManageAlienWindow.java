@@ -446,6 +446,7 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Metod för att nolla all textfält och comboboxes.
     private void emptyInputs() {
         txtAreaMain.setText("");
         txtSearch.setText("");
@@ -462,8 +463,7 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
     }
 
     private void fillCbs() {
-
-        //Hämtar och fyllar i alla Platser i samtliga comboboxes.
+        //Hämtar och fyllar i alla Platser i samtliga comboboxes. Denna metod körs när sidan laddas in.
         String queryLocation = "SELECT BENAMNING FROM PLATS;";
         ArrayList<String> locations = new ArrayList<>();
         try {
@@ -476,10 +476,11 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+
         cbArea.setSelectedIndex(-1);
         cbAreaBottom.setSelectedIndex(-1);
 
-        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
+        //Hämtar och fyllar i alla Agenter i samtliga comboboxes. Denna metod körs när sidan laddas in.
         String queryAgent = "SELECT Namn FROM AGENT;";
         ArrayList<String> names = new ArrayList<>();
         try {
@@ -501,20 +502,24 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnListAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAliensActionPerformed
+        //Nollar textfält varje gång denna metod körs.
         txtAreaMain.setText("");
+        //Deklarar en ArrayList av HashMaps som innehåller information om alla aliens.
         ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
         try {
+            //Databasfråga
             String query = "SELECT * FROM ALIEN;";
 
+            //Skickar in frågan till databasen via metoden fetchRows och sparar detta i aliens ArrayListen.
             aliens = idb.fetchRows(query);
 
+            //Loopar igenom hashmapen för att printa ut all information om alien. Printar ut alla rader på en ny linje och avslutar med en avskiljare "-----------"
             for (HashMap<String, String> alien : aliens) {
                 txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                 txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
                 txtAreaMain.append("Telefon: " + alien.get("TELEFON") + "\n");
                 txtAreaMain.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
-                //txtAreaMain.append("Plats: " + alien.get("PLATS") + "\n");
                 txtAreaMain.append("Plats: " + idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
                 txtAreaMain.append("Ansvarig agent: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
@@ -525,15 +530,21 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListAliensActionPerformed
 
     private void cbAreaBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAreaBottomActionPerformed
+        //Nollar textfält varje gång denna metod körs.
         txtAreaMain.setText("");
+        //Deklarar en ArrayList av HashMaps som innehåller information om alla aliens.
         ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
         try {
+            //Hämtar in val i combobox
             String choice = cbAreaBottom.getSelectedItem().toString();
+            //Databasfråga för att få fram vilken alien som befinner sig på den valda platsen.
             String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM ALIEN WHERE PLATS = (SELECT PLATS_ID FROM PLATS WHERE BENAMNING = '" + choice + "')) ORDER BY ALIEN_ID;";
 
+            //Skickar in frågan till databasen via metoden fetchRows och sparar detta i aliens ArrayListen.
             aliens = idb.fetchRows(query);
 
+            //Loopar igenom hashmapen för att printa ut all information om alien. Printar ut alla rader på en ny linje och avslutar med en avskiljare "-----------"
             for (HashMap<String, String> alien : aliens) {
                 txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                 txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
@@ -545,8 +556,7 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-            //txtAreaMain.setText("");
-            //txtAreaMain.setText("Inga aliens hittades!");
+            //
         }
     }//GEN-LAST:event_cbAreaBottomActionPerformed
 
@@ -555,42 +565,51 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        //Om textrutan inte är tom.
         if (Validation.isNotEmpty(txtSearch)) {
 
+            //Hämtar in text från sökfältet
             String searchAlien = txtSearch.getText();
 
             try {
-                //Hämtar ID
+                //Hämtar ID från databasen
                 String alien = idb.fetchSingle("SELECT ALIEN_ID FROM ALIEN WHERE NAMN = " + "'" + searchAlien + "'");
                 txtAlienID.setText(alien);
+                //Parsar om ID till en int för att kunna användas mot databasen.
                 int alienID = Integer.parseInt(alien);
 
-                //Hämtar Namn
+                //Hämtar Namn från databasen
                 String name = idb.fetchSingle("SELECT NAMN FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtName.setText(name);
 
-                //Hämtar Regdatum
+                //Hämtar Regdatum från databasen
                 String regDate = idb.fetchSingle("SELECT REGISTRERINGSDATUM FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtDate.setText(regDate);
 
-                //Hämtar Regdatum
+                //Hämtar Regdatum från databasen
                 String regDate2 = idb.fetchSingle("SELECT REGISTRERINGSDATUM FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                //Hämtar Telefon
+                //Hämtar Telefon från databasen
                 String phone = idb.fetchSingle("SELECT TELEFON FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtPhone.setText(phone);
 
-                //Hämtar Plats
+                //Hämtar Plats från databasen
                 String location = idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
                 cbArea.setSelectedItem(location);
 
-                //Hämtar Ras
+                //Hämtar Ras från databasen
+                //Hämtar in info om Bogolodite för att avgöra vilken ras alien användare sökt efter är
                 String boglodite = idb.fetchSingle("SELECT ALIEN_ID FROM BOGLODITE WHERE ALIEN_ID = " + "'" + alienID + "'");
                 String bogloditeBoogies = idb.fetchSingle("SELECT ANTAL_BOOGIES FROM BOGLODITE WHERE ALIEN_ID = " + "'" + alienID + "'");
+
+                //Hämtar in info om Squid för att avgöra vilken ras alien användare sökt efter är
                 String squid = idb.fetchSingle("SELECT ALIEN_ID FROM SQUID WHERE ALIEN_ID = " + "'" + alienID + "'");
                 String squidArms = idb.fetchSingle("SELECT ANTAL_ARMAR FROM SQUID WHERE ALIEN_ID = " + "'" + alienID + "'");
+
+                //Hämtar in info om Worm för att avgöra vilken ras alien användare sökt efter är
                 String worm = idb.fetchSingle("SELECT ALIEN_ID FROM WORM WHERE ALIEN_ID = " + "'" + alienID + "'");
 
+                //Kollar ovanstående strängar efter ett värde som inte är null. Någon av frågorna måste returnerna ett svar då en alien alltid måste vara av en viss ras. Sätter sedan combobox till motsvarande rastillhörighet.
                 if (boglodite != null) {
                     cbRace.setSelectedItem("Boglodite");
                     txtRaceInfo.setText(bogloditeBoogies);
@@ -601,7 +620,7 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
                     cbRace.setSelectedItem("Worm");
                 }
 
-                //Hämtar Agent
+                //Hämtar ansvarig Agent från databasen
                 String agent = idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
                 cbAgent.setSelectedItem(agent);
 
@@ -610,19 +629,22 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
                 txtSearch.setText("");
                 txtSearch.requestFocus();
             }
-
         }
-
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cbRaceBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceBottomActionPerformed
+        //Nollar textfältet i mitten innan körning.
         txtAreaMain.setText("");
-
         try {
-            String cbChoice = cbRaceBottom.getSelectedItem().toString();
-            String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM " + cbChoice + ");";
+            //Hämtar in val från combobox
+            String choice = cbRaceBottom.getSelectedItem().toString();
+            //Databasfråga
+            String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM " + choice + ");";
+
+            //Skickar in frågan till databasen via metoden fetchRows och sparar detta i aliens ArrayListen.
             ArrayList<HashMap<String, String>> aliens = idb.fetchRows(query);
 
+            //Loopar igenom hashmapen för att printa ut all information om alien. Printar ut alla rader på en ny linje och avslutar med en avskiljare "-----------"
             for (HashMap<String, String> alien : aliens) {
                 txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                 txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
@@ -635,17 +657,21 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-//            txtAreaMain.setText("");
-//            txtAreaMain.setText("Inga aliens hittades!");
+            //
         }
     }//GEN-LAST:event_cbRaceBottomActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (Validation.isNotEmpty(txtName, txtDate, txtPhone) && Validation.ifCBEmpty(cbArea, cbRace, cbAgent) && Validation.isInteger(txtRaceInfo) && Validation.regexDate(txtDate.getText())) {
 
-            System.out.print(txtDate.getText());
+        //Kollar så att alla fält är korrekt ifyllda av användare.
+        if (Validation.isNotEmpty(txtName, txtDate, txtPhone)
+                && Validation.ifCBEmpty(cbArea, cbRace, cbAgent)
+                && Validation.isInteger(txtRaceInfo)
+                && Validation.regexDate(txtDate.getText())) {
 
+            //Dialogruta till användaren om denna är säker att på gå vidare och ändra information.
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
+            //Om svar är "OK".
             if (input == 0) {
                 // Hämtar in alla nödvändiga textfält från användaren.
                 int alienID = Integer.parseInt(txtAlienID.getText());
@@ -658,29 +684,29 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
                 String raceInfo = txtRaceInfo.getText();
 
                 try {
-                    //Uppdaterar aliennamn
+                    //Uppdaterar aliennamn till databasen
                     idb.update("UPDATE ALIEN SET NAMN = " + "'" + name + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
-                    //Uppdaterar registreringsdatum
+                    //Uppdaterar registreringsdatum till databasen
                     idb.update("UPDATE ALIEN SET REGISTRERINGSDATUM = " + "'" + registration + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
-                    //Uppdaterar telefon
+                    //Uppdaterar telefon till databasen
                     idb.update("UPDATE ALIEN SET TELEFON = " + "'" + telephone + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Hämtar och uppdaterar plats
+                    //Hämtar först plats_ID och uppdaterar sedan plats till databasen
                     String locationID = idb.fetchSingle("SELECT PLATS_ID FROM PLATS WHERE BENAMNING = " + "'" + area + "'");
                     Integer.parseInt(locationID);
                     idb.update("UPDATE ALIEN SET PLATS = " + "'" + locationID + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Hämtar och uppdaterar agent
+                    //Hämtar först agent_ID och uppdaterar sedan agent till databasen
                     String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                     Integer.parseInt(agentID);
                     idb.update("UPDATE ALIEN SET ANSVARIG_AGENT = " + "'" + agentID + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Hämtar rastillhörighet
+                    //Försöker hämta ett värde från alla 3 olika alien tabeller i databasen. Någon av dessa måste returnera ett alien_ID då en alien alltid måste vara av en viss ras.
                     String boglodite = idb.fetchSingle("SELECT ALIEN_ID FROM BOGLODITE WHERE ALIEN_ID = " + "'" + alienID + "'");
                     String squid = idb.fetchSingle("SELECT ALIEN_ID FROM SQUID WHERE ALIEN_ID = " + "'" + alienID + "'");
                     String worm = idb.fetchSingle("SELECT ALIEN_ID FROM WORM WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Bestämmer nuvarande rastillhörighet
+                    //Bestämmer nuvarande rastillhörighet genom att kolla vilket värde som inte är null från förfrågningarna ovan.
                     String alienRace = "";
                     if (boglodite != null) {
                         alienRace = "Boglodite";
@@ -690,14 +716,16 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
                         alienRace = "Worm";
                     }
 
-                    //Tar bort existerande rastillhörighet
+                    //Tar bort existerande rastillhörighet, då en alien bara kan vara en ras åt gången....duh.
                     idb.delete("DELETE FROM " + alienRace + " WHERE ALIEN_ID = " + alienID);
 
                     //Sätter ny rastillhörighet
                     if (race.equals("Boglodite")) {
                         Integer.parseInt(raceInfo);
+                        //Skickar in ytterligare data eftersom alien är en boglodite
                         idb.insert("INSERT INTO BOGLODITE VALUES (" + alienID + "," + raceInfo + ")");
                     } else if (race.equals("Squid")) {
+                        //Skickar in ytterligare data eftersom alien är en squid
                         Integer.parseInt(raceInfo);
                         idb.insert("INSERT INTO SQUID VALUES (" + alienID + "," + raceInfo + ")");
                     } else if (race.equals("Worm")) {
@@ -705,9 +733,11 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
                     }
 
                     JOptionPane.showMessageDialog(null, "Ändring av information för alien lyckades!");
+                    //Fångar om något gick snett med ett väldigt informativt felmeddelande.
                 } catch (InfException | NumberFormatException | NullPointerException e) {
                     JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 }
+                //Tömmar alla fält/combobox efter tryck.
                 emptyInputs();
             }
         }
@@ -715,12 +745,15 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
 
     private void cbRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceActionPerformed
         try {
+            //Hämtar in val av Ras från användaren.
             String choice = cbRace.getSelectedItem().toString();
+            //Om användare väljer Boglodite visas ytterligare ett textfält och label med text ändras där användare knappar in antal 'Boogies'
             if (choice.equals("Boglodite")) {
                 txtRaceInfo.setVisible(true);
                 labelRaceInfo.setVisible(true);
                 labelRaceInfo.setText("Antal Boogies");
                 txtRaceInfo.setText("");
+                //Om användare väljer Squid visas ytterligare ett textfält och label med text ändras där användare knappar in antal 'Antal armar'
             } else if (choice.equals("Squid")) {
                 txtRaceInfo.setVisible(true);
                 labelRaceInfo.setVisible(true);
@@ -743,19 +776,24 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
 
     private void btnSearchByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchByDateActionPerformed
 
-        //Hämtar användar-input
+        //Hämtar datum från användaren
         String userStartDate = datePickerStart.getDateStringOrEmptyString().toString();
         String userEndDate = datePickerEnd.getDateStringOrEmptyString().toString();
 
+        //Om datumen stämmer enligt mall 'YYYY-MM-DD'
         if (Validation.regexDate(userStartDate) && Validation.regexDate(userEndDate)) {
+            //Nollar textfält
             txtAreaMain.setText("");
+            //Skapar ny arraylist av hashmaps som heter aliens för att spara information om aliens i variabel.
             ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
             try {
+                //Databasfråga för att filtrera aliens mellan en viss tidsram
+                //Sortera enligt tidigast datum, fallande följd.
                 String query = "SELECT * FROM ALIEN WHERE REGISTRERINGSDATUM BETWEEN " + "'" + userStartDate + "'" + " AND " + "'" + userEndDate + "'" + "ORDER BY REGISTRERINGSDATUM;";
 
                 aliens = idb.fetchRows(query);
-
+                //Loopar igenom hashmapen för att printa ut information om aliens mellan en viss tidsram. Printar ut alla rader på en ny linje och avslutar med en avskiljare "-----------"
                 for (HashMap<String, String> alien : aliens) {
                     txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                     txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
@@ -767,6 +805,7 @@ public class AgentManageAlienWindow extends javax.swing.JFrame {
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             } catch (NullPointerException e) {
+                //Om ingen resultat hittades.
                 txtAreaMain.setText("");
                 txtAreaMain.setText("Inga aliens hittades.");
             }

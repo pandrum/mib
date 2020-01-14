@@ -66,11 +66,6 @@ public class AgentPasswordWindow extends javax.swing.JFrame {
         });
 
         txtName.setEditable(false);
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
 
         labelNewPassword.setText("Ange nytt lösenord");
 
@@ -159,16 +154,19 @@ public class AgentPasswordWindow extends javax.swing.JFrame {
             String newPassWordInput = txtNewPassword.getText();
 
             try {
+                //Hämtar in användarnamn och lösenord från databasen.
                 String username = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE AGENT_ID = " + userNameInut);
                 String password = idb.fetchSingle("SELECT LOSENORD FROM AGENT WHERE AGENT_ID = " + userNameInut);
 
-                // Om användare skriver in rätt användarnamn OCH rätt lösenord.
+                // Jämför BÅDE användarnamn (agent_ID) och lösenord mellan värderna från databasen och det användare matat in.
+                //Om det stämmer överrens så uppdateras lösenordet.
                 if (userNameInut.equals(username) && currentPasswordInput.equals(password)) {
                     idb.update("UPDATE AGENT SET LOSENORD= " + "'" + newPassWordInput + "'" + "WHERE AGENT_ID= " + userNameInut);
                     JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
                     setVisible(false);
 
                 } else {
+                    //Felmeddelande att användarnamn eller lösenord inte stämmer överrens.
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
@@ -180,10 +178,6 @@ public class AgentPasswordWindow extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
 
     /**
      * @param args the command line arguments

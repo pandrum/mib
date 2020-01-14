@@ -108,11 +108,6 @@ public class AgentWindow extends javax.swing.JFrame {
         });
 
         labelManager.setText("Områdeschef...");
-        labelManager.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelManagerMouseClicked(evt);
-            }
-        });
 
         imageManager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/businessman.png"))); // NOI18N
 
@@ -147,11 +142,6 @@ public class AgentWindow extends javax.swing.JFrame {
         });
 
         labelSettings.setText("Inställningar...");
-        labelSettings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelSettingsMouseClicked(evt);
-            }
-        });
 
         imageSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/gear.png"))); // NOI18N
 
@@ -307,10 +297,6 @@ public class AgentWindow extends javax.swing.JFrame {
         mainwindow.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void labelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSettingsMouseClicked
-        //TODO
-    }//GEN-LAST:event_labelSettingsMouseClicked
-
     private void panelAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAlienMouseClicked
         setVisible(false);
         AgentManageAlienWindow managealien = new AgentManageAlienWindow(idb);
@@ -321,10 +307,6 @@ public class AgentWindow extends javax.swing.JFrame {
         AgentPasswordWindow password = new AgentPasswordWindow(idb);
         password.setVisible(true);
     }//GEN-LAST:event_panelSettingsMouseClicked
-
-    private void labelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelManagerMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelManagerMouseClicked
 
     private void panelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManagerMouseClicked
         AgentLocationManagerWindow manager = new AgentLocationManagerWindow(idb);

@@ -308,51 +308,60 @@ public class AdminWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Öppnar nytt fönster
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         setVisible(false);
         MainWindow mainwindow = new MainWindow(idb);
         mainwindow.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    //Öppnar ny popup
     private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
         AgentPasswordWindow password = new AgentPasswordWindow(idb);
         password.setVisible(true);
     }//GEN-LAST:event_imageSettingsMouseClicked
 
+    //Öppnar nytt fönster
     private void imageAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAlienMouseClicked
         setVisible(false);
         AdminManageAlienWindow adminmanagealien = new AdminManageAlienWindow(idb);
         adminmanagealien.setVisible(true);
     }//GEN-LAST:event_imageAlienMouseClicked
 
+    //Öppnar nytt fönster
     private void imageAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAgentMouseClicked
         setVisible(false);
         AdminManageAgentWindow manageagent = new AdminManageAgentWindow(idb);
         manageagent.setVisible(true);
     }//GEN-LAST:event_imageAgentMouseClicked
 
+    //Öppnar nytt fönster
     private void panelAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAlienMouseClicked
         setVisible(false);
         AdminManageAlienWindow adminmanagealien = new AdminManageAlienWindow(idb);
         adminmanagealien.setVisible(true);
     }//GEN-LAST:event_panelAlienMouseClicked
 
+    //Öppnar nytt fönster
     private void panelAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAgentMouseClicked
         setVisible(false);
         AdminManageAgentWindow manageagent = new AdminManageAgentWindow(idb);
         manageagent.setVisible(true);
     }//GEN-LAST:event_panelAgentMouseClicked
 
+    //Öppnar nytt fönster
     private void imageEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageEquipmentMouseClicked
         setVisible(false);
         AdminManageEquipmentWindow equipment = new AdminManageEquipmentWindow(idb);
         equipment.setVisible(true);    }//GEN-LAST:event_imageEquipmentMouseClicked
 
+    //Öppnar nytt fönster
     private void panelEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEquipmentMouseClicked
         setVisible(false);
         AdminManageEquipmentWindow equipment = new AdminManageEquipmentWindow(idb);
         equipment.setVisible(true);    }//GEN-LAST:event_panelEquipmentMouseClicked
 
+    //Öppnar ny popup
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
         AgentPasswordWindow password = new AgentPasswordWindow(idb);
         password.setVisible(true);

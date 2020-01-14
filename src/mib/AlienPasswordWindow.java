@@ -66,11 +66,6 @@ public class AlienPasswordWindow extends javax.swing.JFrame {
         });
 
         txtName.setEditable(false);
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
 
         labelNewPassword.setText("Ange nytt lösenord");
 
@@ -177,13 +172,10 @@ public class AlienPasswordWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
+    //Backar tillbaka till föregående fönster.
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
 
     /**
      * @param args the command line arguments

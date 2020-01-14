@@ -25,6 +25,7 @@ public class NewAlienWindow extends javax.swing.JFrame {
         this.idb = idb;
         txtRaceInfo.setVisible(false);
         labelRaceInfo.setVisible(false);
+        // Kör metoderna som fyller comboboxarna
         fillCbs();
     }
 
@@ -62,21 +63,9 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
         panelAlien.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cbArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAreaActionPerformed(evt);
-            }
-        });
-
         labelAgent.setText("Ansvarig agent");
 
         labelPassword.setText("Lösenord");
-
-        cbAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAgentActionPerformed(evt);
-            }
-        });
 
         labelArea.setText("Tillhörande plats");
 
@@ -216,11 +205,13 @@ public class NewAlienWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Metod som tömmer alla textfält och comboboxar/datepicker.
     private void emptyInputs() {
         txtName.setText("");
         txtPassword.setText("");
         txtPhone.setText("");
         txtRaceInfo.setText("");
+        // Reset comboboxar
         cbAgent.setSelectedIndex(-1);
         cbArea.setSelectedIndex(-1);
         cbRace.setSelectedIndex(-1);
@@ -229,32 +220,37 @@ public class NewAlienWindow extends javax.swing.JFrame {
     }
 
     private void fillCbs() {
-        //Hämtar och fyllar i alla Platser i samtliga comboboxes.
+        //Hämtar och fyllar i alla Platser i comboboxarna i fönstret.
+        //Databasfråga.
         String queryLocation = "SELECT BENAMNING FROM PLATS;";
         ArrayList<String> areas = new ArrayList<>();
         try {
             areas = idb.fetchColumn(queryLocation);
-
+            //Loopar igenom alla platser och sätter ut namnen i combobox.
             for (String area : areas) {
                 cbArea.addItem(area);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        //Blankar combobox
         cbArea.setSelectedIndex(-1);
 
-        //Hämtar och fyllar i alla Agenter i samtliga comboboxes.
+        //Hämtar och fyllar i alla Agenter i combobox.
         String queryAgent = "SELECT Namn FROM AGENT;";
         ArrayList<String> agents = new ArrayList<>();
         try {
             agents = idb.fetchColumn(queryAgent);
 
+            //Loopar igenom alla platser och sätter ut namnen i combobox.
             for (String agent : agents) {
                 cbAgent.addItem(agent);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        //Blankar combobox
+
         cbAgent.setSelectedIndex(-1);
     }
 
@@ -264,9 +260,10 @@ public class NewAlienWindow extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
+        //Kollar så att alla textfält, combobox är ifyllda och att datum är korrekt ifyllt.
         if (Validation.isNotEmpty(txtName, txtPassword, txtPhone) && Validation.ifCBEmpty(cbAgent, cbArea, cbRace) && Validation.ifDatePickerEmpty(datePicker)) {
 
-            // Hämtar in alla nödvändiga textfält från användaren.
+            // Hämtar in alla nödvändiga textfält och combobox från användaren.
             String name = txtName.getText();
             String registration = datePicker.getDateStringOrEmptyString();
             String password = txtPassword.getText();
@@ -277,54 +274,59 @@ public class NewAlienWindow extends javax.swing.JFrame {
             String race = cbRace.getSelectedItem().toString();
 
             try {
-                //Skapar ett nytt ALIEN_ID att föra in i databasen.
+                //Skapar ett nytt ALIEN_ID att föra in i databasen mha metoden getAutoIncrement som 'simulerar' ett uppräknande index.
                 String autoId = idb.getAutoIncrement("ALIEN", "ALIEN_ID");
+                //Gör om till int för att kunna föras in i databasen.
                 Integer.parseInt(autoId);
 
-                //Hämtar plats ID
+                //Hämtar plats ID från databas vart alien ska befinna sig.
                 String areaID = idb.fetchSingle("SELECT PLATS_ID FROM PLATS WHERE BENAMNING = " + "'" + area + "'");
                 Integer.parseInt(areaID);
 
-                //Hämtar agent ID
+                //Hämtar agent ID från databas vem som är ansvarig agent.
                 String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                 Integer.parseInt(agentID);
 
-                String test = "INSERT INTO ALIEN VALUES ('" + autoId + "','" + registration + "','" + password + "','" + name + "'," + telephone + ",'" + areaID + "','" + agentID + "')";
-
-                System.out.println(test);
-
+                //Petar in alla data i databasens alien tabell.
                 idb.insert("INSERT INTO ALIEN VALUES (" + autoId + ",'" + registration + "','" + password + "','" + name + "'," + telephone + "," + areaID + "," + agentID + ")");
 
                 //Sätter rastillhörighet
+                //Om boglodite, skicka med ytterligare info om Boogies.
                 if (race.equals("Boglodite")) {
                     Integer.parseInt(raceInfo);
                     idb.insert("INSERT INTO BOGLODITE VALUES (" + autoId + "," + raceInfo + ")");
                 } else if (race.equals("Squid")) {
+                    //Om Squid, skicka med ytterligare info om Boogies.
                     Integer.parseInt(raceInfo);
                     idb.insert("INSERT INTO SQUID VALUES (" + autoId + "," + raceInfo + ")");
                 } else if (race.equals("Worm")) {
                     idb.insert("INSERT INTO WORM VALUES (" + autoId + ")");
                 }
 
+                //All went smooth!
                 JOptionPane.showMessageDialog(null, "Registrering av ny alien lyckades!");
 
             } catch (InfException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 System.out.println(e);
             }
+            //Töm alla fält/comboboxes
             emptyInputs();
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void cbRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceActionPerformed
         try {
+            //Hämtar ras från combobox som användare valt
             String choice = cbRace.getSelectedItem().toString();
+            //Om Boglodite, visa ny ruta med tillhörande text för användare att mata in.
             if (choice.equals("Boglodite")) {
                 txtRaceInfo.setVisible(true);
                 labelRaceInfo.setVisible(true);
                 labelRaceInfo.setText("Antal Boogies");
                 txtRaceInfo.setText("");
             } else if (choice.equals("Squid")) {
+                //Om Squid, visa ny ruta med tillhörande text för användare att mata in.
                 txtRaceInfo.setVisible(true);
                 labelRaceInfo.setVisible(true);
                 labelRaceInfo.setText("Antal armar");
@@ -338,14 +340,6 @@ public class NewAlienWindow extends javax.swing.JFrame {
             //
         }
     }//GEN-LAST:event_cbRaceActionPerformed
-
-    private void cbAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbAreaActionPerformed
-
-    private void cbAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAgentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbAgentActionPerformed
 
     /**
      * @param args the command line arguments

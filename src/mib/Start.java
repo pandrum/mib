@@ -34,8 +34,7 @@ public class Start {
             idb = new InfDB(dbPath);
             new MainWindow(idb).setVisible(true);
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+            JOptionPane.showMessageDialog(null, "Ett fel inträffade!" + e);
         }
     }
-
 }

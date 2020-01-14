@@ -131,9 +131,10 @@ public class AgentLocationManagerWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fillCbs() {
-        //Hämtar och fyllar i alla Platser i samtliga comboboxes.
+        //Hämtar och fyllar i alla Platser i comboboxen.
         String queryLocation = "SELECT BENAMNING FROM OMRADE;";
         ArrayList<String> locations = new ArrayList<>();
+        //Loopar igenom alla namn i kolumnen BENAMNING från OMRADES-tabellen och sätter ut dessa i comboboxen.
         try {
             locations = idb.fetchColumn(queryLocation);
 
@@ -143,19 +144,26 @@ public class AgentLocationManagerWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        //Sätter comboboxen till blankt val efter körning.
         cbLocations.setSelectedIndex(-1);
     }
 
     private void cbLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLocationsActionPerformed
+        //Nollar textrutan
         txtArea.setText("");
+        //Hämtar in alla platser i en Arraylist av HashMaps
         ArrayList<HashMap<String, String>> locations = new ArrayList<HashMap<String, String>>();
 
         try {
+            //Hämtar valet från combobox
             String choice = cbLocations.getSelectedItem().toString();
+            //Databasfråga som hämtar ansvarig chef över ett visst område. Består av två underfrågor.
             String query = "SELECT NAMN FROM AGENT WHERE AGENT_ID IN (SELECT AGENT_ID FROM OMRADESCHEF WHERE OMRADE IN (SELECT OMRADES_ID FROM OMRADE WHERE BENAMNING = " + "'" + choice + "'))";
 
+            //Skickar in frågan via metoden fetchRows och får tillbaka alla rader där en viss chef ansvarar över ett område.
             locations = idb.fetchRows(query);
 
+            //Loopar igenom HashMapen för att printa ut namnet på ansvarig chef(er)
             for (HashMap<String, String> location : locations) {
                 txtArea.append("Ansvarig chef(er): " + location.get("NAMN") + "\n");
             }
@@ -164,9 +172,9 @@ public class AgentLocationManagerWindow extends javax.swing.JFrame {
         } catch (java.lang.NullPointerException e) {
             //
         }
-
     }//GEN-LAST:event_cbLocationsActionPerformed
 
+    //Backar tillbaka till föregående fönster. 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed

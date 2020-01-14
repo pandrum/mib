@@ -119,12 +119,6 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
 
         panelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
-
         labelAlien.setText("Sök Alien");
 
         btnSearch.setText("Sök");
@@ -460,6 +454,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Metod som tömmer alla textfält och comboboxes.
     private void emptyInputs() {
         txtAreaMain.setText("");
         txtSearch.setText("");
@@ -468,6 +463,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
         txtDate.setText("");
         txtPhone.setText("");
         txtRaceInfo.setText("");
+        //Resetar comboboxes.
         cbArea.setSelectedIndex(-1);
         cbAgent.setSelectedIndex(-1);
         cbRace.setSelectedIndex(-1);
@@ -483,6 +479,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
         try {
             locations = idb.fetchColumn(queryLocation);
 
+            //Loopar igenom alla platser och sätter ut dessa i comboboxes i fönstret.
             for (String location : locations) {
                 cbArea.addItem(location);
                 cbAreaBottom.addItem(location);
@@ -490,6 +487,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        //Nollar combobox
         cbArea.setSelectedIndex(-1);
         cbAreaBottom.setSelectedIndex(-1);
 
@@ -498,38 +496,47 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
         ArrayList<String> names = new ArrayList<>();
         try {
             names = idb.fetchColumn(queryAgent);
-
+            //Loopar igenom alla agenter och sätter ut dessa i combobox i fönstret.
             for (String name : names) {
                 cbAgent.addItem(name);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         }
+        //Nollar combobox
         cbAgent.setSelectedIndex(-1);
     }
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        //Metod för att backa tillbaka till föregående ruta.
         setVisible(false);
         AdminWindow adminwindow = new AdminWindow(idb);
         adminwindow.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnListAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListAliensActionPerformed
+        // Metoden hämtar imformation om alla aliens och listar dem i ett textfönster
+        // Tömmer textfönsteret
         txtAreaMain.setText("");
+        // Skapar en arraylist av hashmaps(string, string)
         ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
         try {
+            //databasfråga som hämtar alla kolumner från alien
             String query = "SELECT * FROM ALIEN;";
 
+            // Hämtar all information i en rad och sparar det i en arraylist av hashmaps(string, string)
             aliens = idb.fetchRows(query);
 
+            // Loopar igenom arraylisten och "skriver ut" alien id, namn,telefon,regdatum, tillhörande plats och ansvarig agent.
             for (HashMap<String, String> alien : aliens) {
                 txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                 txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
                 txtAreaMain.append("Telefon: " + alien.get("TELEFON") + "\n");
                 txtAreaMain.append("Registreringsdatum: " + alien.get("REGISTRERINGSDATUM") + "\n");
-                //txtAreaMain.append("Plats: " + alien.get("PLATS") + "\n");
+                //Hämtar plats. Hämtar namn istället för siffra för printa ut.
                 txtAreaMain.append("Plats: " + idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
+                //Hämtar ansvarig agent. Printar ut det verkliga namnet på agenten istället för bara siffran. 
                 txtAreaMain.append("Ansvarig agent: " + idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alien.get("ALIEN_ID") + "')") + "\n");
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
@@ -539,15 +546,21 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListAliensActionPerformed
 
     private void cbAreaBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAreaBottomActionPerformed
+        //Tömmer textarean i mitten
         txtAreaMain.setText("");
+        //Initierar en Arraylist av hashmaps som heter aliens.
         ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
         try {
+            //Hämtar in val från användare i combobox.
             String choice = cbAreaBottom.getSelectedItem().toString();
+            //databasfråga som hämtar alla aliens från en viss plats
             String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM ALIEN WHERE PLATS = (SELECT PLATS_ID FROM PLATS WHERE BENAMNING = '" + choice + "')) ORDER BY ALIEN_ID;";
 
+            //skickar in fråga till databasen.
             aliens = idb.fetchRows(query);
 
+            // Loopar igenom arraylisten och "skriver ut" alien id, namn,telefon,regdatum och ansvarig agent.
             for (HashMap<String, String> alien : aliens) {
                 txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                 txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
@@ -563,34 +576,32 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbAreaBottomActionPerformed
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-
-    }//GEN-LAST:event_txtSearchActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // Metoden visar information om alien som sökts fram
+        // Kollar så att sökfältet inte är tomt
         if (Validation.isNotEmpty(txtSearch)) {
 
             String searchAlien = txtSearch.getText();
 
             try {
-                //Hämtar ID
+                //Hämtar ID och sparar det som en int
                 String alien = idb.fetchSingle("SELECT ALIEN_ID FROM ALIEN WHERE NAMN = " + "'" + searchAlien + "'");
                 txtAlienID.setText(alien);
                 int alienID = Integer.parseInt(alien);
 
-                //Hämtar Namn
+                //Hämtar Namn från databasen
                 String name = idb.fetchSingle("SELECT NAMN FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtName.setText(name);
 
-                //Hämtar Regdatum
+                //Hämtar Regdatum från databasen
                 String regDate = idb.fetchSingle("SELECT REGISTRERINGSDATUM FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtDate.setText(regDate);
 
-                //Hämtar Telefon
+                //Hämtar Telefon från databasen
                 String phone = idb.fetchSingle("SELECT TELEFON FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "'");
                 txtPhone.setText(phone);
 
-                //Hämtar Plats
+                //Hämtar Plats från databasen
                 String location = idb.fetchSingle("SELECT BENAMNING FROM PLATS WHERE PLATS_ID = (SELECT PLATS FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
                 cbArea.setSelectedItem(location);
 
@@ -612,7 +623,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                     cbRace.setSelectedItem("Worm");
                 }
 
-                //Hämtar Agent
+                //Hämtar ansvarig Agent från databasen
                 String agent = idb.fetchSingle("SELECT NAMN FROM AGENT WHERE AGENT_ID = (SELECT ANSVARIG_AGENT FROM ALIEN WHERE ALIEN_ID = " + "'" + alienID + "')");
                 cbAgent.setSelectedItem(agent);
 
@@ -626,11 +637,15 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cbRaceBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceBottomActionPerformed
+        //Nollar textfält.
         txtAreaMain.setText("");
 
         try {
+            //Hämtar in val av rastillhörighet från användaren från combobox.
             String cbChoice = cbRaceBottom.getSelectedItem().toString();
+            //databasfråga som hämtar alla aliens av en viss ras
             String query = "SELECT * FROM ALIEN WHERE ALIEN_ID IN (SELECT ALIEN_ID FROM " + cbChoice + ");";
+            //resultatet av databasfrågan sparas i en ny arraylist av hashmaps.
             ArrayList<HashMap<String, String>> aliens = idb.fetchRows(query);
 
             //Printar ut all info i textrutan om en viss ras
@@ -644,16 +659,21 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 txtAreaMain.append("--------------------------------------------------------" + "\n");
             }
         } catch (InfException e) {
+            //knas.
             JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
         } catch (java.lang.NullPointerException e) {
-            //
+            //derp
         }
     }//GEN-LAST:event_cbRaceBottomActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // Metoden ändrar informationen om framsökt alien
+        // Kollar så att id,namn,telefon och datum fälten inte är tomma samt att comboboxar och datum ät ifyllda rätt
         if (Validation.isNotEmpty(txtName, txtDate, txtPhone) && Validation.ifCBEmpty(cbArea, cbRace, cbAgent) && Validation.isInteger(txtRaceInfo) && Validation.regexDate(txtDate.getText())) {
 
+            // Frågar om man vill utföra ändring
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra informationen?", "Ändra information..", 2);
+            // Om svaret är ja, ja = 0
             if (input == 0) {
                 // Hämtar in alla nödvändiga textfält från användaren.
                 int alienID = Integer.parseInt(txtAlienID.getText());
@@ -666,29 +686,29 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                 String raceInfo = txtRaceInfo.getText();
 
                 try {
-                    //Uppdaterar aliennamn
+                    //Uppdaterar aliennamn till databasen med det nya namnet anv. valt.
                     idb.update("UPDATE ALIEN SET NAMN = " + "'" + name + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
-                    //Uppdaterar registreringsdatum
+                    //Uppdaterar registreringsdatum till databasen med det nya datumet anv. valt.
                     idb.update("UPDATE ALIEN SET REGISTRERINGSDATUM = " + "'" + registration + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
-                    //Uppdaterar telefon
+                    //Uppdaterar telefon till databasen med det nya telefonnumret som anv. valt.
                     idb.update("UPDATE ALIEN SET TELEFON = " + "'" + telephone + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Hämtar och uppdaterar plats
+                    //Hämtar plats_ID och uppdaterar plats för alien.
                     String locationID = idb.fetchSingle("SELECT PLATS_ID FROM PLATS WHERE BENAMNING = " + "'" + area + "'");
                     Integer.parseInt(locationID);
                     idb.update("UPDATE ALIEN SET PLATS = " + "'" + locationID + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Hämtar och uppdaterar agent
+                    //Hämtar agent_ID och uppdaterar ansvarig agent för alien.
                     String agentID = idb.fetchSingle("SELECT AGENT_ID FROM AGENT WHERE NAMN = " + "'" + agent + "'");
                     Integer.parseInt(agentID);
                     idb.update("UPDATE ALIEN SET ANSVARIG_AGENT = " + "'" + agentID + "'" + " WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Hämtar rastillhörighet
+                    //Testar att hämta befintlig rastillhörighet från någon av de 3 alien tabellerna bogolodite, squid och worm
                     String boglodite = idb.fetchSingle("SELECT ALIEN_ID FROM BOGLODITE WHERE ALIEN_ID = " + "'" + alienID + "'");
                     String squid = idb.fetchSingle("SELECT ALIEN_ID FROM SQUID WHERE ALIEN_ID = " + "'" + alienID + "'");
                     String worm = idb.fetchSingle("SELECT ALIEN_ID FROM WORM WHERE ALIEN_ID = " + "'" + alienID + "'");
 
-                    //Bestämmer nuvarande rastillhörighet
+                    //Bestämmer nuvarande rastillhörighet på alien genom att kolla vilket värde som inte är mull (det värdet som inte är det bestämmer rastillhörighet).
                     String alienRace = "";
                     if (boglodite != null) {
                         alienRace = "Boglodite";
@@ -698,10 +718,10 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                         alienRace = "Worm";
                     }
 
-                    //Tar bort existerande rastillhörighet
+                    //Tar bort existerande rastillhörighet då en alien bara kan vara en ras åt gången.
                     idb.delete("DELETE FROM " + alienRace + " WHERE ALIEN_ID = " + alienID);
 
-                    //Sätter ny rastillhörighet
+                    //Sätter ny rastillhörighet genom att hämta in det nya valet från användaren. Skickar med ytterligare info om valet är boglodite eller squid.
                     if (race.equals("Boglodite")) {
                         Integer.parseInt(raceInfo);
                         idb.insert("INSERT INTO BOGLODITE VALUES (" + alienID + "," + raceInfo + ")");
@@ -713,9 +733,11 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
                     }
 
                     JOptionPane.showMessageDialog(null, "Ändring av information för alien lyckades!");
+                    //något gick knas.
                 } catch (InfException | NumberFormatException | NullPointerException e) {
                     JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
                 }
+                //Nollar textfält, comboxes osv.
                 emptyInputs();
             }
         }
@@ -723,12 +745,15 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
 
     private void cbRaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRaceActionPerformed
         try {
+            //Hämtar in val från användare i combobox om rastillhörighet
             String choice = cbRace.getSelectedItem().toString();
+            //Om anv. väljer boglodit visas ett nytt textfält som användare kan skicka med antal boogies.
             if (choice.equals("Boglodite")) {
                 txtRaceInfo.setVisible(true);
                 labelRaceInfo.setVisible(true);
                 labelRaceInfo.setText("Antal Boogies");
                 txtRaceInfo.setText("");
+                //Om anv. väljer squid visas ett nytt textfält som användare kan skicka med antal armar.
             } else if (choice.equals("Squid")) {
                 txtRaceInfo.setVisible(true);
                 labelRaceInfo.setVisible(true);
@@ -745,25 +770,32 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_cbRaceActionPerformed
 
     private void btnRegNewAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNewAlienActionPerformed
+        //öppnar nytt fönster för att registrera ny alien.
         NewAlienWindow newalien = new NewAlienWindow(idb);
         newalien.setVisible(true);
     }//GEN-LAST:event_btnRegNewAlienActionPerformed
 
     private void btnSearchByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchByDateActionPerformed
 
-        //Hämtar användar-input
+        //Hämtar datum från användaren
         String userStartDate = datePickerStart.getDateStringOrEmptyString().toString();
         String userEndDate = datePickerEnd.getDateStringOrEmptyString().toString();
 
+        //Om datumen stämmer enligt mall 'YYYY-MM-DD'
         if (Validation.regexDate(userStartDate) && Validation.regexDate(userEndDate)) {
+            //Nollar textfält.
             txtAreaMain.setText("");
+            //Skapar ny arraylist av hashmaps som heter aliens för att spara information om aliens i variabel.
             ArrayList<HashMap<String, String>> aliens = new ArrayList<HashMap<String, String>>();
 
             try {
+                //Databasfråga för att filtrera aliens mellan en viss tidsram
+                //Sortera enligt tidigast datum, fallande följd.
                 String query = "SELECT * FROM ALIEN WHERE REGISTRERINGSDATUM BETWEEN " + "'" + userStartDate + "'" + " AND " + "'" + userEndDate + "'" + "ORDER BY REGISTRERINGSDATUM;";
 
                 aliens = idb.fetchRows(query);
 
+                //Loopar igenom hashmapen för att printa ut information om aliens mellan en viss tidsram. Printar ut alla rader på en ny linje och avslutar med en avskiljare "-----------"
                 for (HashMap<String, String> alien : aliens) {
                     txtAreaMain.append("Alien ID: " + alien.get("ALIEN_ID") + "\n");
                     txtAreaMain.append("Namn: " + alien.get("NAMN") + "\n");
@@ -775,6 +807,7 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
             } catch (NullPointerException e) {
+                //Om ingen resultat hittades.
                 txtAreaMain.setText("");
                 txtAreaMain.setText("Inga aliens hittades.");
             }
@@ -782,24 +815,33 @@ public class AdminManageAlienWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchByDateActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        //Kollar så att textfältet där alienID printas ut innehåller något.
         if (Validation.isNotEmpty(txtAlienID)) {
 
+            //Parsa om alienID från sträng till int.
             int alienID = Integer.parseInt(txtAlienID.getText());
+            //Promptar användare om denna är säker på att ta bort alien.
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort alien?", "Ta bort alien..", 2);
+            //Om svaret är ja (ja = 0).
             if (input == 0) {
                 try {
+                    //Tar bort alien_ID från boglodite, om det finns.
                     idb.delete("DELETE FROM BOGLODITE WHERE ALIEN_ID =" + "'" + alienID + "'");
+                    //Tar bort alien_ID från squid, om det finns.
                     idb.delete("DELETE FROM SQUID WHERE ALIEN_ID =" + "'" + alienID + "'");
+                    //Tar bort alien_ID från worm, om det finns.
                     idb.delete("DELETE FROM WORM WHERE ALIEN_ID =" + "'" + alienID + "'");
+                    //Tar bort alien_ID från alien tabellen.
                     idb.delete("DELETE FROM ALIEN WHERE ALIEN_ID =" + "'" + alienID + "'");
                     JOptionPane.showMessageDialog(null, "Alien har raderats");
+                    //Nollar alla fält.
                     emptyInputs();
                 } catch (Exception e) {
+                    //Om ingen alien med det inskickade alien_ID inte hittades.
                     JOptionPane.showMessageDialog(null, "Alien hittades inte!");
                     txtSearch.setText("");
                     txtSearch.requestFocus();
                 }
-
             }
         }
     }//GEN-LAST:event_btnRemoveActionPerformed

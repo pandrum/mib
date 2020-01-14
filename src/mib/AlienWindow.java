@@ -52,11 +52,6 @@ public class AlienWindow extends javax.swing.JFrame {
                 btnLogoutMouseClicked(evt);
             }
         });
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
 
         panelMain.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -243,10 +238,6 @@ public class AlienWindow extends javax.swing.JFrame {
         MainWindow mainwindow = new MainWindow(idb);
         mainwindow.setVisible(true);
     }//GEN-LAST:event_btnLogoutMouseClicked
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -86,12 +86,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         labelAlienPassword.setText("Lösenord");
 
-        txtAlienName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAlienNameActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mib/agent-small.png"))); // NOI18N
@@ -211,25 +205,36 @@ public class MainWindow extends javax.swing.JFrame {
         String userNameInput = textFieldAgentUsername.getText();
         String passWordInput = textFieldAgentPassword.getText();
 
+        //Kollar så att textfält för agent är ifyllt samt att användarnamn är en siffra.
         if (Validation.isNotEmpty(textFieldAgentPassword, textFieldAgentUsername) && Validation.isInteger(textFieldAgentUsername)) {
 
             try {
+                //Hämtar in användarnamn (agent_ID) från databasen.
                 String username = idb.fetchSingle("SELECT AGENT_ID from AGENT where AGENT_ID = " + userNameInput);
+                //Hämtar in lösenord från databasen.
+
                 String password = idb.fetchSingle("SELECT LOSENORD from AGENT where AGENT_ID = " + userNameInput);
+                //Hämtar in om användare är admin från databasen.
                 String admin = idb.fetchSingle("SELECT ADMINISTRATOR from AGENT where AGENT_ID = " + userNameInput);
+                //Kollar om användarnamn och lösenord från databasen stämmer överens med det användare matat in SAMT om användare är admin.
                 if (userNameInput.equals(username) && passWordInput.equals(password) && admin.equals("J")) {
+                    //Sparar användarens ID till ett fält som sedan kan användas av andra klasser för att hitta "ID" på vem som är inloggad.
                     id = username;
                     setVisible(false);
+                    //Öppnar ny admin ruta.
                     AdminWindow adminWindow = new AdminWindow(idb);
                     adminWindow.setVisible(true);
                 } // Om användare skriver in rätt användarnamn OCH rätt lösenord.
                 else if (userNameInput.equals(username) && passWordInput.equals(password)) {
+                    //Sparar användarens ID till ett fält som sedan kan användas av andra klasser för att hitta "ID" på vem som är inloggad.
                     id = username;
                     setVisible(false);
+                    //Öppnar ny agent (icke-admin) ruta.
                     AgentWindow agentWindow = new AgentWindow(idb);
                     agentWindow.setVisible(true);
 
                 } else {
+                    //Om fel användarnamn eller lösenord.
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
@@ -244,20 +249,25 @@ public class MainWindow extends javax.swing.JFrame {
         String userNameInput = txtAlienName.getText();
         String passWordInput = txtAlienPassword.getText();
 
+        //Kollar så att textfält för alien är ifyllt samt att användarnamn är en siffra.
         if (Validation.isNotEmpty(txtAlienName, txtAlienPassword) && Validation.isInteger(txtAlienName)) {
 
             try {
+                //Hämtar in användarnamn (alien_ID) från databasen.
                 String username = idb.fetchSingle("SELECT ALIEN_ID from ALIEN where ALIEN_ID = " + userNameInput);
+                //Hämtar in lösenord från databasen.
                 String password = idb.fetchSingle("SELECT LOSENORD from ALIEN where ALIEN_ID = " + userNameInput);
 
-                // Om användare skriver in rätt användarnamn OCH rätt lösenord.
+                // Om användare skriver in rätt användarnamn OCH rätt lösenord. (Matchar med databasen)
                 if (userNameInput.equals(username) && passWordInput.equals(password)) {
                     id = username;
                     setVisible(false);
+                    //Öppna ny alien ruta.
                     AlienWindow alienwindow = new AlienWindow(idb);
                     alienwindow.setVisible(true);
 
                 } else {
+                    //Om fel användarnamn eller lösenord.
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn!");
                 }
             } catch (InfException e) {
@@ -266,10 +276,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAlienLoginActionPerformed
 
-    private void txtAlienNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlienNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAlienNameActionPerformed
-
+    //Metod som andra klasser kan använda för att hitta "ID" på inloggad användare.
     public static String getId() {
         return id;
     }

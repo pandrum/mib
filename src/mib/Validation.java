@@ -16,6 +16,7 @@ import javax.swing.*;
  */
 public class Validation {
 
+    //Kollar så att ett eller flera textfält inte är tomma. Returnerar sant om alla textfält man skickar in i metoden har någon text ifyllt.
     public static boolean isNotEmpty(JTextField... args) {
         boolean result = true;
 
@@ -30,10 +31,12 @@ public class Validation {
         return result;
     }
 
+    //Kollar så att ett eller flera textfält består av en int/siffra. Returnerar sant om alla textfält man skickar in i metoden innehåller en int.
     public static boolean isInteger(JTextField... args) {
         boolean result = true;
 
         for (JTextField arg : args) {
+            //Försöker konvertera till int.
             try {
                 String temp = arg.getText();
                 Integer.parseInt(temp);
@@ -48,6 +51,7 @@ public class Validation {
         return result;
     }
 
+    //Kollar så att ett eller flera comboboxes inte är tomma. "Blankt" värde i en combobox är '-1'. Returnerar sant om alla textfält man skickar in i metoden har någon text ifyllt.
     public static boolean ifCBEmpty(JComboBox... args) {
         boolean result = true;
 
@@ -62,6 +66,7 @@ public class Validation {
         return result;
     }
 
+    //Kollar så att ett eller flera Datepickers inte är tomma. Returnerar sant om alla datepickers man skickar in i metoden har någon text ifyllt.
     public static boolean ifDatePickerEmpty(DatePicker... args) {
         boolean result = true;
 
@@ -76,13 +81,17 @@ public class Validation {
         return result;
     }
 
+    //Kollar så att datum rån ett textfält eller datepicker är korrekt ifyllt och inte innehåller nonsendatum, ex 9999-99-99.
     public static boolean regexDate(String date) {
         boolean result = false;
 
+        //Sträng med förbestämd "mall" om hur det inskicade strängvärdet ska se ut.
         String strDateRegEx = "\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])";
 
+        //Om det inskicade strängvärdet matchar regexsträngen ovan.
         if (date.matches(strDateRegEx)) {
 
+            //Skapar nytt SimpleDateFormat objekt med formatet "yyyy-MM-dd".
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             try {

@@ -117,6 +117,9 @@ public class AlienLocationManagerWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLocationMngrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocationMngrActionPerformed
+        //Hämtar agentID, namn och telefonnummer till aktuell agent från databasen
+        //genom den inloggade användarens alienID och visar upp detta i textrutan
+
         txtArea.setText("");
         int username = Integer.parseInt(MainWindow.getId());
 

@@ -214,26 +214,40 @@ public class AlienWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imageSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageSettingsMouseClicked
+        //Öppnar ett popup fönster av klassen AlienPasswordWindow för att byta lösenord
+        //genom att klicka på kugghjulsikonen
+
         AlienPasswordWindow alienpassword = new AlienPasswordWindow(idb);
         alienpassword.setVisible(true);
     }//GEN-LAST:event_imageSettingsMouseClicked
 
     private void panelSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingsMouseClicked
+        //Öppnar ett popup fönster av klassen AlienPasswordWindow för att byta lösenord
+        //genom att klicka på panelen bakom kugghjulsikonen
+
         AlienPasswordWindow alienpassword = new AlienPasswordWindow(idb);
         alienpassword.setVisible(true);
     }//GEN-LAST:event_panelSettingsMouseClicked
 
     private void panelManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManagerMouseClicked
+        //Öppnar ett popup fönster av klassen AlienLocationManagerWindow för att
+        //visa info om aktuell områdeschef genom att klicka på panelen bakom personikonen
+
         AlienLocationManagerWindow alienmanager = new AlienLocationManagerWindow(idb);
         alienmanager.setVisible(true);
     }//GEN-LAST:event_panelManagerMouseClicked
 
     private void imageManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageManagerMouseClicked
+        //Öppnar ett popup fönster av klassen AlienLocationManagerWindow för att
+        //visa info om aktuell områdeschef genom att klicka på personikonen
+
         AlienLocationManagerWindow alienmanager = new AlienLocationManagerWindow(idb);
         alienmanager.setVisible(true);
     }//GEN-LAST:event_imageManagerMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
+        //Loggar ut användaren och öppnar ett fönster av klassen MainWindow
+
         setVisible(false);
         MainWindow mainwindow = new MainWindow(idb);
         mainwindow.setVisible(true);
